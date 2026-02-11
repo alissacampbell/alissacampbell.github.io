@@ -5,19 +5,55 @@ body {
   color: #000; /* text color black */
 }
 
+/* Top navigation bar */
+header {
+  width: 100%;
+  border-bottom: 1px solid #ccc; /* thin line at top */
+  position: fixed; /* stays at top while scrolling */
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #555; /* subtle hover effect */
+}
+
+/* Adjust hero for fixed header */
+.hero {
+  padding-top: 80px; /* so text doesn’t go under fixed nav */
+}
+
 /* Hero Section */
 .hero {
   height: 100vh;
   position: relative; /* allows absolute positioning inside */
-  padding: 20px;
+  padding: 80px 20px 20px 20px; /* top padding for fixed nav, rest for spacing */
   background-color: #fff;
-}
-
-.hero-text {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: #000;
 }
 
 .hero-text h1 {
