@@ -8,8 +8,8 @@ body {
 /* Top navigation bar */
 header {
   width: 100%;
-  border-bottom: 1px solid #ccc; /* thin line at top */
-  position: fixed; /* stays at top while scrolling */
+  border-bottom: 2px solid #000; /* black line, 2px thick */
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #fff;
