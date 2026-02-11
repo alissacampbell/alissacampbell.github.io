@@ -8,12 +8,13 @@ body {
 /* Top navigation bar */
 header {
   width: 100%;
-  border-bottom: 2px solid #000; /* black line, 2px thick */
+  border-bottom: 1px solid #000; /* keep line thin */
   position: fixed;
   top: 0;
   left: 0;
   background-color: #fff;
   z-index: 1000;
+  height: 70px; /* total header height */
 }
 
 .nav-container {
@@ -22,7 +23,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
+  height: 100%; /* fill the header height */
+  padding: 0 30px; /* just left/right padding */
 }
 
 .logo {
