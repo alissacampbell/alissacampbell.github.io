@@ -1,49 +1,45 @@
+/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
-  background-color: #fff; /* white background */
-  color: #000; /* text color black */
+  background-color: #fff;
+  color: #000;
 }
 
-/* Top navigation bar */
+/* ===== HEADER & NAV ===== */
 header {
   width: 100%;
-  display: flex;
-  justify-content: center; /* center nav container */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 80px; /* more vertical breathing room */
   background-color: #fff;
-}
-
-.nav-line {
-  height: 1px;
-  background-color: #222; /* thin, off-black line */
-  width: 100%; /* matches container width */
+  padding: 10px 0; /* vertical breathing room */
 }
 
 .nav-container {
   display: flex;
-  flex-direction: column; /* stack logo/nav and line vertically */
-  align-items: flex-start; /* align left edge with logo start */
-  gap: 5px; /* space between logo/nav and line */
-  padding: 0 20px; /* horizontal padding for breathing room */
-  max-width: fit-content; /* container shrinks to content width */
-  background-color: #fff; /* keeps header white */
+  flex-direction: column; /* stack nav content and line */
+  align-items: center;    /* center horizontally */
+  gap: 5px;               /* space between nav-content and line */
+  background-color: #fff;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* space between logo and nav links */
 }
 
 .logo {
-  font-weight: 200;
-  font-size: 0.9rem;
-  line-height: 1;          /* reduces vertical spacing */
-  margin-bottom: 5px;      /* moves it closer to the line */
-  color: #000;             /* keeps text black */
+  font-weight: 300;       /* light font */
+  font-size: 0.9rem;      /* smaller logo */
+  line-height: 1;         
+  color: #000;
 }
 
 nav a {
-  margin-left: 30px;
+  margin-left: 20px;
   text-decoration: none;
   color: #000;
   font-weight: 400;
@@ -55,17 +51,27 @@ nav a:hover {
   color: #555; /* subtle hover effect */
 }
 
-/* Adjust hero for fixed header */
-.hero {
-  padding-top: 80px; /* so text doesn’t go under fixed nav */
+/* Thin line under nav */
+.nav-line {
+  height: 1px;
+  background-color: #222; /* slightly off-black */
+  width: 100%;            /* matches nav-content width */
+  max-width: fit-content; /* shrinks to content width */
 }
 
-/* Hero Section */
+/* ===== HERO SECTION ===== */
 .hero {
   height: 100vh;
   position: relative;
-  padding: 80px 20px 20px 20px; /* top padding matches header height + breathing room */
+  padding: 120px 20px 20px 20px; /* top padding accounts for fixed header + breathing room */
   background-color: #fff;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #000;
 }
 
 .hero-text h1 {
@@ -91,7 +97,7 @@ nav a:hover {
   height: auto;
 }
 
-/* General section styling (About, Contact, etc.) */
+/* ===== GENERAL SECTIONS (ABOUT, CONTACT) ===== */
 section {
   padding: 100px 10%;
 }
