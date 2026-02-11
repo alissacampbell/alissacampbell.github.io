@@ -12,22 +12,21 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff; /* make sure this is set */
+  background-color: #fff; /* ensures no black shows through */
   z-index: 1000;
-  height: 70px;
-  display: flex; /* make flex container to align items properly */
-  align-items: center;
+  height: 60px; /* slightly smaller for cleaner look */
+  display: flex;
+  justify-content: center; /* centers nav-container horizontally */
+  align-items: center; /* vertically centers nav-container */
 }
 
 .nav-container {
   max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  height: 100%; /* make it exactly as tall as header */
-  padding: 0 30px; /* left/right spacing */
+  display: flex;
+  justify-content: space-between; /* logo left, links right */
+  align-items: center; /* vertically center text in container */
+  padding: 0 30px;
 }
 
 .logo {
@@ -56,8 +55,8 @@ nav a:hover {
 /* Hero Section */
 .hero {
   height: 100vh;
-  position: relative; /* allows absolute positioning inside */
-  padding: 80px 20px 20px 20px; /* top padding for fixed nav, rest for spacing */
+  position: relative;
+  padding: 80px 20px 20px 20px; /* top padding matches header height + breathing room */
   background-color: #fff;
 }
 
