@@ -25,8 +25,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%; /* fill the header height */
-  padding: 0 30px; /* just left/right padding */
+  width: 100%;
+  height: 100%; /* make it exactly as tall as header */
+  padding: 0 30px; /* left/right spacing */
 }
 
 .logo {
