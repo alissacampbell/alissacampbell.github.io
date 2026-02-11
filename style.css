@@ -20,11 +20,11 @@ header {
 /* Nav container */
 .nav-container {
   display: flex;
-  flex-direction: column; /* stack nav row + line vertically */
+  flex-direction: column;  /* stack nav row and line vertically */
   align-items: flex-start; /* left-align content */
-  max-width: 900px;       /* limits total width */
+  max-width: fit-content;  /* shrink to width of content */
   margin: 0 auto;
-  gap: 5px;               /* space between nav row and line */
+  gap: 5px;                /* space between nav row and line */
 }
 
 /* Row with logo and nav links */
@@ -39,8 +39,7 @@ header {
 .logo {
   font-weight: 300;
   font-size: 0.9rem;
-  line-height: 1;
-  margin-bottom: 2px; /* closer to line */
+  margin-right: 40px; /* spacing between logo and nav */
 }
 
 /* Nav links */
@@ -54,18 +53,14 @@ nav a {
   color: #000;
   font-weight: 400;
   font-size: 1rem;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #555;
+  margin-left: 20px;
 }
 
 /* Thin line under nav */
 .nav-line {
   height: 1px;
-  background-color: #222;
-  width: 80%; /* matches nav-container width */
+  background-color: #222; /* thin, off-black */
+  width: 100%;            /* matches nav-container width */
 }
 
 /* ===== HERO SECTION ===== */
