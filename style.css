@@ -8,13 +8,15 @@ body {
 /* Top navigation bar */
 header {
   width: 100%;
-  border-bottom: 1px solid #222; /* keep line thin */
+  border-bottom: 1px solid #222; /* thin, slightly off-black */
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #fff; /* make sure this is set */
   z-index: 1000;
-  height: 70px; /* total header height */
+  height: 70px;
+  display: flex; /* make flex container to align items properly */
+  align-items: center;
 }
 
 .nav-container {
