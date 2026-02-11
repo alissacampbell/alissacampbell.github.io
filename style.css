@@ -8,7 +8,7 @@ body {
 /* Top navigation bar */
 header {
   width: 100%;
-  border-bottom: 1px solid #000; /* keep line thin */
+  border-bottom: 1px solid #222; /* keep line thin */
   position: fixed;
   top: 0;
   left: 0;
