@@ -19,21 +19,19 @@ header {
 }
 
 .nav-line {
-  height: 1px; /* thin line */
-  background-color: #222; /* slightly off-black */
-  width: 100%; /* spans only the nav-container width */
-  max-width: 300px; /* optional: adjust to exactly match nav content */
-  margin: 0 auto; /* centers line under nav */
+  height: 1px;
+  background-color: #222; /* thin, off-black line */
+  width: 100%; /* matches container width */
 }
 
 .nav-container {
-  width: 100%;
-  max-width: 1200px; /* content width limit */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-  border-bottom: 1px solid #222; /* line now matches container width */
+  flex-direction: column; /* stack logo/nav and line vertically */
+  align-items: flex-start; /* align left edge with logo start */
+  gap: 5px; /* space between logo/nav and line */
+  padding: 0 20px; /* horizontal padding for breathing room */
+  max-width: fit-content; /* container shrinks to content width */
+  background-color: #fff; /* keeps header white */
 }
 
 .logo {
