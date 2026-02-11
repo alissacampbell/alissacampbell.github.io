@@ -14,32 +14,34 @@ header {
   left: 0;
   z-index: 1000;
   background-color: #fff;
-  padding: 10px 0; /* vertical breathing room */
+  padding: 10px 20px;
 }
 
 .nav-container {
   display: flex;
-  flex-direction: column; /* stack nav content and line */
-  align-items: center;    /* center horizontally */
-  gap: 5px;               /* space between nav-content and line */
-  background-color: #fff;
+  justify-content: space-between; /* logo left, nav right */
+  align-items: flex-end;          /* aligns logo and nav links along bottom */
+  max-width: 1200px;              /* keeps nav from stretching full width */
+  margin: 0 auto;                 /* centers the container */
+  position: relative;
 }
 
-.nav-content {
-  display: flex;
-  align-items: center;
-  gap: 40px; /* space between logo and nav links */
-}
-
+/* Logo styling */
 .logo {
-  font-weight: 300;       /* light font */
-  font-size: 0.9rem;      /* smaller logo */
-  line-height: 1;         
+  font-weight: 300;       /* lighter font */
+  font-size: 0.9rem;      /* smaller than nav links */
+  line-height: 1;
   color: #000;
+  margin-bottom: 2px;     /* moves logo closer to the line */
+}
+
+/* Nav links */
+nav {
+  display: flex;
+  gap: 30px;               /* space between links */
 }
 
 nav a {
-  margin-left: 20px;
   text-decoration: none;
   color: #000;
   font-weight: 400;
@@ -53,17 +55,19 @@ nav a:hover {
 
 /* Thin line under nav */
 .nav-line {
+  position: absolute;
+  bottom: 0;                /* directly under logo and nav links */
+  left: 0;
   height: 1px;
-  background-color: #222; /* slightly off-black */
-  width: 100%;            /* matches nav-content width */
-  max-width: fit-content; /* shrinks to content width */
+  background-color: #222;   /* slightly off-black */
+  width: 100%;              /* matches nav-container width */
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
   height: 100vh;
   position: relative;
-  padding: 120px 20px 20px 20px; /* top padding accounts for fixed header + breathing room */
+  padding: 120px 20px 20px 20px; /* top padding for fixed header + breathing room */
   background-color: #fff;
 }
 
