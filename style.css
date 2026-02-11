@@ -65,7 +65,7 @@ nav a:hover {
 .nav-line {
   height: 1px;
   background-color: #222;
-  width: 100%; /* matches nav-container width */
+  width: 80%; /* matches nav-container width */
 }
 
 /* ===== HERO SECTION ===== */
