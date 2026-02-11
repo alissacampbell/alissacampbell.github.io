@@ -37,8 +37,11 @@ header {
 }
 
 .logo {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 200;
+  font-size: 0.9rem;
+  line-height: 1;          /* reduces vertical spacing */
+  margin-bottom: 5px;      /* moves it closer to the line */
+  color: #000;             /* keeps text black */
 }
 
 nav a {
