@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;  /* keep horizontal scroll gone */
+  overflow-y: auto;    /* normal vertical scroll */
+}
 
 body {
   font-family: 'Inter', sans-serif;
