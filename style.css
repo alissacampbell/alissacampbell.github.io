@@ -102,5 +102,10 @@ nav {
     transform: none;
     margin-top: 100px
   }
+  
+.hidden-image {
+  position: absolute;
+  top: 5000px; /* very far down, off the screen */
+}
 
 }
