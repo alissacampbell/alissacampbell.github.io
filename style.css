@@ -55,9 +55,10 @@ nav {
 .hero {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* important */
-  min-height: 70vh;
-  overflow: visible;       /* allow spilling out */
+  align-items: flex-start;
+  min-height: auto;       /* shrink to fit content */
+  margin-bottom: 0;       /* no extra space at bottom */
+  overflow: visible;      /* allow image to spill partially */
 }
 
 /* NAME */
@@ -105,15 +106,6 @@ nav {
 /* HIDDEN IMAGE */
 .hidden-image {
   display: none;  /* completely hides it, no white space, no alt text */
-}
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  min-height: calc(100vh - 50px); 
-  margin-bottom: -900;  /* remove extra space at bottom */
-  overflow: hidden
 }
 
 /* RESPONSIVE */
