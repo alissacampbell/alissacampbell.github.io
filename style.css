@@ -99,7 +99,8 @@ nav {
   width: 500px;
   height: 900px;
   object-fit: cover;
-  margin-top: 180px;  /* increase until it matches Figma */
+  margin-top: 150px;  /* increase until it matches Figma */
+  transform: translate(-20px, -10px);
 }
 
 }
