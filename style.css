@@ -94,7 +94,7 @@ nav {
   flex: 1 1 300px;          /* allow flexible width, minimum 300px */
   max-width: 600px;
   margin: 0;                 /* remove negative margins & auto */
-  margin-top: 100px
+  margin-top: 150px
 }
 
 .hero-image-container img.hero-image {
@@ -102,7 +102,7 @@ nav {
   height: auto;
   display: block;
   object-fit: contain;       /* maintain aspect ratio */
-  margin-top: 100px
+  margin-top: 150px
 }
 
 /* HIDDEN IMAGE */
