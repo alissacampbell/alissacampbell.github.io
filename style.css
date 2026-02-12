@@ -107,7 +107,7 @@ nav {
   align-items: flex-start;
   min-height: auto;  /* shrink hero to fit content */
   margin-bottom: 0;  /* remove extra space at bottom */
-  overflow: visible; /* allows image to partially spill if needed */
+  overflow: hidden
 }
 
 /* RESPONSIVE */
