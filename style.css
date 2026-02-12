@@ -5,6 +5,12 @@
   padding: 0;
 }
 
+/* Change this in your CSS file */
+html {
+  scroll-snap-type: none; /* Changed from y mandatory/proximity */
+  scroll-behavior: auto; /* Optional: removes smooth scrolling */
+}
+
 html, body {
   overflow-x: hidden;
   overflow-y: auto;
