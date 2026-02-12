@@ -9,7 +9,7 @@
 html {
   scroll-snap-type: none; /* Changed from y mandatory/proximity */
   scroll-behavior: auto; /* Optional: removes smooth scrolling */
-  scroll-padding: 0;
+  scroll-padding: -20px;
 }
 
 
