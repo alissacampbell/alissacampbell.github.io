@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+html, body, #___gatsby, #root, #site-wrapper {
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
 html, body {
   height: 100%;
   overflow-x: hidden;
