@@ -80,19 +80,20 @@ nav {
 
 /* HERO IMAGE - REPLACED OLD HERO IMAGE STYLES */
 .hero-image-container {
-  overflow: hidden;       /* hide parts outside the container */
-  height: 70vh;           /* cut off the image vertically */
-  max-width: 100%;        /* container never wider than screen */
-  flex-shrink: 0;         /* prevent flex from squishing */
+  position: relative;
+  width: 100%;
+  max-width: 600px;     /* original intended width */
+  margin-left: auto;
+  margin-right: auto;
+  /* NO overflow: hidden here! */
 }
 
 .hero-image-container img.hero-image {
-  width: 100%;            /* image scales with container */
-  max-width: 600px;       /* original intended width */
+  width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;      /* ensures it fills the container nicely */
-  margin-top: -20%;       /* moves image up to only partially show it */
+  object-fit: contain;   /* keeps full image visible proportionally */
+  margin-top: -20vh;     /* move up to show part initially */
 }
 
 /* RESPONSIVE */
@@ -105,13 +106,13 @@ nav {
     overflow: visible;
   }
 
-  .hero-image-container img.hero-image {
-    width: 600px;
-    margin-top: -30px;   /* adjust negative margin for smaller screens */
-    transform: none;
+    .hero-image-container {
+    max-width: 90%;       /* scale down on mobile */
   }
 
-}
+    .hero-image-container img.hero-image {
+    margin-top: -15vh;    /* adjust partial visibility on mobile */
+  }
 
 /* HIDDEN IMAGE */
 .hidden-image {
