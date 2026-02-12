@@ -103,11 +103,6 @@ nav {
   object-fit: contain;       /* maintain aspect ratio */
 }
 
-/* HIDDEN IMAGE */
-.hidden-image {
-  display: none;
-}
-
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
