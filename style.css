@@ -107,7 +107,7 @@ nav {
   justify-content: space-between;
   align-items: flex-start;
   min-height: auto;  /* shrink hero to fit content */
-  margin-bottom: -600;  /* remove extra space at bottom */
+  margin-bottom: -900;  /* remove extra space at bottom */
   overflow: hidden
 }
 
