@@ -61,7 +61,6 @@ nav {
   align-items: flex-start;
   min-height: 100vh;        /* full viewport height */
   overflow: visible;        /* allow images/content to spill if needed */
-  margin-bottom: 20px;
 }
 
 /* NAME */
@@ -94,7 +93,6 @@ nav {
   flex: 1 1 300px;          /* allow flexible width, minimum 300px */
   max-width: 600px;
   margin: 0;                 /* remove negative margins & auto */
-  margin-top: 50px
 }
 
 .hero-image-container img.hero-image {
