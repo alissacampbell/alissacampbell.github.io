@@ -1,3 +1,9 @@
+<style>
+body, html {
+    background-color: #000; /* Or your desired color */
+}
+</style>
+
 /* RESET + BASE */
 * {
   box-sizing: border-box;
@@ -11,12 +17,6 @@ html {
   scroll-behavior: auto; /* Optional: removes smooth scrolling */
   scroll-padding: -20px;
 }
-
-<style>
-body, html {
-    background-color: #000; /* Or your desired color */
-}
-</style>
 
 html, body {
   overflow-x: hidden;
