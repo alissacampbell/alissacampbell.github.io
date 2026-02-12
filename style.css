@@ -80,38 +80,33 @@ nav {
 
 /* HERO IMAGE - REPLACED OLD HERO IMAGE STYLES */
 .hero-image-container {
-  position: relative;
+  position: absolute;    /* position relative to hero section */
+  bottom: 0;             /* anchors the bottom of the image to the bottom of the hero section */
+  left: 50%;             /* horizontally center */
+  transform: translateX(-50%);  /* perfect centering */
   width: 100%;
-  max-width: 600px;     /* original intended width */
-  margin-left: auto;
-  margin-right: auto;
-  /* NO overflow: hidden here! */
+  max-width: 600px;      /* original intended width */
 }
 
 .hero-image-container img.hero-image {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;   /* keeps full image visible proportionally */
-  margin-top: -20vh;     /* move up to show part initially */
+  object-fit: contain;   /* keeps full image proportionally */
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
 
   .hero {
+    position: relative;  /* parent for absolute positioning */
     flex-direction: column;
     text-align: center;
     min-height: auto;
-    overflow: visible;
   }
 
     .hero-image-container {
     max-width: 90%;       /* scale down on mobile */
-  }
-
-    .hero-image-container img.hero-image {
-    margin-top: -15vh;    /* adjust partial visibility on mobile */
   }
 
 /* HIDDEN IMAGE */
