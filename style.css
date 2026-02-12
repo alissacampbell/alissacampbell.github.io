@@ -84,7 +84,7 @@ nav {
   height: auto;
   object-fit: contain;
   margin-top: 80px
-  padding-top: 50px
+  padding: 50px
 }
 
 /* RESPONSIVE */
