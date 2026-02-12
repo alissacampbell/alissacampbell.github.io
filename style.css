@@ -80,7 +80,7 @@ nav {
 
 /* IMAGE */
 .hero-image img {
-  width: 480px;
+  width: 600px;
   height: auto;
   object-fit: contain;
 }
