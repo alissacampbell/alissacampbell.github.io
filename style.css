@@ -87,13 +87,13 @@ nav {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-.hero {
-  display: flex; column
-  justify-content: space-between;
-  align-items: flex-start;
-  min-height: 120vh;   /* was 70vh */
-  overflow: hidden;    /* hides bottom of image */
-}
+
+    .hero {
+    flex-direction: column;
+    text-align: center;
+    min-height: auto;
+    overflow: visible;
+  }
 
   .hero-image img {
   width: 500px;
