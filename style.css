@@ -17,7 +17,6 @@ html, body {
 body::after {
   content: "";
   display: block;
-  height: 10px; /* invisible buffer at bottom */
 }
 
 /* CONTAINER */
