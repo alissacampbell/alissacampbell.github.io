@@ -105,7 +105,10 @@ nav {
   
 .hidden-image {
   position: absolute;
-  top: 5000px; /* very far down, off the screen */
+  top: 5000px; /* pushes it way off-screen */
+  left: 0;     /* optional, keeps it aligned to the left */
+  width: 200px; /* optional, set size if needed */
 }
+
 
 }
