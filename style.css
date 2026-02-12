@@ -82,6 +82,7 @@ nav {
   width: 420px;
   height: 520px;
   object-fit: cover;
+  margin-top: 80px
 }
 
 /* RESPONSIVE */
