@@ -87,7 +87,7 @@ nav {
   margin-top: 150px;        /* move the image down */
   margin-left: auto;         /* push to the right side of the flex row */
   margin-right: 0;           /* optional, keeps it right-aligned */
-  margin-bottom: -100px
+  margin-bottom: -150px
 }
 
 .hero-image-container img.hero-image {
