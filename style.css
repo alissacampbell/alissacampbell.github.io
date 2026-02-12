@@ -95,7 +95,7 @@ nav {
   flex: 1 1 300px;          /* allow flexible width, minimum 300px */
   max-width: 600px;
   margin: 0;                 /* remove negative margins & auto */
-  margin-top: 15px
+  margin-top: 10px
   margin-bottom: -10px
 }
 
@@ -104,7 +104,7 @@ nav {
   height: auto;
   display: block;
   object-fit: contain;       /* maintain aspect ratio */
-  margin-top: 15px
+  margin-top: 10px
   margin-bottom: -10px
 }
 
