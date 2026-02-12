@@ -104,10 +104,12 @@ nav {
   }
   
 .hidden-image {
-  position: fixed;  /* fixed removes it from normal flow entirely */
-  top: -9999px;     /* far above the visible area */
-  left: -9999px;    /* far left */
-  width: 200px;     /* optional */
+  width: 1px;
+  height: 1px;
+  opacity: 0;      /* invisible */
+  position: absolute;
+  left: -9999px;   /* off-screen */
+  top: -9999px;
 }
 
 
