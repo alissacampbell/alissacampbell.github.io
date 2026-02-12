@@ -94,6 +94,11 @@ nav {
   object-fit: contain;   /* keeps full image proportionally */
 }
 
+/* HIDDEN IMAGE */
+.hidden-image {
+  display: none;  /* completely hides it, no white space, no alt text */
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
@@ -107,7 +112,3 @@ nav {
       margin: 100px auto 0 auto; /* move down and center */
   }
 
-/* HIDDEN IMAGE */
-.hidden-image {
-  display: none;  /* completely hides it, no white space, no alt text */
-}
