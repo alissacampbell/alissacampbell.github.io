@@ -20,6 +20,7 @@ html, body {
   background: #ffffff;
   color: #333;
   line-height: 1.5;
+  min-height: 100vh;
 }
 
 body::after {
