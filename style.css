@@ -80,15 +80,15 @@ nav {
 
 /* IMAGE */
 .hero-image img {
-  width: 420px;
-  height: 900px;
-  object-fit: cover;
+  width: 380px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
 .hero {
-  display: flex;
+  display: flex; column
   justify-content: space-between;
   align-items: flex-start;
   min-height: 120vh;   /* was 70vh */
