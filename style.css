@@ -84,11 +84,6 @@ nav {
   font-size: 16px;
 }
 
-/* HIDDEN IMAGE */
-.hidden-image {
-  display: none;
-}
-
 .subtitle span {
   font-size: 14px;
   color: #999;
@@ -106,6 +101,11 @@ nav {
   height: auto;
   display: block;
   object-fit: contain;       /* maintain aspect ratio */
+}
+
+/* HIDDEN IMAGE */
+.hidden-image {
+  display: none;
 }
 
 /* RESPONSIVE */
