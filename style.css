@@ -12,6 +12,11 @@ html {
   scroll-padding: -20px;
 }
 
+<style>
+body, html {
+    background-color: #000; /* Or your desired color */
+}
+</style>
 
 html, body {
   overflow-x: hidden;
