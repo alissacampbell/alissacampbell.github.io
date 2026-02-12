@@ -86,6 +86,7 @@ nav {
   transform: translateX(-50%);  /* perfect centering */
   width: 100%;
   max-width: 600px;      /* original intended width */
+  margin-top: 100px
 }
 
 .hero-image-container img.hero-image {
