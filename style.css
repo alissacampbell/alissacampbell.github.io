@@ -1,3 +1,4 @@
+/* RESET + BASE */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,18 +6,9 @@
 }
 
 html, body {
+  height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-}
-
-body::after {
-  content: "";
-  display: block;
-  height: 5px; /* tiny invisible buffer to prevent snap-back */
-}
-
-body {
+  overflow-y: auto;        /* body handles all vertical scroll */
   font-family: 'Inter', sans-serif;
   background: #ffffff;
   color: #333;
@@ -27,12 +19,10 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 60px 0 60px; /* top right bottom left */
-  /* this removes the 40px bottom padding */
+  padding: 40px 60px 0 60px;
 }
 
-
-/* NAV */
+/* NAVIGATION */
 nav {
   display: flex;
   justify-content: space-between;
@@ -58,14 +48,15 @@ nav {
   color: #000;
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
   display: flex;
+  flex-wrap: wrap;          /* stack on small screens automatically */
   justify-content: space-between;
   align-items: flex-start;
-  min-height: auto;       /* shrink to fit content */
-  margin-bottom: 20px;       /* no extra space at bottom */
-  overflow: visible;      /* allow image to spill partially */
+  min-height: 100vh;        /* full viewport height */
+  overflow: visible;        /* allow images/content to spill if needed */
+  margin-bottom: 20px;
 }
 
 /* NAME */
@@ -93,26 +84,23 @@ nav {
   color: #999;
 }
 
-/* HERO IMAGE - REPLACED OLD HERO IMAGE STYLES */
+/* HERO IMAGE */
 .hero-image-container {
-  width: 100%;
+  flex: 1 1 300px;          /* allow flexible width, minimum 300px */
   max-width: 600px;
-  margin-top: 100px;        /* move the image down */
-  margin-left: auto;         /* push to the right side of the flex row */
-  margin-right: 0;           /* optional, keeps it right-aligned */
-  margin-bottom: -10px
+  margin: 0;                 /* remove negative margins & auto */
 }
 
 .hero-image-container img.hero-image {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;   /* keeps full image proportionally */
+  object-fit: contain;       /* maintain aspect ratio */
 }
 
 /* HIDDEN IMAGE */
 .hidden-image {
-  display: none;  /* completely hides it, no white space, no alt text */
+  display: none;
 }
 
 /* RESPONSIVE */
@@ -120,11 +108,27 @@ nav {
   .hero {
     flex-direction: column;
     text-align: center;
-    min-height: auto;
   }
 
-    .hero-image-container {
-      max-width: 90%;           /* scale down on mobile */
-      margin: 100px auto 0 auto; /* move down and center */
+  .hero-image-container {
+    max-width: 90%;
+    margin: 50px auto 0 auto; /* center image on mobile */
   }
 
+  .name-script {
+    font-size: 60px;
+  }
+
+  .name-last {
+    font-size: 50px;
+    margin-top: -15px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .subtitle span {
+    font-size: 12px;
+  }
+}
