@@ -83,19 +83,23 @@ nav {
   width: 420px;
   height: 900px;
   object-fit: cover;
-  transform: translateY(200px);
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 120vh;   /* was 70vh */
+  overflow: hidden;    /* hides bottom of image */
+}
 
   .hero-image img {
-    width: 300px;
-    height: auto;
-    margin-top: 150px;
-  }
+  width: 500px;
+  height: 900px;
+  object-fit: cover;
+  margin-top: 180px;  /* increase until it matches Figma */
+}
+
 }
