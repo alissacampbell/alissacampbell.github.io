@@ -4,6 +4,12 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  overflow-x: hidden;  /* prevent horizontal scroll */
+  overflow-y: auto;    /* normal vertical scroll */
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background: #ffffff;
@@ -15,7 +21,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 60px -30px 60px; /* top right bottom left */
+  padding: 40px 60px 0 60px; /* top right bottom left */
   /* this removes the 40px bottom padding */
 }
 
