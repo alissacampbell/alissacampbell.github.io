@@ -5,8 +5,15 @@
 }
 
 html, body {
-  overflow-x: hidden;  /* keep horizontal scroll gone */
-  overflow-y: auto;    /* normal vertical scroll */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 5px; /* tiny invisible buffer to prevent snap-back */
 }
 
 body {
