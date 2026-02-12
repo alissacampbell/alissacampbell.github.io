@@ -4,11 +4,6 @@
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-  overflow-x: hidden;  /* prevent horizontal scroll */
-  overflow-y: auto;    /* normal vertical scroll */
-}
 
 body {
   font-family: 'Inter', sans-serif;
