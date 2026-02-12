@@ -48,8 +48,9 @@ nav {
 .hero {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* important */
   min-height: 70vh;
+  overflow: visible;       /* allow spilling out */
 }
 
 /* NAME */
@@ -80,8 +81,9 @@ nav {
 /* IMAGE */
 .hero-image img {
   width: 420px;
-  height: 520px;
+  height: 900px;
   object-fit: cover;
+  transform: translateY(200px);
 }
 
 /* RESPONSIVE */
@@ -94,6 +96,6 @@ nav {
   .hero-image img {
     width: 300px;
     height: auto;
-    margin-top: 130px;
+    margin-top: 150px;
   }
 }
