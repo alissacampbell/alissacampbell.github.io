@@ -61,6 +61,7 @@ nav {
   align-items: flex-start;
   min-height: 100vh;        /* full viewport height */
   overflow: visible;        /* allow images/content to spill if needed */
+  margin-bottom: -30px
 }
 
 /* NAME */
