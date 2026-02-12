@@ -103,7 +103,7 @@ nav {
   height: auto;
   display: block;
   object-fit: contain;       /* maintain aspect ratio */
-  top-margin: 50px
+  margin-top: 50px
 }
 
 /* HIDDEN IMAGE */
