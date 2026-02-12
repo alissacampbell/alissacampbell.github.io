@@ -84,7 +84,6 @@ nav {
   height: auto;
   object-fit: contain;
   margin-top: 80px
-  padding: -50px
 }
 
 /* RESPONSIVE */
@@ -99,7 +98,7 @@ nav {
 
   .hero-image img {
     width: 600px;
-    margin-top: 80px;
+    margin-top: 100px;
     transform: none;
     margin-top: 100px
   }
