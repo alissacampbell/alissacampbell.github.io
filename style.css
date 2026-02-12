@@ -80,7 +80,7 @@ nav {
 
 /* IMAGE */
 .hero-image img {
-  width: 390px;
+  width: 410px;
   height: auto;
   object-fit: contain;
 }
@@ -96,8 +96,8 @@ nav {
   }
 
   .hero-image img {
-    width: 300px;
-    margin-top: 40px;
+    width: 320px;
+    margin-top: 80px;
     transform: none;
   }
 
