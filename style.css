@@ -126,6 +126,7 @@ nav {
   .hero {
     flex-direction: column;
     text-align: center;
+    min-height: 140vh
   }
 
   /* Lower the hero image on smaller screens */
