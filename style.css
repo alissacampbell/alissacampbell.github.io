@@ -23,22 +23,24 @@ html, body {
 ===================== */
 .container {
   max-width: 1100px;
-  margin: 0 auto;         /* centers the content */
-  padding: 40px 60px 0 60px;  /* top padding pushes content down naturally */
+  margin: 10px auto 0 auto;
+  padding: 40px 60px 0 50px;
 }
 
 /* =====================
-   NAVIGATION (sticky + floating)
+   NAVIGATION (sticky)
 ===================== */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: transparent; /* floating look */
-  border-bottom: 1px solid #bbb; /* faint line under nav */
-  padding: 20px 0;               /* vertical padding */
-  margin: 0 auto 40px auto;      /* space below nav */
-  max-width: 1000px;             /* line doesn’t touch edges */
+  position: sticky;       /* sticky nav */
+  top: 0;                 /* sticks to top */
+  background-color: #fff; /* ensure nav is visible */
+  z-index: 1000;          /* above other content */
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 12px;
+  margin: 0 50px 100px 50px; /* keeps line inside container like before */
 }
 
 /* Logo */
@@ -47,6 +49,7 @@ nav {
   color: #888;
 }
 
+/* Nav links */
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
