@@ -68,7 +68,6 @@ nav {
   flex-wrap: wrap;          /* stack on small screens automatically */
   justify-content: space-between;
   align-items: flex-start;
-  min-height: 100vh;        /* full viewport height */
   overflow: visible;        /* allow images/content to spill if needed */
   top-margin: 40px
 }
