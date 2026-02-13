@@ -1,10 +1,5 @@
-/* ===== STOP WHITE SCROLL BOUNCE ===== */
-html, body {
-  overscroll-behavior-y: none;
-}
-
 /* =====================
-   RESET + BASE + BACKGROUND IMAGE
+   RESET + BASE
 ===================== */
 * {
   box-sizing: border-box;
@@ -12,26 +7,12 @@ html, body {
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
 html, body {
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
-  overflow-y: auto;
   font-family: 'Inter', sans-serif;
-  color: #333;
+  background-color: #000; /* black so you never see white */
+  color: #fff;
   line-height: 1.5;
-
-  /* HERO IMAGE AS PAGE BACKGROUND */
-  background-image: url("heroimage2.jpg");
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 /* =====================
@@ -41,15 +22,6 @@ html, body {
   max-width: 1100px;
   margin: 10px auto 0 auto;
   padding: 40px 60px 0 80px;
-
-  /* white fade for readability */
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,0.95) 40%,
-    rgba(255,255,255,0.7) 70%,
-    rgba(255,255,255,0) 100%
-  );
 }
 
 /* =====================
@@ -59,25 +31,25 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid #444;
   padding-bottom: 12px;
   margin-bottom: 100px;
 }
 
 .logo-small {
   font-size: 14px;
-  color: #888;
+  color: #aaa;
 }
 
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
-  color: #777;
+  color: #aaa;
   font-size: 14px;
 }
 
 .nav-right a:hover {
-  color: #000;
+  color: #fff;
 }
 
 /* =====================
@@ -102,7 +74,7 @@ nav {
 .name-script {
   font-family: 'Pacifico', cursive;
   font-size: 82px;
-  color: #2f6fa3;
+  color: #6fb6ff;
 }
 
 .name-last {
@@ -113,20 +85,28 @@ nav {
 
 .subtitle {
   margin-top: 30px;
-  color: #777;
+  color: #bbb;
   font-size: 16px;
 }
 
 .subtitle span {
   font-size: 14px;
-  color: #999;
+  color: #888;
 }
 
 /* =====================
-   HERO IMAGE (HIDDEN — background replaces it)
+   HERO IMAGE
 ===================== */
-.hero-image-container img {
-  display: none;
+.hero-image-wrapper {
+  flex: 1 1 300px;
+  max-width: 500px;
+  margin-top: 60px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* =====================
@@ -140,7 +120,6 @@ nav {
    RESPONSIVE
 ===================== */
 @media (max-width: 900px) {
-
   .hero {
     flex-direction: column;
     text-align: center;
@@ -150,6 +129,11 @@ nav {
     padding-top: 100px;
   }
 
+  .hero-image-wrapper {
+    max-width: 90%;
+    margin: 50px auto 0 auto;
+  }
+
   .name-script {
     font-size: 60px;
   }
@@ -157,13 +141,5 @@ nav {
   .name-last {
     font-size: 50px;
     margin-top: -15px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .subtitle span {
-    font-size: 12px;
   }
 }
