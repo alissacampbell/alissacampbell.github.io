@@ -8,16 +8,17 @@
 }
 
 html, body {
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;   /* prevent horizontal scroll */
+  overflow-y: auto;     /* allow vertical scrolling */
   font-family: 'Inter', sans-serif;
-  background-color: #000; /* black so you never see white */
-  color: #fff;
+  background-color: #ffffff;
+  color: #333;
   line-height: 1.5;
 }
 
-/* =====================
-   CONTAINER
-===================== */
+/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: 10px auto 0 auto;
@@ -31,25 +32,25 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #bbb;
   padding-bottom: 12px;
   margin-bottom: 100px;
 }
 
 .logo-small {
   font-size: 14px;
-  color: #aaa;
+  color: #888;
 }
 
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
-  color: #aaa;
+  color: #777;
   font-size: 14px;
 }
 
 .nav-right a:hover {
-  color: #fff;
+  color: #000;
 }
 
 /* =====================
@@ -57,24 +58,18 @@ nav {
 ===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;            /* stack on small screens automatically */
   justify-content: space-between;
-  align-items: flex-start;
-  min-height: 100vh;
+  align-items: flex-start;    /* top align */
+  overflow: visible;
+  margin-top: 40px;
 }
 
-/* =====================
-   HERO TEXT
-===================== */
-.hero-text {
-  flex: 1 1 300px;
-  padding-top: 150px;
-}
-
+/* NAME */
 .name-script {
   font-family: 'Pacifico', cursive;
   font-size: 82px;
-  color: #6fb6ff;
+  color: #2f6fa3;
 }
 
 .name-last {
@@ -83,15 +78,16 @@ nav {
   margin-top: -25px;
 }
 
+/* SUBTITLE */
 .subtitle {
   margin-top: 30px;
-  color: #bbb;
+  color: #777;
   font-size: 16px;
 }
 
 .subtitle span {
   font-size: 14px;
-  color: #888;
+  color: #999;
 }
 
 /* =====================
@@ -99,18 +95,21 @@ nav {
 ===================== */
 .hero-image-wrapper {
   flex: 1 1 300px;
-  max-width: 500px;
-  margin-top: 60px;
+  max-width: 600px;
+  margin-top: 300px;   /* pushes image lower */
+  height: 80vh;        /* cuts off bottom */
+  overflow: hidden;    /* hides anything below */
 }
 
-.hero-image {
+.hero-image-wrapper img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover;   /* fills wrapper, bottom is cut off */
 }
 
 /* =====================
-   HIDDEN IMAGE
+   HIDDEN IMAGE (optional)
 ===================== */
 .hidden-image {
   display: none;
@@ -120,18 +119,16 @@ nav {
    RESPONSIVE
 ===================== */
 @media (max-width: 900px) {
+
   .hero {
     flex-direction: column;
     text-align: center;
-  }
-
-  .hero-text {
-    padding-top: 100px;
+    margin-top: 20px;
   }
 
   .hero-image-wrapper {
-    max-width: 90%;
-    margin: 50px auto 0 auto;
+    margin-top: 100px;  /* lower on mobile */
+    height: 60vh;       /* cut off less on small screens */
   }
 
   .name-script {
@@ -141,5 +138,13 @@ nav {
   .name-last {
     font-size: 50px;
     margin-top: -15px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .subtitle span {
+    font-size: 12px;
   }
 }
