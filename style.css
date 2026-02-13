@@ -15,7 +15,6 @@ html {
 html, body {
   margin: 0;
   padding: 0;
-  padding-bottom: -20px;
   overflow-x: hidden;       /* prevent horizontal scroll */
   overflow-y: auto;       /* disables vertical scroll beyond content */
   font-family: 'Inter', sans-serif;
@@ -31,7 +30,7 @@ body::after {
 
 /* CONTAINER */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 40px 60px 0 80px;
   margin-top: 10px
