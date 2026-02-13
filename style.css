@@ -1,42 +1,33 @@
-/* RESET + BASE */
+/* =====================
+   RESET + BASE
+===================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Change this in your CSS file */
-html {
-  scroll-snap-type: none; /* Changed from y mandatory/proximity */
-  scroll-behavior: auto; /* Optional: removes smooth scrolling */
-  scroll-padding: -20px;
-}
-
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;       /* prevent horizontal scroll */
-  overflow-y: auto;       /* disables vertical scroll beyond content */
+  overflow-x: hidden;   /* prevent horizontal scroll */
+  overflow-y: auto;     /* allow vertical scrolling */
   font-family: 'Inter', sans-serif;
-  background: #ffffff;      /* white background */
+  background-color: #ffffff;
   color: #333;
   line-height: 1.5;
-}
-
-body::after {
-  content: "";
-  display: block;
 }
 
 /* CONTAINER */
 .container {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 10px auto 0 auto;
   padding: 40px 60px 0 80px;
-  margin-top: 10px
 }
 
-/* NAVIGATION */
+/* =====================
+   NAVIGATION
+===================== */
 nav {
   display: flex;
   justify-content: space-between;
@@ -62,14 +53,16 @@ nav {
   color: #000;
 }
 
-/* HERO SECTION */
+/* =====================
+   HERO SECTION
+===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;          /* stack on small screens automatically */
+  flex-wrap: wrap;            /* stack on small screens automatically */
   justify-content: space-between;
-  align-items: flex-start;
-  overflow: visible;        /* allow images/content to spill if needed */
-  top-margin: 40px
+  align-items: flex-start;    /* top align */
+  overflow: visible;
+  margin-top: 40px;
 }
 
 /* NAME */
@@ -97,43 +90,46 @@ nav {
   color: #999;
 }
 
-/* HERO IMAGE */
-.hero-image-container {
-  flex: 1 1 300px;          /* allow flexible width, minimum 300px */
+/* =====================
+   HERO IMAGE
+===================== */
+.hero-image-wrapper {
+  flex: 1 1 300px;
   max-width: 600px;
-  margin: 0;                 /* remove negative margins & auto */
-  margin-top: 300px
-  margin-bottom: -10px
-  min-height: 120vh
+  margin-top: 300px;   /* pushes image lower */
+  height: 80vh;        /* cuts off bottom */
+  overflow: hidden;    /* hides anything below */
 }
 
-.hero-image-container img.hero-image {
+.hero-image-wrapper img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;       /* maintain aspect ratio */
-  margin-top: 13px
-  margin-bottom: -10px
+  object-fit: cover;   /* fills wrapper, bottom is cut off */
 }
 
-/* HIDDEN IMAGE */
+/* =====================
+   HIDDEN IMAGE (optional)
+===================== */
 .hidden-image {
   display: none;
 }
 
-/* RESPONSIVE */
+/* =====================
+   RESPONSIVE
+===================== */
 @media (max-width: 900px) {
+
   .hero {
     flex-direction: column;
     text-align: center;
-    min-height: 140vh
+    margin-top: 20px;
   }
 
-  /* Lower the hero image on smaller screens */
-  .hero-image-container {
-    margin-top: 100px;  /* adjust this number as needed */
+  .hero-image-wrapper {
+    margin-top: 100px;  /* lower on mobile */
+    height: 60vh;       /* cut off less on small screens */
   }
-}
 
   .name-script {
     font-size: 60px;
