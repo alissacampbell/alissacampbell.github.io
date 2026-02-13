@@ -127,7 +127,7 @@ nav {
   }
 
   .hero-image-wrapper {
-    margin-top: 100px;  /* lower on mobile */
+    margin-top: 80px;  /* lower on mobile */
     height: 60vh;       /* cut off less on small screens */
   }
 
