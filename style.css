@@ -8,8 +8,8 @@
 }
 
 html {
-  scroll-behavior: smooth;         
-  -webkit-overflow-scrolling: touch; 
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* smooth trackpad scrolling on Mac */
 }
 
 html, body {
@@ -68,7 +68,10 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 40px;
+
+  /* height = text + image */
+  min-height: 100vh; /* start with full viewport */
+  padding-bottom: 50px; /* space below image if needed */
 }
 
 /* =====================
@@ -76,7 +79,7 @@ nav {
 ===================== */
 .hero-text {
   flex: 1 1 300px;
-  padding-top: 200px; /* pushes text down, image naturally below */
+  padding-top: 150px; /* pushes text down under nav */
 }
 
 /* NAME */
@@ -111,7 +114,7 @@ nav {
   flex: 1 1 300px;
   max-width: 600px;
   width: 100%;
-  margin-top: 50px; /* lower image a little under text */
+  margin-top: 50px; /* image lower under text */
 }
 
 .hero-image-container img {
@@ -136,6 +139,7 @@ nav {
   .hero {
     flex-direction: column;
     text-align: center;
+    padding-bottom: 50px; /* space below image */
   }
 
   .hero-text {
