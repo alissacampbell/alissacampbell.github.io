@@ -1,5 +1,5 @@
 /* =====================
-   RESET + BASE
+   RESET + BASE + BACKGROUND IMAGE
 ===================== */
 * {
   box-sizing: border-box;
@@ -9,7 +9,7 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* smooth trackpad scrolling on Mac */
+  -webkit-overflow-scrolling: touch;
 }
 
 html, body {
@@ -18,9 +18,15 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
   font-family: 'Inter', sans-serif;
-  background-color: #ffffff;
   color: #333;
   line-height: 1.5;
+
+  /* HERO IMAGE AS PAGE BACKGROUND */
+  background-image: url("heroimage2.jpg");
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* =====================
@@ -30,6 +36,15 @@ html, body {
   max-width: 1100px;
   margin: 10px auto 0 auto;
   padding: 40px 60px 0 80px;
+
+  /* white fade for readability */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0.95) 40%,
+    rgba(255,255,255,0.7) 70%,
+    rgba(255,255,255,0) 100%
+  );
 }
 
 /* =====================
@@ -68,10 +83,7 @@ nav {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-
-  /* height = text + image */
-  min-height: 100vh; /* start with full viewport */
-  padding-bottom: 50px; /* space below image if needed */
+  min-height: 100vh;
 }
 
 /* =====================
@@ -79,10 +91,9 @@ nav {
 ===================== */
 .hero-text {
   flex: 1 1 300px;
-  padding-top: 150px; /* pushes text down under nav */
+  padding-top: 150px;
 }
 
-/* NAME */
 .name-script {
   font-family: 'Pacifico', cursive;
   font-size: 82px;
@@ -95,7 +106,6 @@ nav {
   margin-top: -25px;
 }
 
-/* SUBTITLE */
 .subtitle {
   margin-top: 30px;
   color: #777;
@@ -108,20 +118,10 @@ nav {
 }
 
 /* =====================
-   HERO IMAGE
+   HERO IMAGE (HIDDEN — background replaces it)
 ===================== */
-.hero-image-container {
-  flex: 1 1 300px;
-  max-width: 600px;
-  width: 100%;
-  margin-top: 50px; /* image lower under text */
-}
-
 .hero-image-container img {
-  width: 100%;
-  height: auto;        /* natural proportions */
-  display: block;
-  object-fit: contain;  /* scale image without cropping */
+  display: none;
 }
 
 /* =====================
@@ -139,16 +139,10 @@ nav {
   .hero {
     flex-direction: column;
     text-align: center;
-    padding-bottom: 50px; /* space below image */
   }
 
   .hero-text {
-    padding-top: 100px;  /* lower text on mobile */
-  }
-
-  .hero-image-container {
-    max-width: 90%;
-    margin: 50px auto 0 auto; /* lower image on mobile */
+    padding-top: 100px;
   }
 
   .name-script {
