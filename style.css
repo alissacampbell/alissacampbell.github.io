@@ -103,7 +103,7 @@ nav {
   flex: 1 1 300px;
   max-width: 400px;
   margin-bottom: 40px;
-  height: 80vh;        /* cuts off bottom */
+  height: 100vh;        /* cuts off bottom */
   overflow: hidden;    /* hides anything below */
 }
 
