@@ -34,15 +34,14 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;       /* makes it stick on scroll */
-  top: 40px;              /* space from top */
-  background-color: #fff; /* keeps nav visible */
+  position: sticky;       /* sticky nav */
+  top: 0;                 /* stick at top of viewport */
+  background-color: transparent; /* remove box look */
   z-index: 1000;
-  border-bottom: 1px solid #bbb; /* faint line */
-  padding: 12px 50px;     /* inside padding */
-  margin: 0 auto 100px auto; /* centers nav, keeps spacing below */
-  max-width: 1000px;      /* line does not extend full width */
-  border-radius: 0;       /* remove any rounding */
+  padding: 12px 0;        /* vertical padding only */
+  margin: 0 auto 100px auto; /* centers nav, keeps space below */
+  max-width: 1000px;      /* line doesn’t stretch full width */
+  border-bottom: 1px solid #bbb; /* faint line under nav */
 }
 
 /* Logo */
