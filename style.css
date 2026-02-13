@@ -107,13 +107,6 @@ nav {
   overflow: hidden;    /* hides anything below */
 }
 
-.hero-image-wrapper img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;   /* fills wrapper, bottom is cut off */
-}
-
 /* =====================
    HIDDEN IMAGE (optional)
 ===================== */
