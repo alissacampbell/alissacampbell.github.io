@@ -2,18 +2,23 @@
    RESET + BASE
 ===================== */
 * {
-  box-sizing: border-box;   /* include padding/border in width */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;         /* smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* momentum scrolling on Mac/iOS */
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;       /* prevent horizontal scroll */
-  overflow-y: auto;         /* allow vertical scroll for page content */
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'Inter', sans-serif;
-  background-color: #ffffff; /* page background white */
+  background-color: #ffffff;
   color: #333;
   line-height: 1.5;
 }
@@ -23,8 +28,8 @@ html, body {
 ===================== */
 .container {
   max-width: 1100px;
-  margin: 10px auto 0 auto; /* center container */
-  padding: 40px 60px 0 80px; /* top right bottom left */
+  margin: 10px auto 0 auto;
+  padding: 40px 60px 0 80px;
 }
 
 /* =====================
@@ -36,7 +41,7 @@ nav {
   align-items: center;
   border-bottom: 1px solid #bbb;
   padding-bottom: 12px;
-  margin-bottom: 100px;     /* spacing under nav */
+  margin-bottom: 100px;
 }
 
 .logo-small {
@@ -60,11 +65,14 @@ nav {
 ===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;           /* stack on small screens */
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;   /* align text and image to top */
-  overflow: visible;         /* allow image to extend below content */
+  align-items: flex-start;
+  overflow: visible;
   margin-top: 40px;
+
+  /* make the scrollable area include the full image */
+  min-height: calc(100vh + 200px); /* adjust 200px to match image hang */
 }
 
 /* NAME */
@@ -97,21 +105,21 @@ nav {
 ===================== */
 .hero-image-container {
   flex: 1 1 300px;       /* flexible width */
-  max-width: 600px;      /* prevents huge image */
-  margin-top: 200px;     /* pushes image below text */
-  margin-bottom: -200px; /* lets image hang below page content for overscroll */
+  max-width: 600px;      /* prevent huge image */
+  margin-top: 200px;     /* push image lower */
+  margin-bottom: -200px; /* let image hang below content */
 }
 
 .hero-image-container img {
   width: 100%;           /* fill container width */
-  max-width: 100%;       /* never exceed container width */
+  max-width: 100%;
   height: auto;          /* maintain natural aspect ratio */
   display: block;
-  object-fit: contain;   /* no cropping, full image visible */
+  object-fit: contain;   /* no cropping */
 }
 
 /* =====================
-   HIDDEN IMAGE (optional)
+   HIDDEN IMAGE
 ===================== */
 .hidden-image {
   display: none;
@@ -126,12 +134,13 @@ nav {
     flex-direction: column;
     text-align: center;
     margin-top: 20px;
+    min-height: calc(100vh + 100px); /* less hang on small screens */
   }
 
   .hero-image-container {
-    margin-top: 100px;    /* lower image on small screens */
-    margin-bottom: -100px;/* extend below content */
-    max-width: 90%;       /* shrink on mobile */
+    margin-top: 100px;
+    margin-bottom: -100px;
+    max-width: 90%;
   }
 
   .name-script {
