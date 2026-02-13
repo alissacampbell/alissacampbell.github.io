@@ -58,9 +58,9 @@ nav {
 ===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;            /* stack on small screens automatically */
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;    /* top align */
+  align-items: flex-start;
   overflow: visible;
   margin-top: 40px;
 }
@@ -93,20 +93,18 @@ nav {
 /* =====================
    HERO IMAGE
 ===================== */
-.hero-image-wrapper {
+.hero-image-container {
   flex: 1 1 300px;
-  max-width: 600px;     /* limits horizontal size */
-  margin-top: 200px;    /* push image lower */
-  height: 80vh;         /* cuts off bottom */
-  overflow: hidden;
+  max-width: 600px;
+  margin-top: 200px;        /* pushes image lower below text */
+  margin-bottom: -200px;    /* extends image visually below page content */
 }
 
-.hero-image-wrapper img {
-  width: auto;           /* scale based on natural width */
-  max-width: 100%;       /* don’t go past wrapper */
-  height: 100%;          /* fill wrapper vertically */
+.hero-image-container img {
+  width: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;     /* crop bottom if needed */
+  object-fit: contain;       /* show full image, not cropped */
 }
 
 /* =====================
@@ -127,9 +125,9 @@ nav {
     margin-top: 20px;
   }
 
-  .hero-image-wrapper {
-    margin-top: 100px;  /* lower on mobile */
-    height: 60vh;       /* cut off less on small screens */
+  .hero-image-container {
+    margin-top: 100px;       /* lower on mobile */
+    margin-bottom: -100px;   /* extend below mobile page content */
   }
 
   .name-script {
@@ -146,6 +144,4 @@ nav {
   }
 
   .subtitle span {
-    font-size: 12px;
-  }
-}
+    f
