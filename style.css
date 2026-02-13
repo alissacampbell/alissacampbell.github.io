@@ -34,15 +34,15 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;       /* sticky nav */
-  top: 20px;              /* slight gap from top for floating effect */
-  background-color: #fff; /* ensure nav is visible */
-  z-index: 1000;          /* above other content */
+  position: sticky;
+  top: 40px;                /* space from the top of viewport */
+  background-color: #fff;
+  z-index: 1000;
   border-bottom: 1px solid #bbb;
-  border-radius: 8px;     /* subtle rounding for floating look */
-  padding: 12px 50px;     /* horizontal padding inside nav */
-  margin: 0 auto 100px auto; /* centers nav and keeps bottom margin */
-  max-width: 1000px;      /* controls width of nav box */
+  border-radius: 8px;       /* floating effect */
+  padding: 12px 50px;
+  margin: 0 auto 100px auto; /* centers nav horizontally, keeps bottom spacing */
+  max-width: 1000px;        /* limits nav width so it floats */
   box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* optional floating shadow */
 }
 
