@@ -25,38 +25,40 @@ html, body {
   padding: 40px 60px 0 50px;
 }
 
-/* =====================
-   NAVIGATION
-===================== */
+/* NAVIGATION */
 nav {
   display: flex;
-  position: sticky;      /* keeps nav at top */
-  top: 0;                /* stick to top of viewport */
+  position: sticky;       /* makes it sticky */
+  top: 0;                 /* stick to top of viewport */
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff; /* ensures nav stays visible over content */
-  z-index: 1000;         /* stays above other elements */
+  background-color: #fff; /* ensures nav is visible over content */
+  z-index: 1000;
   border-bottom: 1px solid #bbb;
-  padding: 12px 0;       /* padding inside nav */
-  margin-bottom: 0;      /* remove extra margin since sticky overlaps content */
+  padding: 12px 60px;     /* adjust as needed */
+  margin: 0;              /* remove bottom margin */
 }
 
-.logo-small {
-  font-size: 14px;
+/* Make sure parent container does NOT break sticky */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;         /* no top margin */
+  padding: 0;             /* remove top padding for sticky nav */
+}
+
+/* Logo */
+.logo-small a {
+  text-decoration: none;
   color: #888;
 }
 
-.logo-small a {
-  text-decoration: none;
-  color: inherit;       /* uses the same color as .logo-small */
-}
-
+/* Nav links */
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
   color: #777;
   font-size: 14px;
-  transition: color 0.2s ease; /* smooth hover transition */
+  transition: color 0.2s ease;
 }
 
 .nav-right a:hover {
