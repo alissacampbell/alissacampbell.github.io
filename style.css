@@ -95,17 +95,18 @@ nav {
 ===================== */
 .hero-image-wrapper {
   flex: 1 1 300px;
-  max-width: 600px;
-  margin-top: 300px;   /* pushes image lower */
-  height: 80vh;        /* cuts off bottom */
-  overflow: hidden;    /* hides anything below */
+  max-width: 600px;     /* limits horizontal size */
+  margin-top: 200px;    /* push image lower */
+  height: 80vh;         /* cuts off bottom */
+  overflow: hidden;
 }
 
 .hero-image-wrapper img {
-  width: 100%;
-  height: auto;
+  width: auto;           /* scale based on natural width */
+  max-width: 100%;       /* don’t go past wrapper */
+  height: 100%;          /* fill wrapper vertically */
   display: block;
-  object-fit: cover;   /* fills wrapper, bottom is cut off */
+  object-fit: cover;     /* crop bottom if needed */
 }
 
 /* =====================
