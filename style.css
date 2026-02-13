@@ -28,19 +28,22 @@ html, body {
 }
 
 /* =====================
-   NAVIGATION (sticky)
+   NAVIGATION (sticky + floating)
 ===================== */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;       /* sticky nav */
-  top: 0;                 /* sticks to top */
+  top: 20px;              /* slight gap from top for floating effect */
   background-color: #fff; /* ensure nav is visible */
   z-index: 1000;          /* above other content */
   border-bottom: 1px solid #bbb;
-  padding-bottom: 12px;
-  margin: 0 50px 100px 50px; /* keeps line inside container like before */
+  border-radius: 8px;     /* subtle rounding for floating look */
+  padding: 12px 50px;     /* horizontal padding inside nav */
+  margin: 0 auto 100px auto; /* centers nav and keeps bottom margin */
+  max-width: 1000px;      /* controls width of nav box */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* optional floating shadow */
 }
 
 /* Logo */
@@ -61,6 +64,7 @@ nav {
 .nav-right a:hover {
   color: #000;
 }
+
 
 /* =====================
    HERO SECTION
