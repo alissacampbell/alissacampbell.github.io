@@ -1,3 +1,8 @@
+/* ===== STOP WHITE SCROLL BOUNCE ===== */
+html, body {
+  overscroll-behavior-y: none;
+}
+
 /* =====================
    RESET + BASE + BACKGROUND IMAGE
 ===================== */
