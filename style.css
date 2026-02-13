@@ -36,7 +36,7 @@ nav {
   align-items: center;
   background-color: transparent; /* floating look */
   border-bottom: 1px solid #bbb; /* faint line under nav */
-  padding: 12px 0;               /* vertical padding */
+  padding: 20px 0;               /* vertical padding */
   margin: 0 auto 40px auto;      /* space below nav */
   max-width: 1000px;             /* line doesn’t touch edges */
 }
