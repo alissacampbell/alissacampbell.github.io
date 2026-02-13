@@ -108,13 +108,6 @@ nav {
 }
 
 /* =====================
-   HIDDEN IMAGE (optional)
-===================== */
-.hidden-image {
-  display: none;
-}
-
-/* =====================
    RESPONSIVE
 ===================== */
 @media (max-width: 900px) {
