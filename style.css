@@ -64,15 +64,19 @@ nav {
    HERO SECTION
 ===================== */
 .hero {
-  position: relative;          /* allows absolute positioning inside */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 40px;
+}
 
-  /* ensure scrollable area includes full image */
-  padding-bottom: 200px;       /* extra space for image hang */
+/* =====================
+   HERO TEXT
+===================== */
+.hero-text {
+  flex: 1 1 300px;
+  padding-top: 200px; /* pushes text down, image naturally below */
 }
 
 /* NAME */
@@ -104,18 +108,17 @@ nav {
    HERO IMAGE
 ===================== */
 .hero-image-container {
-  position: absolute;       /* absolute inside relative hero */
-  right: 0;                 /* align to right */
-  top: 200px;               /* push image lower */
+  flex: 1 1 300px;
   max-width: 600px;
   width: 100%;
+  margin-top: 50px; /* lower image a little under text */
 }
 
 .hero-image-container img {
-  width: 100%;              /* scale to container */
-  height: auto;             /* natural proportions */
+  width: 100%;
+  height: auto;        /* natural proportions */
   display: block;
-  object-fit: contain;      /* no cropping */
+  object-fit: contain;  /* scale image without cropping */
 }
 
 /* =====================
@@ -133,14 +136,15 @@ nav {
   .hero {
     flex-direction: column;
     text-align: center;
-    padding-bottom: 100px;  /* less hang on mobile */
+  }
+
+  .hero-text {
+    padding-top: 100px;  /* lower text on mobile */
   }
 
   .hero-image-container {
-    position: relative;      /* relative on mobile so it stacks below text */
-    top: 100px;              /* lower image */
     max-width: 90%;
-    margin: 0 auto;
+    margin: 50px auto 0 auto; /* lower image on mobile */
   }
 
   .name-script {
