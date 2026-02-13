@@ -30,12 +30,15 @@ html, body {
 ===================== */
 nav {
   display: flex;
-  position: sticky;
+  position: sticky;      /* keeps nav at top */
+  top: 0;                /* stick to top of viewport */
   justify-content: space-between;
   align-items: center;
+  background-color: #ffffff; /* ensures nav stays visible over content */
+  z-index: 1000;         /* stays above other elements */
   border-bottom: 1px solid #bbb;
-  padding-bottom: 12px;
-  margin-bottom: 100px;
+  padding: 12px 0;       /* padding inside nav */
+  margin-bottom: 0;      /* remove extra margin since sticky overlaps content */
 }
 
 .logo-small {
@@ -43,16 +46,23 @@ nav {
   color: #888;
 }
 
+.logo-small a {
+  text-decoration: none;
+  color: inherit;       /* uses the same color as .logo-small */
+}
+
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
   color: #777;
   font-size: 14px;
+  transition: color 0.2s ease; /* smooth hover transition */
 }
 
 .nav-right a:hover {
   color: #000;
 }
+
 
 /* =====================
    HERO SECTION
