@@ -96,7 +96,7 @@ nav {
 .hero-image-wrapper {
   flex: 1 1 300px;
   max-width: 600px;
-  margin-top: 100px;   /* pushes image lower */
+  margin-top: 10px;   /* pushes image lower */
   height: 80vh;        /* cuts off bottom */
   overflow: hidden;    /* hides anything below */
 }
