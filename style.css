@@ -10,8 +10,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: hidden;   /* prevent horizontal scroll */
+  overflow-y: auto;     /* allow vertical scrolling */
   font-family: 'Inter', sans-serif;
   background-color: #ffffff;
   color: #333;
@@ -19,26 +19,37 @@ html, body {
 }
 
 /* =====================
+   CONTAINER
+===================== */
+.container {
+  max-width: 1100px;
+  margin: 10px auto 0 auto;
+  padding: 40px 60px 0 50px;
+}
+
+/* =====================
    NAVIGATION (sticky)
 ===================== */
 nav {
-  position: sticky;
-  top: 0;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  z-index: 1000;
+  position: sticky;       /* sticky nav */
+  top: 0;                 /* sticks to top */
+  background-color: #fff; /* ensure nav is visible */
+  z-index: 1000;          /* above other content */
   border-bottom: 1px solid #bbb;
-  padding: 12px 60px;
+  padding-bottom: 12px;
+  margin: 0 50px 100px 50px; /* keeps line inside container like before */
 }
 
+/* Logo */
 .logo-small a {
   text-decoration: none;
   color: #888;
 }
 
+/* Nav links */
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
@@ -52,30 +63,15 @@ nav {
 }
 
 /* =====================
-   CONTAINER
-===================== */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 50px;
-}
-
-/* =====================
    HERO SECTION
 ===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;            /* stack on small screens automatically */
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-start;    /* top align */
   overflow: visible;
-  margin-top: 20px;
-}
-
-/* HERO TEXT */
-.hero-text {
-  flex: 1 1 300px;
-  padding-top: 100px;
+  margin-top: 40px;
 }
 
 /* NAME */
@@ -103,23 +99,27 @@ nav {
   color: #999;
 }
 
-/* HERO IMAGE */
+/* =====================
+   HERO IMAGE
+===================== */
 .hero-image-wrapper {
   flex: 1 1 300px;
   max-width: 500px;
   margin-bottom: 40px;
-  height: auto;        /* natural height */
-  overflow: visible;   /* allow full image scroll */
+  height: 80vh;        /* cuts off bottom */
+  overflow: hidden;    /* hides anything below */
 }
 
 .hero-image-wrapper img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain;
+  object-fit: cover;   /* fills wrapper, bottom is cut off */
 }
 
-/* HIDDEN IMAGE (optional) */
+/* =====================
+   HIDDEN IMAGE (optional)
+===================== */
 .hidden-image {
   display: none;
 }
@@ -135,14 +135,9 @@ nav {
     margin-top: 20px;
   }
 
-  .hero-text {
-    padding-top: 80px;
-  }
-
   .hero-image-wrapper {
-    max-width: 90%;
-    margin: 50px auto 0 auto;
-    height: auto;
+    margin-top: 80px;  /* lower on mobile */
+    height: 60vh;       /* cut off less on small screens */
   }
 
   .name-script {
