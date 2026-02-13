@@ -15,6 +15,7 @@ html {
 html, body {
   margin: 0;
   padding: 0;
+  padding-bottom: -20px;
   overflow-x: hidden;       /* prevent horizontal scroll */
   overflow-y: auto;       /* disables vertical scroll beyond content */
   font-family: 'Inter', sans-serif;
