@@ -34,14 +34,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;       /* sticky nav */
-  top: 0;                 /* stick at top of viewport */
-  background-color: transparent; /* remove box look */
-  z-index: 1000;
-  padding: 12px 0;        /* vertical padding only */
-  margin: 0 auto 100px auto; /* centers nav, keeps space below */
-  max-width: 1000px;      /* line doesn’t stretch full width */
-  border-bottom: 1px solid #bbb; /* faint line under nav */
+  background-color: transparent; /* keeps floating look */
+  border-bottom: 1px solid #bbb; /* faint line underneath */
+  padding: 12px 0;               /* vertical padding */
+  margin: 0 auto 100px auto;     /* centers nav, keeps space below */
+  max-width: 1000px;             /* line does not stretch full width */
 }
 
 /* Logo */
@@ -50,7 +47,6 @@ nav {
   color: #888;
 }
 
-/* Nav links */
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
@@ -62,7 +58,6 @@ nav {
 .nav-right a:hover {
   color: #000;
 }
-
 
 /* =====================
    HERO SECTION
