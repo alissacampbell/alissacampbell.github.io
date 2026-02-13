@@ -23,8 +23,8 @@ html, body {
 ===================== */
 .container {
   max-width: 1100px;
-  margin: 10px auto 0 auto;
-  padding: 40px 60px 0 50px;
+  margin: 0 auto;         /* centers the content */
+  padding: 40px 60px 0 60px;  /* top padding pushes content down naturally */
 }
 
 /* =====================
@@ -34,11 +34,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: transparent; /* keeps floating look */
-  border-bottom: 1px solid #bbb; /* faint line underneath */
+  background-color: transparent; /* floating look */
+  border-bottom: 1px solid #bbb; /* faint line under nav */
   padding: 12px 0;               /* vertical padding */
-  margin: 0 auto 100px auto;     /* centers nav, keeps space below */
-  max-width: 1000px;             /* line does not stretch full width */
+  margin: 0 auto 40px auto;      /* space below nav */
+  max-width: 1000px;             /* line doesn’t touch edges */
 }
 
 /* Logo */
