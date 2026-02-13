@@ -10,49 +10,35 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;   /* prevent horizontal scroll */
-  overflow-y: auto;     /* allow vertical scrolling */
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'Inter', sans-serif;
   background-color: #ffffff;
   color: #333;
   line-height: 1.5;
 }
 
-/* CONTAINER */
-.container {
-  max-width: 1100px;
-  margin: 10px auto 0 auto;
-  padding: 40px 60px 0 50px;
-}
-
-/* NAVIGATION */
+/* =====================
+   NAVIGATION (sticky)
+===================== */
 nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
   display: flex;
-  position: sticky;       /* makes it sticky */
-  top: 0;                 /* stick to top of viewport */
   justify-content: space-between;
   align-items: center;
-  background-color: #fff; /* ensures nav is visible over content */
+  background-color: #fff;
   z-index: 1000;
   border-bottom: 1px solid #bbb;
-  padding: 12px 60px;     /* adjust as needed */
-  margin: 0;              /* remove bottom margin */
+  padding: 12px 60px;
 }
 
-/* Make sure parent container does NOT break sticky */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;         /* no top margin */
-  padding: 0;             /* remove top padding for sticky nav */
-}
-
-/* Logo */
 .logo-small a {
   text-decoration: none;
   color: #888;
 }
 
-/* Nav links */
 .nav-right a {
   margin-left: 30px;
   text-decoration: none;
@@ -65,17 +51,31 @@ nav {
   color: #000;
 }
 
+/* =====================
+   CONTAINER
+===================== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
 
 /* =====================
    HERO SECTION
 ===================== */
 .hero {
   display: flex;
-  flex-wrap: wrap;            /* stack on small screens automatically */
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;    /* top align */
+  align-items: flex-start;
   overflow: visible;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+/* HERO TEXT */
+.hero-text {
+  flex: 1 1 300px;
+  padding-top: 100px;
 }
 
 /* NAME */
@@ -103,27 +103,23 @@ nav {
   color: #999;
 }
 
-/* =====================
-   HERO IMAGE
-===================== */
+/* HERO IMAGE */
 .hero-image-wrapper {
   flex: 1 1 300px;
   max-width: 500px;
-  margin-bottom:40px;
-  height: 80vh;        /* cuts off bottom */
-  overflow: hidden;    /* hides anything below */
+  margin-bottom: 40px;
+  height: auto;        /* natural height */
+  overflow: visible;   /* allow full image scroll */
 }
 
 .hero-image-wrapper img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;   /* fills wrapper, bottom is cut off */
+  object-fit: contain;
 }
 
-/* =====================
-   HIDDEN IMAGE (optional)
-===================== */
+/* HIDDEN IMAGE (optional) */
 .hidden-image {
   display: none;
 }
@@ -139,9 +135,14 @@ nav {
     margin-top: 20px;
   }
 
+  .hero-text {
+    padding-top: 80px;
+  }
+
   .hero-image-wrapper {
-    margin-top: 80px;  /* lower on mobile */
-    height: 60vh;       /* cut off less on small screens */
+    max-width: 90%;
+    margin: 50px auto 0 auto;
+    height: auto;
   }
 
   .name-script {
