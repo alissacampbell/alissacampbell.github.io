@@ -70,9 +70,11 @@ nav {
 
 /* NAME */
 .name-script {
-  font-family: 'Patrick Hand', sans-serif;
-  font-size: 84px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 92px;
+  line-height: 0.9;
   letter-spacing: 1px;
+  margin-bottom: -10px;
 }
 
 
