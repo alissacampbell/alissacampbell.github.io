@@ -71,10 +71,11 @@ nav {
 /* NAME */
 .name-script {
   font-family: 'Patrick Hand', cursive;
-  font-size: 92px;
+  font-size: 120px; /* make it bigger */
   line-height: 0.9;
   letter-spacing: 1px;
-  margin-bottom: -10px;
+  margin-bottom: -20px; /* bring it closer to last name */
+  color: #007BFF; /* blue color */
 }
 
 
