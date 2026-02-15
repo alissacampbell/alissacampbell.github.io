@@ -71,7 +71,7 @@ nav {
 /* NAME */
 .name-script {
   font-family: 'Rock Salt', cursive; /* try a more hand-drawn marker font */
-  font-size: 100px;          /* bigger size */
+  font-size: 80px;          /* bigger size */
   line-height: 0.9;
   letter-spacing: 1px;
   margin-bottom: -20px;      /* closer to last name */
