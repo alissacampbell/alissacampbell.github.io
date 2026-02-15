@@ -70,11 +70,11 @@ nav {
 
 /* NAME */
 .name-script {
-  font-family: 'Pacifico', cursive;
-  font-size: 96px;
-  color: #2f6fa3;
-  margin-left: -10px; /* OFF-CENTER HANDWRITTEN FEEL */
+  font-family: 'Patrick Hand', sans-serif;
+  font-size: 84px;
+  letter-spacing: 1px;
 }
+
 
 .name-last {
   font-weight: 700;
