@@ -77,7 +77,7 @@ nav {
   margin-bottom: -20px;      /* closer to last name */
   color: #007BFF !important; /* force blue color */
   display: inline-block;     /* needed for transform */
-  transform: rotate(-5deg);  /* tilt slightly counter-clockwise */
+  transform: rotate(-15deg);  /* tilt slightly counter-clockwise */
 }
 
 
