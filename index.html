@@ -48,12 +48,40 @@
 
       <!-- IMAGE SIDE -->
       <div class="hero-image-wrapper">
-        <img src="heroimage2.jpg" alt="Illustration of Alissa Campbell" />
+        <!-- Main drawing without pupils -->
+        <img src="heroimage4.png" alt="Illustration of Alissa Campbell" class="eye-background">
+
+        <!-- Eye whites -->
+        <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
+
+        <!-- Pupils (connected) -->
+        <img src="eyepupils.png" alt="Pupils" class="pupil">
       </div>
 
     </section>
 
   </div>
+
+  <!-- JS for pupils following cursor -->
+  <script>
+    const pupil = document.querySelector('.pupil');
+    const eyeWhites = document.querySelector('.eye-whites');
+
+    document.addEventListener('mousemove', (e) => {
+      const rect = eyeWhites.getBoundingClientRect();
+      const eyeCenterX = rect.left + rect.width / 2;
+      const eyeCenterY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - eyeCenterX;
+      const dy = e.clientY - eyeCenterY;
+
+      const maxDist = 15; // max pixels pupil can move
+      const angle = Math.atan2(dy, dx);
+      const distance = Math.min(maxDist, Math.hypot(dx, dy));
+
+      pupil.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`;
+    });
+  </script>
 
 </body>
 </html>
