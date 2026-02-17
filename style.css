@@ -109,13 +109,35 @@ nav {
   margin-bottom: 20px;
 }
 
-.hero-image-wrapper img {
+/* layer-specific styles with z-index */
+.eye-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: auto;
-  pointer-events: none; /* lets mouse events pass through */
+  pointer-events: none;
+  z-index: 1; /* background at back */
+}
+
+.eye-whites {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 2; /* middle layer */
+}
+
+.pupil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 3; /* top layer */
 }
 
 /* =====================
