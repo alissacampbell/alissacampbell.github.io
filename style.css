@@ -102,32 +102,20 @@ nav {
    HERO IMAGE
 ===================== */
 .hero-image-wrapper {
-  position: relative;
+  position: relative; /* important for absolute children */
   max-width: 520px;
   width: 100%;
   margin-top: -70px;
   margin-bottom: 20px;
 }
 
-.eye-background,
-.eye-whites {
-  width: 100%;
-  display: block;
-  pointer-events: none;
-}
-
-.eye-whites {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.pupil {
+.hero-image-wrapper img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  pointer-events: none;
+  height: auto;
+  pointer-events: none; /* lets mouse events pass through */
 }
 
 /* =====================
