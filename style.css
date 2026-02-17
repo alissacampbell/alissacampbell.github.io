@@ -102,14 +102,14 @@ nav {
    HERO IMAGE
 ===================== */
 .hero-image-wrapper {
-  position: relative; /* important for absolute children */
+  position: relative; /* needed for absolute children */
   max-width: 520px;
   width: 100%;
   margin-top: -70px;
   margin-bottom: 20px;
 }
 
-/* layer-specific styles with z-index */
+/* layer-specific styles */
 .eye-background {
   position: absolute;
   top: 0;
@@ -117,7 +117,7 @@ nav {
   width: 100%;
   height: auto;
   pointer-events: none;
-  z-index: 1; /* background at back */
+  z-index: 4; /* main hero image in front */
 }
 
 .eye-whites {
@@ -127,7 +127,6 @@ nav {
   width: 100%;
   height: auto;
   pointer-events: none;
-  z-index: 2; /* middle layer */
 }
 
 .pupil {
@@ -137,7 +136,6 @@ nav {
   width: 100%;
   height: auto;
   pointer-events: none;
-  z-index: 3; /* top layer */
 }
 
 /* =====================
