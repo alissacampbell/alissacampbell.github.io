@@ -33,7 +33,7 @@ nav {
   align-items: center;
   border-bottom: 1px solid #bbb;
   padding-bottom: 14px;
-  margin: 20px 80px 120px 80px; /* FLOATING LINE */
+  margin: 20px 80px 120px 80px;
 }
 
 .logo-small a {
@@ -70,16 +70,15 @@ nav {
 
 /* NAME */
 .name-script {
-  font-family: 'Rock Salt', cursive; /* try a more hand-drawn marker font */
-  font-size: 80px;          /* bigger size */
+  font-family: 'Rock Salt', cursive;
+  font-size: 80px;
   line-height: 0.9;
   letter-spacing: 1px;
-  margin-bottom: -20px;      /* closer to last name */
-  color: #007BFF !important; /* force blue color */
-  display: inline-block;     /* needed for transform */
-  transform: rotate(-15deg);  /* tilt slightly counter-clockwise */
+  margin-bottom: -20px;
+  color: #007BFF !important;
+  display: inline-block;
+  transform: rotate(-15deg);
 }
-
 
 .name-last {
   font-weight: 700;
@@ -103,16 +102,32 @@ nav {
    HERO IMAGE
 ===================== */
 .hero-image-wrapper {
+  position: relative;
   max-width: 520px;
   width: 100%;
   margin-top: -70px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
-.hero-image-wrapper img {
+.eye-background,
+.eye-whites {
   width: 100%;
-  height: auto;
   display: block;
+  pointer-events: none;
+}
+
+.eye-whites {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pupil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 /* =====================
