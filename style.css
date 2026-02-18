@@ -46,10 +46,11 @@ nav {
 }
 
 .nav-right a {
-  margin-left: 34px;
   text-decoration: none;
   color: #777;
   font-size: 14px;
+  margin-left: 34px;       /* keep same spacing */
+  line-height: 1;          /* make line height consistent */
 }
 
 .nav-right a:hover {
