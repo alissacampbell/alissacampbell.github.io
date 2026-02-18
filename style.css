@@ -111,7 +111,7 @@ nav {
 
 /* layer-specific styles */
 .eye-background {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -121,7 +121,7 @@ nav {
 }
 
 .eye-whites {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
