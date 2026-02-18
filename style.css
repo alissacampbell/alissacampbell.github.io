@@ -34,9 +34,9 @@ nav {
   border-bottom: 1px solid #bbb;
   padding-bottom: 14px;
   margin: 20px 80px 120px 80px;
-  font-family: 'Inter', sans-serif;  /* make sure all navs use Inter */
-  font-weight: 400;                  /* standard weight */
-  letter-spacing: 0;                 /* remove any small differences */
+  font-family: 'Inter', sans-serif;  
+  font-weight: 400;                  
+  letter-spacing: 0;                 
 }
 
 .logo-small a {
@@ -45,17 +45,22 @@ nav {
   font-size: 14px;
 }
 
+.nav-right {
+  display: flex;      /* make nav-right a flex container */
+  gap: 34px;          /* exact spacing between all links */
+}
+
 .nav-right a {
   text-decoration: none;
   color: #777;
   font-size: 14px;
-  margin-left: 34px;       /* keep same spacing */
-  line-height: 1;          /* make line height consistent */
+  line-height: 1;     /* keep links vertically aligned consistently */
 }
 
 .nav-right a:hover {
   color: #000;
 }
+
 
 /* =====================
    HERO
