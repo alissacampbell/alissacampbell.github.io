@@ -34,6 +34,9 @@ nav {
   border-bottom: 1px solid #bbb;
   padding-bottom: 14px;
   margin: 20px 80px 120px 80px;
+  font-family: 'Inter', sans-serif;  /* make sure all navs use Inter */
+  font-weight: 400;                  /* standard weight */
+  letter-spacing: 0;                 /* remove any small differences */
 }
 
 .logo-small a {
