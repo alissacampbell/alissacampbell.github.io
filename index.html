@@ -75,7 +75,7 @@
       const dx = e.clientX - eyeCenterX;
       const dy = e.clientY - eyeCenterY;
 
-      const maxDist = 10; // max pixels pupil can move
+      const maxDist = 8; // max pixels pupil can move
       const angle = Math.atan2(dy, dx);
       const distance = Math.min(maxDist, Math.hypot(dx, dy));
 
