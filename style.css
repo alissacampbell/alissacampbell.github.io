@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+html {
+  overflow-y: scroll; /* fix nav shift by always reserving scrollbar */
+}
+
 html, body {
   font-family: 'Inter', sans-serif;
   background-color: #ffffff;
