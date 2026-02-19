@@ -102,18 +102,13 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas);
 
   let points = [];
 
   document.addEventListener("mousemove", (e) => {
-    points.push({
-      x: e.clientX,
-      y: e.clientY,
-      life: 1
-    });
+    points.push({ x: e.clientX, y: e.clientY, life: 1 });
   });
 
   function animate() {
@@ -126,20 +121,27 @@
       const p1 = points[i - 1];
       const p2 = points[i];
 
-      // Slight random thickness for crayon feel
-      ctx.lineWidth = 3 + Math.random() * 2;
+      // Slightly varied line width for crayon texture
+      ctx.lineWidth = 3 + Math.random();
 
-      // Blue with slight opacity variation
-      ctx.strokeStyle = `rgba(30, 90, 255, ${0.25 + Math.random() * 0.3})`;
+      // Soft blue color with slight opacity variation
+      ctx.strokeStyle = `rgba(30, 90, 255, ${0.4 + Math.random() * 0.2})`;
 
       ctx.beginPath();
       ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x + (Math.random() - 0.5) * 2, p2.y + (Math.random() - 0.5) * 2);
+
+      // Tiny jitter for hand-drawn texture
+      const jitterX = (Math.random() - 0.5) * 1.5;
+      const jitterY = (Math.random() - 0.5) * 1.5;
+      ctx.lineTo(p2.x + jitterX, p2.y + jitterY);
+
       ctx.stroke();
 
+      // Fade old points
       p1.life -= 0.02;
     }
 
+    // Remove faded points
     points = points.filter(p => p.life > 0);
 
     requestAnimationFrame(animate);
