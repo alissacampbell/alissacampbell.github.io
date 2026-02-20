@@ -128,18 +128,18 @@ document.addEventListener("mouseup", () => {
 // Add points to the current stroke
 document.addEventListener("mousemove", (e) => {
   if (!drawing) return;
-  currentStroke.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+  currentStroke.push({ x: e.clientX, y: e.clientY });
 });
 
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Fade the entire canvas
-  ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; // slower fade for background
+  // Fade entire canvas gradually (transparent white overlay)
+  ctx.fillStyle = "rgba(255,255,255,0.02)"; // smaller alpha = slower fade
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw each stroke separately
+  // Draw each stroke independently
   for (let s = 0; s < strokes.length; s++) {
     const stroke = strokes[s];
     if (stroke.length < 2) continue;
@@ -147,27 +147,18 @@ function animate() {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.lineWidth = 6;
-    ctx.strokeStyle = "rgba(30,90,255,0.12)";
+    ctx.strokeStyle = "rgba(30,90,255,0.12)"; // marker transparency
 
     ctx.beginPath();
     ctx.moveTo(stroke[0].x, stroke[0].y);
 
     for (let i = 1; i < stroke.length; i++) {
-      const midX = (stroke[i-1].x + stroke[i].x) / 2;
-      const midY = (stroke[i-1].y + stroke[i].y) / 2;
-      ctx.quadraticCurveTo(stroke[i-1].x, stroke[i-1].y, midX, midY);
+      const midX = (stroke[i - 1].x + stroke[i].x) / 2;
+      const midY = (stroke[i - 1].y + stroke[i].y) / 2;
+      ctx.quadraticCurveTo(stroke[i - 1].x, stroke[i - 1].y, midX, midY);
     }
 
     ctx.stroke();
-
-    // Fade points individually
-    for (let p of stroke) p.alpha -= 0.01;
-  }
-
-  // Remove fully faded points
-  for (let s = strokes.length - 1; s >= 0; s--) {
-    strokes[s] = strokes[s].filter(p => p.alpha > 0);
-    if (strokes[s].length === 0) strokes.splice(s, 1);
   }
 }
 
