@@ -18,34 +18,34 @@
       overflow-x: hidden;
     }
 
-    .about-wrapper {
-      max-width: 700px;
-      margin: 140px auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-weight: 700;
-    }
-
-    p {
-      margin-top: 10px;
-      line-height: 1.6;
-      font-weight: 300;
-    }
-
-    ul {
-      margin-top: 10px;
-      padding-left: 20px;
-      line-height: 1.6;
-    }
-
     nav {
       position: relative;
       z-index: 2;
+    }
+
+    /* About Layout */
+    .about-wrapper {
+      max-width: 600px;
+      margin: 160px auto;
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-image {
+      width: 320px;
+      max-width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 auto 40px auto;
+    }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: #333;
     }
 
     /* Canvas behind everything */
@@ -75,20 +75,15 @@
   </nav>
 
   <div class="about-wrapper">
-    <h2>My Story</h2>
-    <p>
+
+    <img src="IMG_4394.jpg" alt="Alissa Campbell" class="about-image">
+
+    <p class="about-text">
       I graduated from the University of Minnesota with a Bachelor of Fine Arts in Graphic Design.
       I love creating work that blends digital design with traditional art techniques.
       My portfolio includes painting, drawing, and web design projects.
     </p>
 
-    <h2>Skills & Interests</h2>
-    <ul>
-      <li>Graphic Design</li>
-      <li>Illustration</li>
-      <li>Web Design / Front-end Development</li>
-      <li>Creative Direction</li>
-    </ul>
   </div>
 
   <canvas id="cursorCanvas"></canvas>
@@ -97,7 +92,6 @@
 const canvas = document.getElementById("cursorCanvas");
 const ctx = canvas.getContext("2d");
 
-// Canvas setup
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
@@ -109,20 +103,17 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Track points with alpha
 let points = [];
 
-// Always track mouse
 document.addEventListener("mousemove", (e) => {
   points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-  if (points.length > 1000) points.shift(); // memory safety
+  if (points.length > 800) points.shift();
 });
 
 function animate() {
   requestAnimationFrame(animate);
 
-  // Clear canvas with very subtle white so old points remain faint
-  ctx.fillStyle = "rgba(255,255,255,0.15)";
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (points.length < 2) return;
@@ -140,13 +131,11 @@ function animate() {
     ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
   }
 
-  // Use alpha of the first point (all points fade together)
-  ctx.strokeStyle = `rgba(30,90,255,0.10)`;
+  ctx.strokeStyle = "rgba(30,90,255,0.18)";
   ctx.stroke();
 
-  // Fade points
-  points.forEach(p => p.alpha *= 0.97); // adjust fade speed
-  points = points.filter(p => p.alpha > 0.02); // remove fully faded points
+  points.forEach(p => p.alpha *= 0.95);
+  points = points.filter(p => p.alpha > 0.02);
 }
 
 animate();
