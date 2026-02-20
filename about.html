@@ -97,6 +97,7 @@
 const canvas = document.getElementById("cursorCanvas");
 const ctx = canvas.getContext("2d");
 
+// Resize for high-DPI screens
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
@@ -109,26 +110,26 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 let points = [];
+let isDrawing = false;
 
 document.addEventListener("mousemove", (e) => {
   points.push({ x: e.clientX, y: e.clientY });
-
-  if (points.length > 200) points.shift();
+  isDrawing = true;
 });
 
 function animate() {
   requestAnimationFrame(animate);
 
-  // Continuous fade for the whole canvas
-  ctx.fillStyle = "rgba(255, 255, 255, 0.015)"; // smaller alpha = slower fade, more transparency
+  // Always fade canvas gradually
+  ctx.fillStyle = "rgba(255,255,255,0.04)"; // bigger alpha = faster fade
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (points.length < 2) return;
 
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.lineWidth = 6;                        // smaller marker
-  ctx.strokeStyle = "rgba(30, 90, 255, 0.12)"; // more transparent
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = "rgba(30, 90, 255, 0.12)";
 
   ctx.beginPath();
   ctx.moveTo(points[0].x, points[0].y);
@@ -140,8 +141,12 @@ function animate() {
   }
 
   ctx.stroke();
-}
 
+  // Remove old points gradually to avoid memory buildup
+  if (points.length > 200) {
+    points.shift();
+  }
+}
 animate();
 </script>
 
