@@ -109,57 +109,46 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 let strokes = [];
-let currentStroke = null;
-let drawing = false;
+let currentStroke = [];
 
-// Start a new stroke on mousedown
-document.addEventListener("mousedown", () => {
-  drawing = true;
-  currentStroke = [];
-  strokes.push(currentStroke);
-});
-
-// Stop drawing on mouseup
-document.addEventListener("mouseup", () => {
-  drawing = false;
-  currentStroke = null;
-});
-
-// Add points to the current stroke
+// Always follow mouse
 document.addEventListener("mousemove", (e) => {
-  if (!drawing) return;
-  currentStroke.push({ x: e.clientX, y: e.clientY });
+  currentStroke.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+  if (currentStroke.length > 500) {
+    // Avoid memory buildup
+    currentStroke.shift();
+  }
 });
 
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Fade entire canvas gradually (transparent white overlay)
-  ctx.fillStyle = "rgba(255,255,255,0.02)"; // smaller alpha = slower fade
+  // Fade canvas slowly (leaves faint background)
+  ctx.fillStyle = "rgba(255,255,255,0.02)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw each stroke independently
-  for (let s = 0; s < strokes.length; s++) {
-    const stroke = strokes[s];
-    if (stroke.length < 2) continue;
+  if (currentStroke.length < 2) return;
 
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = "rgba(30,90,255,0.12)"; // marker transparency
+  // Draw current stroke
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 6;
 
-    ctx.beginPath();
-    ctx.moveTo(stroke[0].x, stroke[0].y);
-
-    for (let i = 1; i < stroke.length; i++) {
-      const midX = (stroke[i - 1].x + stroke[i].x) / 2;
-      const midY = (stroke[i - 1].y + stroke[i].y) / 2;
-      ctx.quadraticCurveTo(stroke[i - 1].x, stroke[i - 1].y, midX, midY);
-    }
-
-    ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(currentStroke[0].x, currentStroke[0].y);
+  for (let i = 1; i < currentStroke.length; i++) {
+    const midX = (currentStroke[i - 1].x + currentStroke[i].x) / 2;
+    const midY = (currentStroke[i - 1].y + currentStroke[i].y) / 2;
+    ctx.quadraticCurveTo(currentStroke[i - 1].x, currentStroke[i - 1].y, midX, midY);
   }
+
+  ctx.strokeStyle = "rgba(30,90,255,0.12)";
+  ctx.stroke();
+
+  // Fade points individually
+  currentStroke.forEach(p => p.alpha -= 0.005);
+  currentStroke = currentStroke.filter(p => p.alpha > 0);
 }
 
 animate();
