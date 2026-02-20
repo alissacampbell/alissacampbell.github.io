@@ -97,6 +97,7 @@
 const canvas = document.getElementById("cursorCanvas");
 const ctx = canvas.getContext("2d");
 
+// Set canvas size
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
@@ -108,47 +109,39 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-let strokes = [];
-let currentStroke = [];
+// Track points for the line
+let points = [];
 
-// Always follow mouse
+// Always add points on mouse move
 document.addEventListener("mousemove", (e) => {
-  currentStroke.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-  if (currentStroke.length > 500) {
-    // Avoid memory buildup
-    currentStroke.shift();
-  }
+  points.push({ x: e.clientX, y: e.clientY });
+  if (points.length > 500) points.shift(); // avoid memory buildup
 });
 
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Fade canvas slowly (leaves faint background)
+  // Fade canvas slightly to leave faint trails
   ctx.fillStyle = "rgba(255,255,255,0.02)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (currentStroke.length < 2) return;
+  if (points.length < 2) return;
 
-  // Draw current stroke
+  // Draw the line
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.lineWidth = 6;
+  ctx.strokeStyle = "rgba(30,90,255,0.12)";
 
   ctx.beginPath();
-  ctx.moveTo(currentStroke[0].x, currentStroke[0].y);
-  for (let i = 1; i < currentStroke.length; i++) {
-    const midX = (currentStroke[i - 1].x + currentStroke[i].x) / 2;
-    const midY = (currentStroke[i - 1].y + currentStroke[i].y) / 2;
-    ctx.quadraticCurveTo(currentStroke[i - 1].x, currentStroke[i - 1].y, midX, midY);
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    const midX = (points[i - 1].x + points[i].x) / 2;
+    const midY = (points[i - 1].y + points[i].y) / 2;
+    ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
   }
-
-  ctx.strokeStyle = "rgba(30,90,255,0.12)";
   ctx.stroke();
-
-  // Fade points individually
-  currentStroke.forEach(p => p.alpha -= 0.005);
-  currentStroke = currentStroke.filter(p => p.alpha > 0);
 }
 
 animate();
