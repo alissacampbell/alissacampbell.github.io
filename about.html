@@ -94,58 +94,64 @@
   <canvas id="cursorCanvas"></canvas>
 
 <script>
-  const canvas = document.getElementById("cursorCanvas");
-  const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("cursorCanvas");
+const ctx = canvas.getContext("2d");
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let points = [];
+
+// Add new points on mousemove
+document.addEventListener("mousemove", (e) => {
+  points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+
+  // prevent array from growing infinitely
+  if (points.length > 200) points.shift();
+});
+
+// Animate loop
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Instead of clearing, paint a very transparent overlay to slowly fade
+  ctx.fillStyle = "rgba(255,255,255,0.03)"; // very light fade
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  if (points.length < 2) return;
+
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 8;                      // smaller line
+  ctx.strokeStyle = "rgba(30,90,255,0.2)"; // lower opacity
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+
+  for (let i = 1; i < points.length - 1; i++) {
+    const midX = (points[i].x + points[i + 1].x) / 2;
+    const midY = (points[i].y + points[i + 1].y) / 2;
+    ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+
+    // slowly fade each point even when mouse is not moving
+    points[i].alpha -= 0.005;
   }
 
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
+  ctx.stroke();
 
-  let points = [];
+  // remove points that are completely faded
+  points = points.filter(p => p.alpha > 0);
+}
 
-  document.addEventListener("mousemove", (e) => {
-    points.push({
-      x: e.clientX,
-      y: e.clientY
-    });
-
-    // prevent infinite buildup
-    if (points.length > 120) {
-      points.shift();
-    }
-  });
-
-  function animate() {
-    requestAnimationFrame(animate);
-
-    // Soft fade instead of hard erase
-    ctx.fillStyle = "rgba(255,255,255,0.04)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    if (points.length < 2) return;
-
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = 12;
-    ctx.strokeStyle = "rgba(30, 90, 255, 0.35)";
-
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-
-    for (let i = 1; i < points.length - 1; i++) {
-      const midX = (points[i].x + points[i + 1].x) / 2;
-      const midY = (points[i].y + points[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
-    }
-
-    ctx.stroke();
-  }
-
-  animate();
+animate();
 </script>
 
 </body>
