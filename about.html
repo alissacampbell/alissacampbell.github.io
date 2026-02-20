@@ -110,27 +110,25 @@ window.addEventListener("resize", resizeCanvas);
 
 let points = [];
 
-// Add points on mouse move
 document.addEventListener("mousemove", (e) => {
   points.push({ x: e.clientX, y: e.clientY });
 
-  if (points.length > 200) points.shift(); // keep array reasonable
+  if (points.length > 200) points.shift();
 });
 
-// Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Gradual fade of entire canvas
-  ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; // adjust 0.01–0.05 for faster/slower fade
+  // Continuous fade for the whole canvas
+  ctx.fillStyle = "rgba(255, 255, 255, 0.015)"; // smaller alpha = slower fade, more transparency
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (points.length < 2) return;
 
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.lineWidth = 6; // thinner
-  ctx.strokeStyle = "rgba(30, 90, 255, 0.15)"; // lower opacity so it doesn’t cover text
+  ctx.lineWidth = 6;                        // smaller marker
+  ctx.strokeStyle = "rgba(30, 90, 255, 0.12)"; // more transparent
 
   ctx.beginPath();
   ctx.moveTo(points[0].x, points[0].y);
