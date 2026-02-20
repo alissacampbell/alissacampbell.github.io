@@ -97,7 +97,7 @@
 const canvas = document.getElementById("cursorCanvas");
 const ctx = canvas.getContext("2d");
 
-// Set canvas size
+// Canvas setup
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
@@ -109,39 +109,45 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Track points for the line
+// Track points
 let points = [];
 
-// Always add points on mouse move
+// Always follow mouse
 document.addEventListener("mousemove", (e) => {
-  points.push({ x: e.clientX, y: e.clientY });
-  if (points.length > 500) points.shift(); // avoid memory buildup
+  points.push({ x: e.clientX, y: e.clientY, alpha: 0.05 }); // start faint
+  if (points.length > 500) points.shift(); // limit points
 });
 
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Fade canvas slightly to leave faint trails
-  ctx.fillStyle = "rgba(255,255,255,0.02)";
+  // Fade entire canvas slightly
+  ctx.fillStyle = "rgba(255,255,255,0.02)"; // background fade
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (points.length < 2) return;
 
-  // Draw the line
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.lineWidth = 6;
-  ctx.strokeStyle = "rgba(30,90,255,0.12)";
 
   ctx.beginPath();
   ctx.moveTo(points[0].x, points[0].y);
+
   for (let i = 1; i < points.length; i++) {
     const midX = (points[i - 1].x + points[i].x) / 2;
     const midY = (points[i - 1].y + points[i].y) / 2;
     ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
   }
+
+  // Use alpha of first point as stroke (all points same alpha)
+  ctx.strokeStyle = `rgba(30,90,255,${points[0].alpha})`;
   ctx.stroke();
+
+  // Fade points gradually
+  points.forEach(p => p.alpha *= 0.95); // multiply alpha by 0.95 each frame
+  points = points.filter(p => p.alpha > 0.01); // remove invisible points
 }
 
 animate();
