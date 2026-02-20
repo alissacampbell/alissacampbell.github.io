@@ -110,28 +110,27 @@ window.addEventListener("resize", resizeCanvas);
 
 let points = [];
 
-// Add new points on mousemove
+// Add points on mouse move
 document.addEventListener("mousemove", (e) => {
-  points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+  points.push({ x: e.clientX, y: e.clientY });
 
-  // prevent array from growing infinitely
-  if (points.length > 200) points.shift();
+  if (points.length > 200) points.shift(); // keep array reasonable
 });
 
-// Animate loop
+// Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Instead of clearing, paint a very transparent overlay to slowly fade
-  ctx.fillStyle = "rgba(255,255,255,0.03)"; // very light fade
+  // Gradual fade of entire canvas
+  ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; // adjust 0.01–0.05 for faster/slower fade
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (points.length < 2) return;
 
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.lineWidth = 8;                      // smaller line
-  ctx.strokeStyle = "rgba(30,90,255,0.2)"; // lower opacity
+  ctx.lineWidth = 6; // thinner
+  ctx.strokeStyle = "rgba(30, 90, 255, 0.15)"; // lower opacity so it doesn’t cover text
 
   ctx.beginPath();
   ctx.moveTo(points[0].x, points[0].y);
@@ -140,15 +139,9 @@ function animate() {
     const midX = (points[i].x + points[i + 1].x) / 2;
     const midY = (points[i].y + points[i + 1].y) / 2;
     ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
-
-    // slowly fade each point even when mouse is not moving
-    points[i].alpha -= 0.005;
   }
 
   ctx.stroke();
-
-  // remove points that are completely faded
-  points = points.filter(p => p.alpha > 0);
 }
 
 animate();
