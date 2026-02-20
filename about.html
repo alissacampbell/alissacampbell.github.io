@@ -109,77 +109,37 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Store permanent faint background
-const backgroundCanvas = document.createElement("canvas");
-const bgCtx = backgroundCanvas.getContext("2d");
-function resizeBackground() {
-  const dpr = window.devicePixelRatio || 1;
-  backgroundCanvas.width = window.innerWidth * dpr;
-  backgroundCanvas.height = window.innerHeight * dpr;
-  backgroundCanvas.style.width = window.innerWidth + "px";
-  backgroundCanvas.style.height = window.innerHeight + "px";
-  bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
-resizeBackground();
-window.addEventListener("resize", resizeBackground);
-
-let points = []; // current stroke points
+let points = [];
 
 // Always track mouse
 document.addEventListener("mousemove", (e) => {
-  points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-  if (points.length > 500) points.shift(); // prevent memory buildup
+  points.push({ x: e.clientX, y: e.clientY });
+  if (points.length > 500) points.shift(); // memory safety
 });
 
 function animate() {
   requestAnimationFrame(animate);
 
-  // Clear main canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Overlay slight white to fade old strokes gradually
+  ctx.fillStyle = "rgba(255,255,255,0.01)"; // very low alpha = persistent background
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw the persistent background first
-  ctx.drawImage(backgroundCanvas, 0, 0);
+  if (points.length < 2) return;
 
-  if (points.length >= 2) {
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = 6;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = "rgba(30,90,255,0.15)"; // visible but still highlighter-like
 
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < points.length; i++) {
-      const midX = (points[i - 1].x + points[i].x) / 2;
-      const midY = (points[i - 1].y + points[i].y) / 2;
-      ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
-    }
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
 
-    // Slightly more opaque while drawing
-    ctx.strokeStyle = "rgba(30,90,255,0.2)";
-    ctx.stroke();
-
-    // Fade points gradually
-    points.forEach(p => p.alpha *= 0.95);
-
-    // Draw points that are faint enough to go to background
-    let toBackground = points.filter(p => p.alpha < 0.05);
-    if (toBackground.length) {
-      bgCtx.lineCap = "round";
-      bgCtx.lineJoin = "round";
-      bgCtx.lineWidth = 6;
-      bgCtx.beginPath();
-      bgCtx.moveTo(toBackground[0].x, toBackground[0].y);
-      for (let i = 1; i < toBackground.length; i++) {
-        const midX = (toBackground[i - 1].x + toBackground[i].x) / 2;
-        const midY = (toBackground[i - 1].y + toBackground[i].y) / 2;
-        bgCtx.quadraticCurveTo(toBackground[i - 1].x, toBackground[i - 1].y, midX, midY);
-      }
-      bgCtx.strokeStyle = "rgba(30,90,255,0.05)"; // faint background
-      bgCtx.stroke();
-    }
-
-    // Remove fully faded points
-    points = points.filter(p => p.alpha > 0.01);
+  for (let i = 1; i < points.length; i++) {
+    const midX = (points[i - 1].x + points[i].x) / 2;
+    const midY = (points[i - 1].y + points[i].y) / 2;
+    ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
   }
+  ctx.stroke();
 }
 
 animate();
