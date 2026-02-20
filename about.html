@@ -108,20 +108,24 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-let strokes = []; // array of strokes
+let strokes = [];
 let currentStroke = null;
-
-// Track mouse movement
 let drawing = false;
+
+// Start a new stroke on mousedown
 document.addEventListener("mousedown", () => {
   drawing = true;
   currentStroke = [];
   strokes.push(currentStroke);
 });
+
+// Stop drawing on mouseup
 document.addEventListener("mouseup", () => {
   drawing = false;
   currentStroke = null;
 });
+
+// Add points to the current stroke
 document.addEventListener("mousemove", (e) => {
   if (!drawing) return;
   currentStroke.push({ x: e.clientX, y: e.clientY, alpha: 1 });
@@ -131,13 +135,15 @@ document.addEventListener("mousemove", (e) => {
 function animate() {
   requestAnimationFrame(animate);
 
-  // Fade everything gradually
-  ctx.fillStyle = "rgba(255,255,255,0.02)";
+  // Fade the entire canvas
+  ctx.fillStyle = "rgba(255, 255, 255, 0.02)"; // slower fade for background
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw all strokes
-  strokes.forEach(stroke => {
-    if (stroke.length < 2) return;
+  // Draw each stroke separately
+  for (let s = 0; s < strokes.length; s++) {
+    const stroke = strokes[s];
+    if (stroke.length < 2) continue;
+
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.lineWidth = 6;
@@ -145,24 +151,24 @@ function animate() {
 
     ctx.beginPath();
     ctx.moveTo(stroke[0].x, stroke[0].y);
+
     for (let i = 1; i < stroke.length; i++) {
       const midX = (stroke[i-1].x + stroke[i].x) / 2;
       const midY = (stroke[i-1].y + stroke[i].y) / 2;
       ctx.quadraticCurveTo(stroke[i-1].x, stroke[i-1].y, midX, midY);
     }
+
     ctx.stroke();
 
-    // Fade each point in the stroke
-    stroke.forEach(p => p.alpha -= 0.01);
-  });
+    // Fade points individually
+    for (let p of stroke) p.alpha -= 0.01;
+  }
 
-  // Remove points that are fully faded
-  strokes.forEach(stroke => {
-    while (stroke.length && stroke[0].alpha <= 0) stroke.shift();
-  });
-
-  // Remove empty strokes
-  strokes = strokes.filter(stroke => stroke.length > 0);
+  // Remove fully faded points
+  for (let s = strokes.length - 1; s >= 0; s--) {
+    strokes[s] = strokes[s].filter(p => p.alpha > 0);
+    if (strokes[s].length === 0) strokes.splice(s, 1);
+  }
 }
 
 animate();
