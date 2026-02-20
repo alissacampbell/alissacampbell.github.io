@@ -97,7 +97,6 @@
 const canvas = document.getElementById("cursorCanvas");
 const ctx = canvas.getContext("2d");
 
-// Resize for high-DPI screens
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = window.innerWidth * dpr;
@@ -110,43 +109,52 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 let points = [];
-let isDrawing = false;
+let prevPoint = null;
 
+// Track mouse movement
 document.addEventListener("mousemove", (e) => {
   points.push({ x: e.clientX, y: e.clientY });
-  isDrawing = true;
 });
 
+// Animation loop
 function animate() {
   requestAnimationFrame(animate);
 
-  // Always fade canvas gradually
-  ctx.fillStyle = "rgba(255,255,255,0.04)"; // bigger alpha = faster fade
+  // Fade the canvas every frame, independent of points
+  ctx.fillStyle = "rgba(255, 255, 255, 0.03)"; // adjust alpha for speed of fade
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (points.length < 2) return;
+  if (points.length === 0) return;
 
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.lineWidth = 6;
-  ctx.strokeStyle = "rgba(30, 90, 255, 0.12)";
+  ctx.strokeStyle = "rgba(30, 90, 255, 0.12)"; // marker transparency
 
   ctx.beginPath();
-  ctx.moveTo(points[0].x, points[0].y);
 
-  for (let i = 1; i < points.length - 1; i++) {
-    const midX = (points[i].x + points[i + 1].x) / 2;
-    const midY = (points[i].y + points[i + 1].y) / 2;
-    ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+  if (prevPoint === null) {
+    prevPoint = points[0];
+  }
+
+  ctx.moveTo(prevPoint.x, prevPoint.y);
+
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const midX = (prevPoint.x + p.x) / 2;
+    const midY = (prevPoint.y + p.y) / 2;
+    ctx.quadraticCurveTo(prevPoint.x, prevPoint.y, midX, midY);
+    prevPoint = p;
   }
 
   ctx.stroke();
 
-  // Remove old points gradually to avoid memory buildup
+  // Keep only recent points to avoid memory buildup
   if (points.length > 200) {
-    points.shift();
+    points = points.slice(points.length - 200);
   }
 }
+
 animate();
 </script>
 
