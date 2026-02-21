@@ -11,10 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Inter', sans-serif;
       background: #ffffff;
-      margin: 0;
       overflow-x: hidden;
     }
 
@@ -40,16 +42,16 @@
       font-size: 18px;
     }
 
-    /* About wrapper */
+    /* About layout */
     .about-wrapper {
       max-width: 650px;
       width: 90%;
-      margin: 40px auto 60px auto;
+      margin: 40px auto 60px auto; /* top/bottom spacing */
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
       position: relative;
       z-index: 2;
     }
@@ -58,20 +60,46 @@
       width: 80%;
       max-width: 600px;
       height: auto;
+      object-fit: cover;
       border-radius: 8px;
       display: block;
-      margin-bottom: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
-    /* Canvas for text and marker */
+    /* Text canvas */
     #textCanvas {
       width: 100%;
-      max-width: 650px;
-      height: 200px; /* adjust based on text */
+      max-width: 600px;
+      height: auto;
     }
 
-    /* Canvas for marker (covers everything) */
+    .about-text {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: #000; /* black text initially */
+      max-width: 600px;
+      text-align: center;
+      position: absolute; /* hide original text behind canvas */
+      opacity: 0;
+    }
+
+    .about-text span:first-child {
+      display: block;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .about-image { width: 95%; }
+      .about-text { font-size: 16px; }
+      .about-text span:first-child { font-size: 18px; }
+    }
+
+    /* Cursor trail */
     #cursorCanvas {
       position: fixed;
       top: 0;
@@ -81,12 +109,10 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <nav>
-    <div class="logo-small">
-      <a href="index.html">Portfolio 2026</a>
-    </div>
+    <div class="logo-small"><a href="index.html">Portfolio 2026</a></div>
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
@@ -97,119 +123,95 @@
 
   <div class="about-wrapper">
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
+
+    <!-- Hidden original text for reference -->
+    <p class="about-text" id="aboutText">
+      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
+      I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
+      Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
+    </p>
+
+    <!-- Canvas that shows text and color effect -->
     <canvas id="textCanvas"></canvas>
   </div>
 
   <canvas id="cursorCanvas"></canvas>
 
   <script>
-    const textCanvas = document.getElementById('textCanvas');
-    const tctx = textCanvas.getContext('2d');
+    // Cursor trail
+    const cursorCanvas = document.getElementById("cursorCanvas");
+    const ctx = cursorCanvas.getContext("2d");
+    cursorCanvas.width = window.innerWidth;
+    cursorCanvas.height = window.innerHeight;
 
-    const cursorCanvas = document.getElementById('cursorCanvas');
-    const ctx = cursorCanvas.getContext('2d');
-
-    function resizeCanvas() {
-      const dpr = window.devicePixelRatio || 1;
-
-      // Text canvas
-      textCanvas.width = textCanvas.offsetWidth * dpr;
-      textCanvas.height = 200 * dpr; // adjust height if needed
-      tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      drawText();
-
-      // Cursor canvas
-      cursorCanvas.width = window.innerWidth * dpr;
-      cursorCanvas.height = window.innerHeight * dpr;
-      cursorCanvas.style.width = window.innerWidth + 'px';
-      cursorCanvas.style.height = window.innerHeight + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Draw the text on the text canvas
-    function drawText() {
-      tctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
-      tctx.fillStyle = '#000'; // black text
-      tctx.font = '16px Inter';
-      tctx.textAlign = 'center';
-      tctx.textBaseline = 'top';
-      const lines = [
-        "My earliest memories of making art are on my grandma’s porch,",
-        "paintbrush in hand, sitting between my mom and grandma.",
-        "I’ve been exploring creativity ever since, from messy afternoons",
-        "with watercolor to digital experiments on my computer.",
-        "Now, as a recent BFA graduate in Graphic Design, I love blending",
-        "traditional and digital art to create work that feels playful, personal, and full of life."
-      ];
-      const x = textCanvas.width / 2;
-      let y = 0;
-      lines.forEach(line => {
-        tctx.fillText(line, x, y);
-        y += 22; // line height
-      });
-    }
-
-    // Cursor trail and text color change
     let points = [];
 
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener("mousemove", (e) => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-      if (points.length > 800) points.shift();
+      if(points.length > 800) points.shift();
     });
 
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Draw semi-transparent background for cursor trail
+    function animateCursor() {
+      requestAnimationFrame(animateCursor);
       ctx.fillStyle = "rgba(255,255,255,0.03)";
-      ctx.fillRect(0, 0, cursorCanvas.width, cursorCanvas.height);
-
-      if (points.length < 2) return;
-
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.lineWidth = 6;
-
+      ctx.fillRect(0,0,cursorCanvas.width,cursorCanvas.height);
+      if(points.length < 2) return;
+      ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 6;
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
-
-      for (let i = 1; i < points.length; i++) {
-        const midX = (points[i - 1].x + points[i].x) / 2;
-        const midY = (points[i - 1].y + points[i].y) / 2;
-        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
+      for(let i=1;i<points.length;i++){
+        const midX=(points[i-1].x+points[i].x)/2;
+        const midY=(points[i-1].y+points[i].y)/2;
+        ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, midX, midY);
       }
-
-      ctx.strokeStyle = "rgba(30,90,255,0.18)";
+      ctx.strokeStyle="rgba(30,90,255,0.18)";
       ctx.stroke();
+      points.forEach(p=>p.alpha*=0.95);
+      points = points.filter(p=>p.alpha>0.02);
+    }
+    animateCursor();
 
-      // Check text canvas pixels under cursor and turn black to pink
-      points.forEach(p => {
-        const rect = textCanvas.getBoundingClientRect();
-        const tx = p.x - rect.left;
-        const ty = p.y - rect.top;
-        if (tx >= 0 && tx < textCanvas.width && ty >= 0 && ty < textCanvas.height) {
-          const pixel = tctx.getImageData(tx, ty, 1, 1);
-          const d = pixel.data;
-          if (d[0] < 50 && d[1] < 50 && d[2] < 50) { // black pixel
-            d[0] = 255; // red
-            d[1] = 105; // pink
-            d[2] = 180;
-            pixel.data.set(d);
-            tctx.putImageData(pixel, tx, ty);
-          }
-        }
-      });
+    // Text drawing
+    const textCanvas = document.getElementById("textCanvas");
+    const tctx = textCanvas.getContext("2d");
+    const textEl = document.getElementById("aboutText");
+    const lines = textEl.innerText.split("\n").map(l => l.trim()).filter(l => l);
 
-      // Fade out cursor trail
-      points.forEach(p => p.alpha *= 0.95);
-      points = points.filter(p => p.alpha > 0.02);
+    function resizeTextCanvas() {
+      textCanvas.width = textCanvas.offsetWidth;
+      textCanvas.height = textEl.offsetHeight;
+      drawText();
     }
 
-    animate();
-  </script>
+    window.addEventListener("resize", resizeTextCanvas);
 
+    function drawText() {
+      tctx.clearRect(0,0,textCanvas.width,textCanvas.height);
+      tctx.font = "17px Inter";
+      tctx.textAlign = "center";
+      tctx.textBaseline = "top";
+      let y = 0;
+      const lineHeight = 24;
+      lines.forEach(line => {
+        tctx.fillStyle = "#000";
+        tctx.fillText(line, textCanvas.width/2, y);
+        y += lineHeight;
+      });
+    }
+
+    resizeTextCanvas();
+
+    // Track mouse over text canvas for pink effect
+    document.addEventListener("mousemove", (e) => {
+      const rect = textCanvas.getBoundingClientRect();
+      const tx = ((e.clientX - rect.left)/rect.width)*textCanvas.width;
+      const ty = ((e.clientY - rect.top)/rect.height)*textCanvas.height;
+      const pixel = tctx.getImageData(tx, ty, 1,1).data;
+      if(pixel[0] === 0 && pixel[1] === 0 && pixel[2] === 0){ // black
+        tctx.fillStyle = "pink";
+        tctx.fillRect(tx, ty, 1,1);
+      }
+    });
+  </script>
 </body>
 </html>
