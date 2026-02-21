@@ -51,21 +51,42 @@
     .about-wrapper {
       max-width: 650px;
       width: 90%;
-
-      /* Fully spelled-out margins */
-      margin-top: 20px;    /* space above wrapper */
-      margin-right: auto;  /* centers wrapper horizontally */
-      margin-bottom: 60px; /* breathing room under text */
-      margin-left: auto;   /* centers wrapper horizontally */
-
+      margin: 100px auto; /* spacing below nav */
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 30px;
-
-      position: relative; /* above canvas */
+      position: relative; /* ensures it’s above canvas */
       z-index: 1;
+    }
+
+    .about-image {
+      width: 80%;
+      max-width: 600px;
+      height: 55vh;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .about-text {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: #333;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .about-text span:first-child {
+      display: block;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 10px;
     }
 
     /* Responsive */
