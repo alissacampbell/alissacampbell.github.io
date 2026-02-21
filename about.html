@@ -11,41 +11,85 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    /* Reset */
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
       background: #ffffff;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     nav {
       position: relative;
       z-index: 2;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 400;
+    }
+
+    .logo-small a {
+      font-weight: 700;
+      font-size: 18px;
     }
 
     /* About Layout */
     .about-wrapper {
-      max-width: 600px;
-      margin: 80px auto 0 auto; /* Reduced top margin from 160px → 80px */
-      padding: 0 20px;
+      max-width: 650px;
+      width: 90%;
+      margin: auto;
       text-align: center;
-      position: relative;
-      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100vh - 80px); /* fills screen minus nav height */
+      gap: 30px;
     }
 
     .about-image {
-      width: 525px;
-      max-width: 95%;
-      height: auto;
+      width: 80%;
+      max-width: 600px;
+      height: 55vh; /* fills ~55% of vertical space */
+      object-fit: cover; /* keeps proportions */
+      border-radius: 8px;
       display: block;
-      margin: 0 auto 20px auto; /* Removed top margin to pull image up */
+      margin: 0 auto;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
     .about-text {
       font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.6;
       font-weight: 300;
       color: #333;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .about-image {
+        height: 40vh;
+        width: 95%;
+      }
+      .about-text {
+        font-size: 16px;
+      }
     }
 
     /* Canvas behind everything */
@@ -56,6 +100,7 @@
       pointer-events: none;
       z-index: 1;
     }
+
   </style>
 </head>
 
@@ -76,70 +121,70 @@
 
   <div class="about-wrapper">
 
-    <img src="aboutimage.png" alt="Alissa Campbell" class="about-image">
+    <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text">
-      I graduated from the University of Minnesota with a Bachelor of Fine Arts in Graphic Design.
-      I love creating work that blends digital design with traditional art techniques.
-      My portfolio includes painting, drawing, and web design projects.
+      I graduated from the University of Minnesota with a Bachelor of Fine Arts in Graphic Design.  
+      My first memories of creating art are on my grandma’s porch, painting with my mom and grandma.  
+      I love blending traditional art techniques with digital design to create meaningful work.
     </p>
 
   </div>
 
   <canvas id="cursorCanvas"></canvas>
 
-<script>
-const canvas = document.getElementById("cursorCanvas");
-const ctx = canvas.getContext("2d");
+  <script>
+    const canvas = document.getElementById("cursorCanvas");
+    const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = window.innerHeight + "px";
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-let points = [];
+    let points = [];
 
-document.addEventListener("mousemove", (e) => {
-  points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-  if (points.length > 800) points.shift();
-});
+    document.addEventListener("mousemove", (e) => {
+      points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+      if (points.length > 800) points.shift();
+    });
 
-function animate() {
-  requestAnimationFrame(animate);
+    function animate() {
+      requestAnimationFrame(animate);
 
-  ctx.fillStyle = "rgba(255,255,255,0.12)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (points.length < 2) return;
+      if (points.length < 2) return;
 
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.lineWidth = 6;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 6;
 
-  ctx.beginPath();
-  ctx.moveTo(points[0].x, points[0].y);
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
 
-  for (let i = 1; i < points.length; i++) {
-    const midX = (points[i - 1].x + points[i].x) / 2;
-    const midY = (points[i - 1].y + points[i].y) / 2;
-    ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
-  }
+      for (let i = 1; i < points.length; i++) {
+        const midX = (points[i - 1].x + points[i].x) / 2;
+        const midY = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
+      }
 
-  ctx.strokeStyle = "rgba(30,90,255,0.18)";
-  ctx.stroke();
+      ctx.strokeStyle = "rgba(30,90,255,0.18)";
+      ctx.stroke();
 
-  points.forEach(p => p.alpha *= 0.95);
-  points = points.filter(p => p.alpha > 0.02);
-}
+      points.forEach(p => p.alpha *= 0.95);
+      points = points.filter(p => p.alpha > 0.02);
+    }
 
-animate();
-</script>
+    animate();
+  </script>
 
 </body>
 </html>
