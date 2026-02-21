@@ -10,6 +10,7 @@
     font-family: 'Inter', sans-serif;
     background: #fff;
     overflow-x: hidden;
+    position: relative;
   }
 
   nav {
@@ -17,6 +18,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 3;
+    position: relative;
   }
 
   nav a {
@@ -36,6 +39,8 @@
     width: 90%;
     margin: 40px auto 60px auto;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
 
   .about-image {
@@ -48,13 +53,11 @@
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   }
 
-  /* Canvas fills screen */
   #markerCanvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 0;
-    pointer-events: none;
+    z-index: 1; /* behind nav and image */
   }
 </style>
 </head>
@@ -82,16 +85,16 @@
 const canvas = document.getElementById('markerCanvas');
 const ctx = canvas.getContext('2d');
 
-// Resize canvas to fit window
+// Resize canvas
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  drawText(); // redraw text on resize
+  drawText();
 }
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-// Text lines to draw
+// Text lines to draw on canvas
 const lines = [
   "My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.",
   "I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.",
@@ -103,9 +106,9 @@ const startX = 50;
 let startY = 150;
 const lineHeight = fontSize + 14;
 
-// Draw initial black text
+// Draw text in black
 function drawText() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle = "black";
   ctx.font = `${fontSize}px Inter`;
   lines.forEach((line, i) => {
@@ -113,7 +116,7 @@ function drawText() {
   });
 }
 
-// Track marker path
+// Marker logic
 let points = [];
 let isDrawing = false;
 
@@ -131,9 +134,11 @@ function drawMarker() {
     const isBlack = pixel[0] < 50 && pixel[1] < 50 && pixel[2] < 50;
 
     if (isBlack) {
-      ctx.fillStyle = "#FF69B4"; // pink text
-      ctx.fillRect(p.x-2, p.y-fontSize, 4, fontSize); 
+      // Draw pink over black letters
+      ctx.fillStyle = "#FF69B4";
+      ctx.fillRect(p.x-2, p.y-fontSize, 4, fontSize);
     } else {
+      // Draw blue marker trail
       ctx.fillStyle = "rgba(30,90,255,0.5)";
       ctx.beginPath();
       ctx.arc(p.x, p.y, 8, 0, Math.PI*2);
@@ -144,6 +149,5 @@ function drawMarker() {
 }
 
 </script>
-
 </body>
 </html>
