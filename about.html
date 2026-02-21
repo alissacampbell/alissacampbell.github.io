@@ -28,7 +28,7 @@
     /* Nav */
     nav {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -47,9 +47,9 @@
       font-size: 18px;
     }
 
-    /* About wrapper */
+    /* About layout */
     .about-wrapper {
-      max-width: 650px;
+      max-width: 700px;
       width: 90%;
       margin: 40px auto 60px auto; /* spacing above and below */
       text-align: center;
@@ -57,7 +57,7 @@
       flex-direction: column;
       align-items: center;
       gap: 30px;
-      position: relative;
+      position: relative; /* above canvas */
       z-index: 2;
     }
 
@@ -65,36 +65,49 @@
       width: 80%;
       max-width: 600px;
       height: auto;
-      object-fit: cover;
       border-radius: 8px;
+      display: block;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
-    /* Text canvas for marker effect */
-    #textCanvas {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    .about-text {
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: #333;
+      max-width: 90%; /* text can be slightly wider than image if needed */
+      text-align: center;
     }
 
-    /* Responsive text size */
+    .about-text span:first-child {
+      display: block;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
       .about-image {
         width: 95%;
         height: auto;
       }
+      .about-text {
+        font-size: 16px;
+      }
+      .about-text span:first-child {
+        font-size: 18px;
+      }
     }
 
-    /* Marker canvas behind everything */
+    /* Canvas behind everything */
     #cursorCanvas {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 1;
+      z-index: 1; /* behind content */
     }
   </style>
 </head>
@@ -115,20 +128,20 @@
   </nav>
 
   <div class="about-wrapper">
-    <!-- Your actual image -->
+
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
-    <!-- Text canvas for dynamic color change -->
-    <canvas id="textCanvas"></canvas>
+    <p class="about-text">
+      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
+      I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
+      Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
+    </p>
+
   </div>
 
-  <!-- Marker canvas -->
   <canvas id="cursorCanvas"></canvas>
 
   <script>
-    // -----------------------
-    // Marker canvas
-    // -----------------------
     const canvas = document.getElementById("cursorCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -152,10 +165,13 @@
 
     function animate() {
       requestAnimationFrame(animate);
-      ctx.fillStyle = "rgba(255,255,255,0.03)";
-      ctx.fillRect(0,0,canvas.width,canvas.height);
 
-      if(points.length < 2) return;
+      // marker trail behind text
+      ctx.fillStyle = "rgba(255,255,255,0.03)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if (points.length < 2) return;
+
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.lineWidth = 6;
@@ -163,10 +179,10 @@
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
 
-      for(let i=1; i<points.length; i++){
-        const midX = (points[i-1].x + points[i].x)/2;
-        const midY = (points[i-1].y + points[i].y)/2;
-        ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, midX, midY);
+      for (let i = 1; i < points.length; i++) {
+        const midX = (points[i - 1].x + points[i].x) / 2;
+        const midY = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
       }
 
       ctx.strokeStyle = "rgba(30,90,255,0.18)";
@@ -175,95 +191,8 @@
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
     }
+
     animate();
-
-    // -----------------------
-    // Text canvas
-    // -----------------------
-    const textCanvas = document.getElementById("textCanvas");
-    const tctx = textCanvas.getContext("2d");
-
-    const textLines = [
-      "My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.",
-      "I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.",
-      "Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life."
-    ];
-
-    function drawText() {
-      // match wrapper width
-      textCanvas.width = textCanvas.parentElement.offsetWidth;
-      tctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
-
-      const padding = 20;
-      const maxWidth = textCanvas.width - padding*2;
-      const lineHeight = 24;
-      let y = 0;
-
-      tctx.font = "17px Inter";
-      tctx.textBaseline = "top";
-
-      // draw black text
-      tctx.fillStyle = "#000";
-
-      textLines.forEach(line => {
-        const words = line.split(" ");
-        let currentLine = "";
-        words.forEach((word, i) => {
-          const testLine = currentLine + word + " ";
-          const metrics = tctx.measureText(testLine);
-          if(metrics.width > maxWidth && i > 0){
-            tctx.fillText(currentLine, padding, y);
-            currentLine = word + " ";
-            y += lineHeight;
-          } else {
-            currentLine = testLine;
-          }
-        });
-        if(currentLine){
-          tctx.fillText(currentLine, padding, y);
-          y += lineHeight;
-        }
-      });
-
-      textCanvas.height = y;
-    }
-
-    drawText();
-
-    // -----------------------
-    // Marker + pink text detection
-    // -----------------------
-    function updateTextColor() {
-      const imageData = tctx.getImageData(0,0,textCanvas.width,textCanvas.height);
-      const data = imageData.data;
-
-      // Loop over marker pixels
-      const markerData = ctx.getImageData(0,0,canvas.width,canvas.height).data;
-
-      // scale markerData to textCanvas if needed
-      // For simplicity: if marker alpha>0, turn black to pink
-      for(let y=0;y<textCanvas.height;y++){
-        for(let x=0;x<textCanvas.width;x++){
-          const idx = (y*textCanvas.width + x)*4;
-          if(data[idx]===0 && data[idx+1]===0 && data[idx+2]===0){ // black text
-            const mIdx = idx; // assuming same coords
-            if(markerData[mIdx+3]>10){ // marker alpha threshold
-              data[idx] = 255; // pink
-              data[idx+1] = 0;
-              data[idx+2] = 200;
-            }
-          }
-        }
-      }
-      tctx.putImageData(imageData,0,0);
-    }
-
-    function animateText() {
-      requestAnimationFrame(animateText);
-      updateTextColor();
-    }
-    animateText();
-
   </script>
 
 </body>
