@@ -50,14 +50,14 @@
     .about-wrapper {
       max-width: 650px;
       width: 90%;
-      margin: 40px auto 60px auto;
+      margin: 40px auto 60px auto; /* top, right, bottom, left */
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 30px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .about-image {
@@ -67,7 +67,7 @@
       object-fit: cover;
       border-radius: 8px;
       display: block;
-      margin: 0 auto 20px auto;
+      margin-bottom: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
@@ -80,6 +80,11 @@
       text-align: center;
     }
 
+    .about-text span {
+      display: inline-block;
+      transition: color 0.3s ease; /* smooth color transition */
+    }
+
     .about-text span:first-child {
       display: block;
       font-size: 20px;
@@ -89,9 +94,16 @@
     }
 
     @media (max-width: 600px) {
-      .about-image { width: 95%; height: auto; }
-      .about-text { font-size: 16px; }
-      .about-text span:first-child { font-size: 18px; }
+      .about-image {
+        width: 95%;
+        height: auto;
+      }
+      .about-text {
+        font-size: 16px;
+      }
+      .about-text span:first-child {
+        font-size: 18px;
+      }
     }
 
     /* Canvas behind everything */
@@ -100,21 +112,17 @@
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Letters span styling for color transition */
-    .about-text span {
-      transition: color 0.2s;
-      display: inline-block;
+      z-index: 1;
     }
   </style>
 </head>
-
 <body>
 
   <nav>
-    <div class="logo-small"><a href="index.html">Portfolio 2026</a></div>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
@@ -124,13 +132,15 @@
   </nav>
 
   <div class="about-wrapper">
+
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
-    <p class="about-text">
-      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
+    <p class="about-text" id="aboutText">
+      My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma. 
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
+
   </div>
 
   <canvas id="cursorCanvas"></canvas>
@@ -138,6 +148,17 @@
   <script>
     const canvas = document.getElementById("cursorCanvas");
     const ctx = canvas.getContext("2d");
+    const aboutText = document.getElementById("aboutText");
+
+    // Split text into spans for per-letter coloring
+    const originalText = aboutText.textContent;
+    aboutText.textContent = '';
+    const letters = Array.from(originalText).map(char => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char; // preserve spaces
+      aboutText.appendChild(span);
+      return span;
+    });
 
     function resizeCanvas() {
       const dpr = window.devicePixelRatio || 1;
@@ -150,61 +171,55 @@
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Wrap each letter in a span for color change
-    const paragraphs = document.querySelectorAll('.about-text');
-    paragraphs.forEach(p => {
-      const letters = p.textContent.split('');
-      p.textContent = '';
-      letters.forEach(letter => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        p.appendChild(span);
-      });
-    });
-
     let points = [];
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener("mousemove", e => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-      if (points.length > 80) points.shift(); // keep recent points for performance
+      if (points.length > 800) points.shift();
     });
 
     function animate() {
       requestAnimationFrame(animate);
 
-      // Draw marker behind everything
-      ctx.fillStyle = "rgba(30,90,255,0.2)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height); // subtle global overlay
+      // clear only previous line path slightly, not whole canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (points.length < 2) return;
+      if (points.length > 1) {
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.lineWidth = 6;
+        ctx.strokeStyle = "rgba(30,90,255,0.18)";
 
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-
-      for (let i = 1; i < points.length; i++) {
-        const midX = (points[i-1].x + points[i].x)/2;
-        const midY = (points[i-1].y + points[i].y)/2;
-        ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, midX, midY);
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+          const midX = (points[i-1].x + points[i].x)/2;
+          const midY = (points[i-1].y + points[i].y)/2;
+          ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, midX, midY);
+        }
+        ctx.stroke();
       }
-      ctx.strokeStyle = "rgba(30,90,255,0.8)";
-      ctx.stroke();
 
-      // Change letters under cursor to pink
-      const letters = document.querySelectorAll('.about-text span');
+      // Check each letter for collision with marker points
       letters.forEach(span => {
         const rect = span.getBoundingClientRect();
-        points.forEach(pt => {
-          if(pt.x >= rect.left && pt.x <= rect.right &&
-             pt.y >= rect.top && pt.y <= rect.bottom){
-            span.style.color = 'pink';
+        for (const p of points) {
+          if(p.x >= rect.left && p.x <= rect.right && p.y >= rect.top && p.y <= rect.bottom){
+            span.style.color = '#FF69B4'; // pink
+            span.dataset.hitTime = Date.now(); // store when hit
           }
-        });
+        }
+
+        // Fade letter back to black after 1s
+        if(span.dataset.hitTime){
+          if(Date.now() - span.dataset.hitTime > 1000){
+            span.style.color = '#000';
+            delete span.dataset.hitTime;
+          }
+        }
       });
 
-      // fade out trail
+      // fade out old points
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
     }
