@@ -22,8 +22,7 @@
       font-family: 'Inter', sans-serif;
       background: #ffffff;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
+      /* removed display:flex to preserve nav layout */
       min-height: 100vh;
     }
 
@@ -52,20 +51,19 @@
     .about-wrapper {
       max-width: 650px;
       width: 90%;
-      margin: auto;
+      margin: 100px auto; /* gives space under nav */
       text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      min-height: calc(100vh - 80px); /* fills screen minus nav height */
+      align-items: center;
       gap: 30px;
     }
 
     .about-image {
       width: 80%;
       max-width: 600px;
-      height: 55vh; /* fills ~55% of vertical space */
-      object-fit: cover; /* keeps proportions */
+      height: 55vh;
+      object-fit: cover;
       border-radius: 8px;
       display: block;
       margin: 0 auto;
@@ -74,11 +72,19 @@
 
     .about-text {
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.7;
       font-weight: 300;
-      color: #333;
+      color: #333; 
       max-width: 500px;
-      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text span:first-child {
+      display: block;
+      font-size: 20px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 10px;
     }
 
     /* Responsive */
@@ -89,6 +95,9 @@
       }
       .about-text {
         font-size: 16px;
+      }
+      .about-text span:first-child {
+        font-size: 18px;
       }
     }
 
@@ -124,9 +133,9 @@
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text">
-      I graduated from the University of Minnesota with a Bachelor of Fine Arts in Graphic Design.  
-      My first memories of creating art are on my grandma’s porch, painting with my mom and grandma.  
-      I love blending traditional art techniques with digital design to create meaningful work.
+      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
+      I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
+      Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
 
   </div>
