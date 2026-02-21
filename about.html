@@ -49,17 +49,23 @@
 
     /* About layout */
     .about-wrapper {
-      max-width: 650px;
-      width: 90%;
-      margin: 100px auto; /* spacing below nav */
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      position: relative; /* ensures it’s above canvas */
-      z-index: 1;
-    }
+  max-width: 650px;
+  width: 90%;
+  
+  /* Fully spelled-out margins */
+  margin-top: 40px;    /* space above the wrapper (moves image/text closer to nav) */
+  margin-right: auto;  /* centers the wrapper horizontally */
+  margin-bottom: 60px; /* space below the wrapper (breathing room under text) */
+  margin-left: auto;   /* centers the wrapper horizontally */
+  
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  position: relative; /* ensures it’s above canvas */
+  z-index: 1;
+}
 
     .about-image {
       width: 80%;
