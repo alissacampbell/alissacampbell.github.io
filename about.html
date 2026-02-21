@@ -1,153 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio 2026 - About</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #fff;
-    overflow-x: hidden;
-    position: relative;
-  }
+  <meta charset="UTF-8" />
+  <title>Portfolio 2026 - About</title>
+  <link rel="stylesheet" href="style.css" />
 
-  nav {
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 3;
-    position: relative;
-  }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
-  nav a {
-    text-decoration: none;
-    color: #333;
-    margin-left: 20px;
-    font-weight: 400;
-  }
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-  .logo-small a {
-    font-weight: 700;
-    font-size: 18px;
-  }
+    /* Nav */
+    nav {
+      position: relative;
+      z-index: 2;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .about-wrapper {
-    max-width: 650px;
-    width: 90%;
-    margin: 40px auto 60px auto;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 400;
+    }
 
-  .about-image {
-    width: 80%;
-    max-width: 600px;
-    height: auto;
-    display: block;
-    margin: 0 auto 30px auto;
-    border-radius: 8px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  }
+    .logo-small a {
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-  #markerCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1; /* behind nav and image */
-  }
-</style>
+    /* About wrapper */
+    .about-wrapper {
+      max-width: 650px;
+      width: 90%;
+      margin: 40px auto 60px auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-image {
+      width: 80%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Canvas for text and marker */
+    #textCanvas {
+      width: 100%;
+      max-width: 650px;
+      height: 200px; /* adjust based on text */
+    }
+
+    /* Canvas for marker (covers everything) */
+    #cursorCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo-small">
-    <a href="index.html">Portfolio 2026</a>
+  <nav>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">home</a>
+      <a href="works.html">works</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <div class="about-wrapper">
+    <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
+    <canvas id="textCanvas"></canvas>
   </div>
-  <div class="nav-right">
-    <a href="index.html">home</a>
-    <a href="works.html">works</a>
-    <a href="about.html">about</a>
-    <a href="contact.html">contact</a>
-  </div>
-</nav>
 
-<div class="about-wrapper">
-  <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
-</div>
+  <canvas id="cursorCanvas"></canvas>
 
-<canvas id="markerCanvas"></canvas>
+  <script>
+    const textCanvas = document.getElementById('textCanvas');
+    const tctx = textCanvas.getContext('2d');
 
-<script>
-const canvas = document.getElementById('markerCanvas');
-const ctx = canvas.getContext('2d');
+    const cursorCanvas = document.getElementById('cursorCanvas');
+    const ctx = cursorCanvas.getContext('2d');
 
-// Resize canvas
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  drawText();
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
 
-// Text lines to draw on canvas
-const lines = [
-  "My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.",
-  "I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.",
-  "Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life."
-];
+      // Text canvas
+      textCanvas.width = textCanvas.offsetWidth * dpr;
+      textCanvas.height = 200 * dpr; // adjust height if needed
+      tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawText();
 
-const fontSize = 32;
-const startX = 50;
-let startY = 150;
-const lineHeight = fontSize + 14;
-
-// Draw text in black
-function drawText() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = "black";
-  ctx.font = `${fontSize}px Inter`;
-  lines.forEach((line, i) => {
-    ctx.fillText(line, startX, startY + i * lineHeight);
-  });
-}
-
-// Marker logic
-let points = [];
-let isDrawing = false;
-
-window.addEventListener('mousedown', () => { isDrawing = true; });
-window.addEventListener('mouseup', () => { isDrawing = false; points = []; });
-window.addEventListener('mousemove', (e) => {
-  if (!isDrawing) return;
-  points.push({x: e.clientX, y: e.clientY});
-  drawMarker();
-});
-
-function drawMarker() {
-  for (const p of points) {
-    const pixel = ctx.getImageData(p.x, p.y, 1, 1).data;
-    const isBlack = pixel[0] < 50 && pixel[1] < 50 && pixel[2] < 50;
-
-    if (isBlack) {
-      // Draw pink over black letters
-      ctx.fillStyle = "#FF69B4";
-      ctx.fillRect(p.x-2, p.y-fontSize, 4, fontSize);
-    } else {
-      // Draw blue marker trail
-      ctx.fillStyle = "rgba(30,90,255,0.5)";
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 8, 0, Math.PI*2);
-      ctx.fill();
+      // Cursor canvas
+      cursorCanvas.width = window.innerWidth * dpr;
+      cursorCanvas.height = window.innerHeight * dpr;
+      cursorCanvas.style.width = window.innerWidth + 'px';
+      cursorCanvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-  }
-  points = [];
-}
 
-</script>
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Draw the text on the text canvas
+    function drawText() {
+      tctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
+      tctx.fillStyle = '#000'; // black text
+      tctx.font = '16px Inter';
+      tctx.textAlign = 'center';
+      tctx.textBaseline = 'top';
+      const lines = [
+        "My earliest memories of making art are on my grandma’s porch,",
+        "paintbrush in hand, sitting between my mom and grandma.",
+        "I’ve been exploring creativity ever since, from messy afternoons",
+        "with watercolor to digital experiments on my computer.",
+        "Now, as a recent BFA graduate in Graphic Design, I love blending",
+        "traditional and digital art to create work that feels playful, personal, and full of life."
+      ];
+      const x = textCanvas.width / 2;
+      let y = 0;
+      lines.forEach(line => {
+        tctx.fillText(line, x, y);
+        y += 22; // line height
+      });
+    }
+
+    // Cursor trail and text color change
+    let points = [];
+
+    document.addEventListener('mousemove', (e) => {
+      points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+      if (points.length > 800) points.shift();
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Draw semi-transparent background for cursor trail
+      ctx.fillStyle = "rgba(255,255,255,0.03)";
+      ctx.fillRect(0, 0, cursorCanvas.width, cursorCanvas.height);
+
+      if (points.length < 2) return;
+
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 6;
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        const midX = (points[i - 1].x + points[i].x) / 2;
+        const midY = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
+      }
+
+      ctx.strokeStyle = "rgba(30,90,255,0.18)";
+      ctx.stroke();
+
+      // Check text canvas pixels under cursor and turn black to pink
+      points.forEach(p => {
+        const rect = textCanvas.getBoundingClientRect();
+        const tx = p.x - rect.left;
+        const ty = p.y - rect.top;
+        if (tx >= 0 && tx < textCanvas.width && ty >= 0 && ty < textCanvas.height) {
+          const pixel = tctx.getImageData(tx, ty, 1, 1);
+          const d = pixel.data;
+          if (d[0] < 50 && d[1] < 50 && d[2] < 50) { // black pixel
+            d[0] = 255; // red
+            d[1] = 105; // pink
+            d[2] = 180;
+            pixel.data.set(d);
+            tctx.putImageData(pixel, tx, ty);
+          }
+        }
+      });
+
+      // Fade out cursor trail
+      points.forEach(p => p.alpha *= 0.95);
+      points = points.filter(p => p.alpha > 0.02);
+    }
+
+    animate();
+  </script>
+
 </body>
 </html>
