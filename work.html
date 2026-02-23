@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio 2026 - Works</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Nav */
+    nav {
+      position: relative;
+      z-index: 2;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 400;
+    }
+
+    .logo-small a {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* Works grid */
+    .works-wrapper {
+      max-width: 1200px;
+      width: 90%;
+      margin: 40px auto;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .work-item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .work-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .work-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .work-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .work-item:hover .work-info {
+      background: rgba(255,255,255,1);
+    }
+
+    .work-title {
+      font-weight: 700;
+      font-size: 18px;
+      color: #000;
+      margin-bottom: 5px;
+    }
+
+    .work-category {
+      font-size: 14px;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      .works-wrapper {
+        width: 95%;
+      }
+      .work-title {
+        font-size: 16px;
+      }
+      .work-category {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="index.html">home</a>
+      <a href="works.html">works</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <div class="works-wrapper">
+    <h1 style="text-align:center; margin-bottom:40px;">My Work</h1>
+
+    <div class="works-grid">
+      <!-- Example project -->
+      <a href="project1.html" class="work-item">
+        <img src="project1-thumb.jpg" alt="Project 1 Thumbnail">
+        <div class="work-info">
+          <div class="work-title">Brand Identity: Coffee Shop</div>
+          <div class="work-category">Graphic Design</div>
+        </div>
+      </a>
+
+      <a href="project2.html" class="work-item">
+        <img src="project2-thumb.jpg" alt="Project 2 Thumbnail">
+        <div class="work-info">
+          <div class="work-title">Digital Illustration Series</div>
+          <div class="work-category">Illustration</div>
+        </div>
+      </a>
+
+      <a href="project3.html" class="work-item">
+        <img src="project3-thumb.jpg" alt="Project 3 Thumbnail">
+        <div class="work-info">
+          <div class="work-title">Acrylic Painting: Fragmented Memory</div>
+          <div class="work-category">Painting</div>
+        </div>
+      </a>
+
+      <!-- Add more projects as needed -->
+    </div>
+  </div>
+
+</body>
+</html>
