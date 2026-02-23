@@ -37,34 +37,35 @@ nav {
   align-items: center;
   border-bottom: 1px solid #bbb;
   padding-bottom: 14px;
-  margin: 20px 80px 120px 80px;
+  margin: 20px auto 60px auto; /* centered like container */
+  max-width: 1200px;
+  width: 90%;
   font-family: 'Inter', sans-serif;  
   font-weight: 400;                  
-  letter-spacing: 0;                 
 }
 
 .logo-small a {
   text-decoration: none;
   color: #9a9a9a;
   font-size: 14px;
+  font-weight: 700;
 }
 
 .nav-right {
-  display: flex;      /* make nav-right a flex container */
-  gap: 34px;          /* exact spacing between all links */
+  display: flex;      
+  gap: 34px;          
 }
 
 .nav-right a {
   text-decoration: none;
   color: #777;
   font-size: 14px;
-  line-height: 1;     /* keep links vertically aligned consistently */
+  line-height: 1;     
 }
 
 .nav-right a:hover {
   color: #000;
 }
-
 
 /* =====================
    HERO
@@ -79,6 +80,10 @@ nav {
 .hero-text {
   margin-top: 30px;
   max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 /* NAME */
@@ -101,7 +106,6 @@ nav {
 
 /* SUBTITLE */
 .subtitle {
-  margin-top: 40px;
   color: #777;
   font-size: 16px;
 }
@@ -109,6 +113,22 @@ nav {
 .subtitle span {
   font-size: 14px;
   color: #999;
+}
+
+/* CTA BUTTON */
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
 }
 
 /* =====================
@@ -122,27 +142,15 @@ nav {
   margin-bottom: 20px;
 }
 
-/* layer-specific styles */
 .eye-background {
   position: relative;
-  top: 0;
-  left: 0;
   width: 100%;
   height: auto;
   pointer-events: none;
-  z-index: 4; /* main hero image in front */
+  z-index: 4;
 }
 
-.eye-whites {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-}
-
-.pupil {
+.eye-whites, .pupil {
   position: absolute;
   top: 0;
   left: 0;
@@ -157,7 +165,7 @@ nav {
 @media (max-width: 900px) {
 
   nav {
-    margin: 20px 30px 80px 30px;
+    margin: 20px 30px 60px 30px;
   }
 
   .container {
@@ -172,6 +180,7 @@ nav {
 
   .hero-text {
     margin-top: 40px;
+    align-items: center;
   }
 
   .name-script {
@@ -187,5 +196,17 @@ nav {
   .hero-image-wrapper {
     margin-top: 20px;
     max-width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 15px 20px;
+  }
+  .name-script {
+    font-size: 56px;
+  }
+  .name-last {
+    font-size: 48px;
   }
 }
