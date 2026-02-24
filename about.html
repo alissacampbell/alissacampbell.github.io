@@ -9,14 +9,127 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+      margin: 0; /* keeps nav normal */
+    }
+
+    /* Nav */
+    nav {
+      position: relative;
+      z-index: 1;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 400;
+    }
+
+    .logo-small a {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* About layout */
+    .about-wrapper {
+      max-width: 650px;
+      width: 90%;
+
+      /* fully spelled-out margins for control */
+      margin-top: 40px;    /* space above wrapper (moves image closer to nav) */
+      margin-right: auto;  /* centers wrapper horizontally */
+      margin-bottom: 60px; /* breathing room below text */
+      margin-left: auto;   /* centers wrapper horizontally */
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: relative; /* above canvas */
+      z-index: 1;
+    }
+
+    /* Image scales naturally */
+    .about-image {
+      width: 80%;
+      max-width: 600px;
+      height: auto;          /* keeps original aspect ratio */
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      margin-top: 0;         /* no extra spacing above */
+      margin-bottom: 20px;   /* space below image */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Text styling */
+    .about-text {
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: #333;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .about-text span:first-child {
+      display: block;
+      font-size: 19px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .about-image {
+        width: 95%;
+        height: auto;
+      }
+      .about-text {
+        font-size: 16px;
+      }
+      .about-text span:first-child {
+        font-size: 18px;
+      }
+    }
+
+    /* Canvas behind everything */
+    #cursorCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0; /* behind everything */
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
     </div>
+
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
@@ -26,12 +139,15 @@
   </nav>
 
   <div class="about-wrapper">
+
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
-    <p class="about-text" id="aboutText">
-      My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma. 
+
+    <p class="about-text">
+      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
+
   </div>
 
   <canvas id="cursorCanvas"></canvas>
@@ -39,15 +155,6 @@
   <script>
     const canvas = document.getElementById("cursorCanvas");
     const ctx = canvas.getContext("2d");
-    const aboutText = document.getElementById("aboutText");
-    const originalText = aboutText.textContent;
-    aboutText.textContent = '';
-    const letters = Array.from(originalText).map(char => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      aboutText.appendChild(span);
-      return span;
-    });
 
     function resizeCanvas() {
       const dpr = window.devicePixelRatio || 1;
@@ -61,46 +168,35 @@
     window.addEventListener("resize", resizeCanvas);
 
     let points = [];
-    document.addEventListener("mousemove", e => {
+
+    document.addEventListener("mousemove", (e) => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
       if (points.length > 800) points.shift();
     });
 
     function animate() {
       requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (points.length > 1) {
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.lineWidth = 6;
-        ctx.strokeStyle = "rgba(30,90,255,0.18)";
+      ctx.fillStyle = "rgba(255,255,255,0.03)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        for (let i = 1; i < points.length; i++) {
-          const midX = (points[i-1].x + points[i].x)/2;
-          const midY = (points[i-1].y + points[i].y)/2;
-          ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, midX, midY);
-        }
-        ctx.stroke();
+      if (points.length < 2) return;
+
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 6;
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length; i++) {
+        const midX = (points[i - 1].x + points[i].x) / 2;
+        const midY = (points[i - 1].y + points[i].y) / 2;
+        ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, midX, midY);
       }
 
-      letters.forEach(span => {
-        const rect = span.getBoundingClientRect();
-        for (const p of points) {
-          if(p.x >= rect.left && p.x <= rect.right && p.y >= rect.top && p.y <= rect.bottom){
-            span.style.color = '#FF69B4';
-            span.dataset.hitTime = Date.now();
-          }
-        }
-        if(span.dataset.hitTime){
-          if(Date.now() - span.dataset.hitTime > 1000){
-            span.style.color = '#000';
-            delete span.dataset.hitTime;
-          }
-        }
-      });
+      ctx.strokeStyle = "rgba(30,90,255,0.18)";
+      ctx.stroke();
 
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
