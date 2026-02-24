@@ -23,49 +23,36 @@
       background: #ffffff;
       overflow-x: hidden;
       margin: 0;
-      color: #333;
     }
 
     /* =====================
-       NAVIGATION (consistent with project/contact)
+       NAVIGATION
     ===================== */
     nav {
+      position: relative;
+      z-index: 10; /* ensures nav stays above everything */
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #bbb;
-      padding-bottom: 14px;
-      margin: 20px auto 60px auto;
-      max-width: 1200px;
-      width: 90%;
-      font-weight: 400;                  
+      background-color: #fff; /* solid so it doesn't fade with background */
+      opacity: 1 !important;  /* prevent accidental fade */
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-weight: 400;
     }
 
     .logo-small a {
-      text-decoration: none;
-      color: #9a9a9a;
       font-weight: 700;
-      font-size: 14px;
-    }
-
-    .nav-right {
-      display: flex;
-      gap: 34px;
-    }
-
-    .nav-right a {
-      text-decoration: none;
-      color: #777;
-      font-size: 14px;
-      line-height: 1;     
-    }
-
-    .nav-right a:hover {
-      color: #000;
+      font-size: 18px;
     }
 
     /* =====================
-       ABOUT CONTENT
+       ABOUT WRAPPER
     ===================== */
     .about-wrapper {
       max-width: 650px;
@@ -76,7 +63,7 @@
       flex-direction: column;
       align-items: center;
       gap: 30px;
-      position: relative;
+      position: relative; /* above canvas */
       z-index: 1;
     }
 
@@ -95,6 +82,7 @@
       font-size: 17px;
       line-height: 1.7;
       font-weight: 300;
+      color: #333;
       max-width: 700px;
       text-align: center;
     }
@@ -107,6 +95,7 @@
       margin-bottom: 10px;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
       .about-image {
         width: 95%;
@@ -126,14 +115,14 @@
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 0;
+      z-index: 0; /* stays behind nav and content */
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- NAV -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -147,8 +136,8 @@
     </div>
   </nav>
 
-  <!-- ABOUT CONTENT -->
   <div class="about-wrapper">
+
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text">
@@ -156,6 +145,7 @@
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
+
   </div>
 
   <canvas id="cursorCanvas"></canvas>
@@ -176,6 +166,7 @@
     window.addEventListener("resize", resizeCanvas);
 
     let points = [];
+
     document.addEventListener("mousemove", (e) => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
       if (points.length > 800) points.shift();
@@ -183,6 +174,7 @@
 
     function animate() {
       requestAnimationFrame(animate);
+
       ctx.fillStyle = "rgba(255,255,255,0.03)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -191,6 +183,7 @@
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.lineWidth = 6;
+
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
 
@@ -202,6 +195,7 @@
 
       ctx.strokeStyle = "rgba(30,90,255,0.18)";
       ctx.stroke();
+
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
     }
