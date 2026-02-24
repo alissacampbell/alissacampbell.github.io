@@ -22,70 +22,79 @@
       font-family: 'Inter', sans-serif;
       background: #ffffff;
       overflow-x: hidden;
-      margin: 0; /* keeps nav normal */
+      margin: 0;
+      color: #333;
     }
 
-    /* Nav */
+    /* =====================
+       NAVIGATION (consistent with project/contact)
+    ===================== */
     nav {
-      position: relative;
-      z-index: 1;
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 20px;
-      font-weight: 400;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 14px;
+      margin: 20px auto 60px auto;
+      max-width: 1200px;
+      width: 90%;
+      font-weight: 400;                  
     }
 
     .logo-small a {
+      text-decoration: none;
+      color: #9a9a9a;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 14px;
     }
 
-    /* About layout */
+    .nav-right {
+      display: flex;
+      gap: 34px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: #777;
+      font-size: 14px;
+      line-height: 1;     
+    }
+
+    .nav-right a:hover {
+      color: #000;
+    }
+
+    /* =====================
+       ABOUT CONTENT
+    ===================== */
     .about-wrapper {
       max-width: 650px;
       width: 90%;
-
-      /* fully spelled-out margins for control */
-      margin-top: 40px;    /* space above wrapper (moves image closer to nav) */
-      margin-right: auto;  /* centers wrapper horizontally */
-      margin-bottom: 60px; /* breathing room below text */
-      margin-left: auto;   /* centers wrapper horizontally */
-
+      margin: 40px auto 60px auto;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 30px;
-      position: relative; /* above canvas */
+      position: relative;
       z-index: 1;
     }
 
-    /* Image scales naturally */
     .about-image {
       width: 80%;
       max-width: 600px;
-      height: auto;          /* keeps original aspect ratio */
+      height: auto;
       object-fit: cover;
       border-radius: 8px;
       display: block;
-      margin-top: 0;         /* no extra spacing above */
-      margin-bottom: 20px;   /* space below image */
+      margin-bottom: 20px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
-    /* Text styling */
     .about-text {
       font-size: 17px;
       line-height: 1.7;
       font-weight: 300;
-      color: #333;
       max-width: 700px;
       text-align: center;
     }
@@ -98,7 +107,6 @@
       margin-bottom: 10px;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .about-image {
         width: 95%;
@@ -118,13 +126,14 @@
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 0; /* behind everything */
+      z-index: 0;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -138,8 +147,8 @@
     </div>
   </nav>
 
+  <!-- ABOUT CONTENT -->
   <div class="about-wrapper">
-
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text">
@@ -147,7 +156,6 @@
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
-
   </div>
 
   <canvas id="cursorCanvas"></canvas>
@@ -168,7 +176,6 @@
     window.addEventListener("resize", resizeCanvas);
 
     let points = [];
-
     document.addEventListener("mousemove", (e) => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
       if (points.length > 800) points.shift();
@@ -176,7 +183,6 @@
 
     function animate() {
       requestAnimationFrame(animate);
-
       ctx.fillStyle = "rgba(255,255,255,0.03)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -185,7 +191,6 @@
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.lineWidth = 6;
-
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
 
@@ -197,7 +202,6 @@
 
       ctx.strokeStyle = "rgba(30,90,255,0.18)";
       ctx.stroke();
-
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
     }
