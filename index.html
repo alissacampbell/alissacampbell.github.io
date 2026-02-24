@@ -8,20 +8,18 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- NAVIGATION (Updated to match About/Works) -->
+  <!-- NAV -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
     </div>
-
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
@@ -30,13 +28,9 @@
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
-
-    <!-- HERO SECTION -->
     <section class="hero">
 
-      <!-- TEXT SIDE -->
       <div class="hero-text">
         <div class="name-script">Alissa</div>
         <div class="name-last">campbell</div>
@@ -46,25 +40,18 @@
           <span>Painting · Drawing</span>
         </div>
 
-        <!-- Optional CTA button -->
         <a href="works.html" class="cta-button">View My Work</a>
       </div>
 
-      <!-- IMAGE SIDE -->
       <div class="hero-image-wrapper">
-        <!-- Main drawing pulled to front -->
         <img src="heroimage4.png" alt="Illustration of Alissa Campbell" class="eye-background">
-        <!-- Eye whites -->
         <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
-        <!-- Pupils -->
         <img src="eyepupils.png" alt="Pupils" class="pupil">
       </div>
 
     </section>
-
   </div>
 
-  <!-- JS for pupils following cursor -->
   <script>
     const pupil = document.querySelector('.pupil');
     const eyeWhites = document.querySelector('.eye-whites');
@@ -77,7 +64,7 @@
       const dx = e.clientX - eyeCenterX;
       const dy = e.clientY - eyeCenterY;
 
-      const maxDist = 8; // max pixels pupil can move
+      const maxDist = 8;
       const angle = Math.atan2(dy, dx);
       const distance = Math.min(maxDist, Math.hypot(dx, dy));
 
