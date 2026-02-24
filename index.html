@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -28,9 +28,9 @@
     </div>
   </nav>
 
+  <!-- MAIN CONTENT -->
   <div class="container">
     <section class="hero">
-
       <div class="hero-text">
         <div class="name-script">Alissa</div>
         <div class="name-last">campbell</div>
@@ -48,10 +48,10 @@
         <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
         <img src="eyepupils.png" alt="Pupils" class="pupil">
       </div>
-
     </section>
   </div>
 
+  <!-- JS for pupils following cursor -->
   <script>
     const pupil = document.querySelector('.pupil');
     const eyeWhites = document.querySelector('.eye-whites');
@@ -60,14 +60,11 @@
       const rect = eyeWhites.getBoundingClientRect();
       const eyeCenterX = rect.left + rect.width / 2;
       const eyeCenterY = rect.top + rect.height / 2;
-
       const dx = e.clientX - eyeCenterX;
       const dy = e.clientY - eyeCenterY;
-
       const maxDist = 8;
       const angle = Math.atan2(dy, dx);
       const distance = Math.min(maxDist, Math.hypot(dx, dy));
-
       pupil.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`;
     });
   </script>
