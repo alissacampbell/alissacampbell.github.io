@@ -11,46 +11,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      overflow-x: hidden;
       margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
     }
 
-    /* Nav */
+    /* =====================
+       NAVIGATION (same as projects nav)
+    ====================== */
     nav {
-      position: relative;
-      z-index: 2;
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 20px;
+      border-bottom: 1px solid #bbb;
+      padding: 20px 40px;
+      max-width: 1200px;
+      margin: 20px auto 60px auto;
       font-weight: 400;
     }
 
     .logo-small a {
       font-weight: 700;
       font-size: 18px;
+      color: #9a9a9a;
+      text-decoration: none;
     }
 
-    /* About layout */
+    .nav-right {
+      display: flex;
+      gap: 34px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: #777;
+      font-size: 14px;
+      line-height: 1;
+      transition: color 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      color: #007BFF;
+    }
+
+    /* =====================
+       ABOUT CONTENT
+    ====================== */
     .about-wrapper {
-      max-width: 650px;
+      max-width: 700px;
       width: 90%;
-      margin: 40px auto 60px auto; /* top, right, bottom, left */
+      margin: 40px auto 60px auto;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -82,7 +96,7 @@
 
     .about-text span {
       display: inline-block;
-      transition: color 0.3s ease; /* smooth color transition */
+      transition: color 0.3s ease;
     }
 
     .about-text span:first-child {
@@ -93,6 +107,9 @@
       margin-bottom: 10px;
     }
 
+    /* =====================
+       RESPONSIVE
+    ====================== */
     @media (max-width: 600px) {
       .about-image {
         width: 95%;
@@ -106,7 +123,15 @@
       }
     }
 
-    /* Canvas behind everything */
+    @media (max-width: 400px) {
+      .about-wrapper {
+        width: 95%;
+      }
+    }
+
+    /* =====================
+       CURSOR CANVAS
+    ====================== */
     #cursorCanvas {
       position: fixed;
       top: 0;
@@ -118,6 +143,7 @@
 </head>
 <body>
 
+  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -131,8 +157,8 @@
     </div>
   </nav>
 
+  <!-- ABOUT CONTENT -->
   <div class="about-wrapper">
-
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text" id="aboutText">
@@ -140,9 +166,9 @@
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
     </p>
-
   </div>
 
+  <!-- CURSOR EFFECT CANVAS -->
   <canvas id="cursorCanvas"></canvas>
 
   <script>
@@ -181,7 +207,6 @@
     function animate() {
       requestAnimationFrame(animate);
 
-      // clear only previous line path slightly, not whole canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (points.length > 1) {
@@ -200,17 +225,15 @@
         ctx.stroke();
       }
 
-      // Check each letter for collision with marker points
       letters.forEach(span => {
         const rect = span.getBoundingClientRect();
         for (const p of points) {
           if(p.x >= rect.left && p.x <= rect.right && p.y >= rect.top && p.y <= rect.bottom){
             span.style.color = '#FF69B4'; // pink
-            span.dataset.hitTime = Date.now(); // store when hit
+            span.dataset.hitTime = Date.now();
           }
         }
 
-        // Fade letter back to black after 1s
         if(span.dataset.hitTime){
           if(Date.now() - span.dataset.hitTime > 1000){
             span.style.color = '#000';
@@ -219,7 +242,6 @@
         }
       });
 
-      // fade out old points
       points.forEach(p => p.alpha *= 0.95);
       points = points.filter(p => p.alpha > 0.02);
     }
