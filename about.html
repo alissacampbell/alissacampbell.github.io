@@ -9,137 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    /* =====================
-       NAVIGATION (same as projects nav)
-    ====================== */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #bbb;
-      padding: 20px 40px;
-      max-width: 1200px;
-      margin: 20px auto 60px auto;
-      font-weight: 400;
-    }
-
-    .logo-small a {
-      font-weight: 700;
-      font-size: 18px;
-      color: #9a9a9a;
-      text-decoration: none;
-    }
-
-    .nav-right {
-      display: flex;
-      gap: 34px;
-    }
-
-    .nav-right a {
-      text-decoration: none;
-      color: #777;
-      font-size: 14px;
-      line-height: 1;
-      transition: color 0.3s ease;
-    }
-
-    .nav-right a:hover {
-      color: #007BFF;
-    }
-
-    /* =====================
-       ABOUT CONTENT
-    ====================== */
-    .about-wrapper {
-      max-width: 700px;
-      width: 90%;
-      margin: 40px auto 60px auto;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .about-image {
-      width: 80%;
-      max-width: 600px;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      display: block;
-      margin-bottom: 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
-
-    .about-text {
-      font-size: 18px;
-      line-height: 1.7;
-      font-weight: 300;
-      color: #000;
-      max-width: 700px;
-      text-align: center;
-    }
-
-    .about-text span {
-      display: inline-block;
-      transition: color 0.3s ease;
-    }
-
-    .about-text span:first-child {
-      display: block;
-      font-size: 20px;
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-
-    /* =====================
-       RESPONSIVE
-    ====================== */
-    @media (max-width: 600px) {
-      .about-image {
-        width: 95%;
-        height: auto;
-      }
-      .about-text {
-        font-size: 16px;
-      }
-      .about-text span:first-child {
-        font-size: 18px;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .about-wrapper {
-        width: 95%;
-      }
-    }
-
-    /* =====================
-       CURSOR CANVAS
-    ====================== */
-    #cursorCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-  </style>
 </head>
 <body>
 
@@ -148,7 +17,6 @@
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
     </div>
-
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
@@ -157,10 +25,8 @@
     </div>
   </nav>
 
-  <!-- ABOUT CONTENT -->
   <div class="about-wrapper">
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
-
     <p class="about-text" id="aboutText">
       My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma. 
       I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
@@ -168,20 +34,17 @@
     </p>
   </div>
 
-  <!-- CURSOR EFFECT CANVAS -->
   <canvas id="cursorCanvas"></canvas>
 
   <script>
     const canvas = document.getElementById("cursorCanvas");
     const ctx = canvas.getContext("2d");
     const aboutText = document.getElementById("aboutText");
-
-    // Split text into spans for per-letter coloring
     const originalText = aboutText.textContent;
     aboutText.textContent = '';
     const letters = Array.from(originalText).map(char => {
       const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char; // preserve spaces
+      span.textContent = char === ' ' ? '\u00A0' : char;
       aboutText.appendChild(span);
       return span;
     });
@@ -198,7 +61,6 @@
     window.addEventListener("resize", resizeCanvas);
 
     let points = [];
-
     document.addEventListener("mousemove", e => {
       points.push({ x: e.clientX, y: e.clientY, alpha: 1 });
       if (points.length > 800) points.shift();
@@ -206,7 +68,6 @@
 
     function animate() {
       requestAnimationFrame(animate);
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (points.length > 1) {
@@ -229,11 +90,10 @@
         const rect = span.getBoundingClientRect();
         for (const p of points) {
           if(p.x >= rect.left && p.x <= rect.right && p.y >= rect.top && p.y <= rect.bottom){
-            span.style.color = '#FF69B4'; // pink
+            span.style.color = '#FF69B4';
             span.dataset.hitTime = Date.now();
           }
         }
-
         if(span.dataset.hitTime){
           if(Date.now() - span.dataset.hitTime > 1000){
             span.style.color = '#000';
