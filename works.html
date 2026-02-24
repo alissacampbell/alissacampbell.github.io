@@ -106,6 +106,16 @@
       color: #666;
     }
 
+    /* Play icon overlay for animation projects */
+    .play-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: #007BFF;
+      pointer-events: none;
+    }
+
     @media (max-width: 600px) {
       .works-wrapper {
         width: 95%;
@@ -138,7 +148,17 @@
     <h1 style="text-align:center; margin-bottom:40px;">My Work</h1>
 
     <div class="works-grid">
-      <!-- Example project -->
+      <!-- Logo & Motion Design Project -->
+      <a href="project-logo.html" class="work-item">
+        <img src="logo-thumb.png" alt="Logo Project Thumbnail">
+        <div class="work-info">
+          <div class="work-title">Logo & Motion Design</div>
+          <div class="work-category">Branding + Animation</div>
+        </div>
+        <div class="play-icon">▶</div>
+      </a>
+
+      <!-- Existing projects -->
       <a href="project1.html" class="work-item">
         <img src="project1-thumb.jpg" alt="Project 1 Thumbnail">
         <div class="work-info">
