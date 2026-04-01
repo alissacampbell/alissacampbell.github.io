@@ -223,7 +223,7 @@ nav {
 .works-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px; /* tighter spacing */
 }
 
 .work-item {
@@ -236,7 +236,7 @@ nav {
 
 .work-item img {
   width: 100%;
-  aspect-ratio: 4 / 3;   /* makes it rectangular */
+  aspect-ratio: 3 / 4; /* taller rectangles */
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
@@ -253,13 +253,11 @@ nav {
   left: 0;
   width: 100%;
   padding: 30px 20px 20px 20px;
-
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
   );
-
   color: white;
   opacity: 0;
   transition: opacity 0.4s ease;
