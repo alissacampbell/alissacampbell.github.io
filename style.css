@@ -236,7 +236,7 @@ nav {
 
 .work-item img {
   width: 100%;
-  height: 350px; /* controls tile height */
+  aspect-ratio: 4 / 3;   /* makes it rectangular */
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
