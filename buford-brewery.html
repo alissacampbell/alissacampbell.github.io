@@ -30,20 +30,30 @@
       Branding & Web Design • 2026
     </p>
 
-    <!-- WEBSITE PREVIEW (GIF) -->
+    <!-- LOGO ANIMATION -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
       LOGO ANIMATION
     </p>
 
-    <img src="logoanimation2-(2).gif" alt="Buford Brewery Logo Animation"
-     style="width:100%; max-width:400px; display:block; margin:20px auto 40px auto;">
+    <video autoplay loop muted playsinline
+           style="width:100%; max-width:400px; display:block; margin:20px auto 40px auto;"
+           id="logoVideo">
+      <source src="logoanimation2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <script>
+      // Speed up the logo animation (1.5x)
+      const video = document.getElementById('logoVideo');
+      video.playbackRate = 1.5;
+    </script>
 
     <!-- DESCRIPTION -->
     <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
       Branding and website design for a brewery, focusing on bold identity and an engaging digital experience.
     </p>
 
-    <!-- LOGO -->
+    <!-- LOGO DESIGN -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
       LOGO DESIGN
     </p>
