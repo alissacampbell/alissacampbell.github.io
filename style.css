@@ -8,7 +8,7 @@
 }
 
 html {
-  overflow-y: scroll; /* fix nav shift by always reserving scrollbar */
+  overflow-y: scroll;
 }
 
 html, body {
@@ -17,6 +17,10 @@ html, body {
   color: #333;
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+body {
+  padding-top: 100px;
 }
 
 /* =====================
@@ -32,14 +36,15 @@ html, body {
    NAVIGATION
 ===================== */
 nav {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #bbb;
-  margin: 20px auto 60px auto;
   max-width: 1200px;
   width: 90%;
   padding: 0 0 14px 0;
@@ -57,19 +62,24 @@ nav {
 }
 
 .nav-right {
-  display: flex;      
-  gap: 34px;          
+  display: flex;
+  gap: 34px;
 }
 
 .nav-right a {
   text-decoration: none;
   color: #777;
   font-size: 14px;
-  line-height: 1;     
+  line-height: 1;
 }
 
 .nav-right a:hover {
   color: #000;
+}
+
+.nav-right a.active {
+  color: #000;
+  font-weight: 500;
 }
 
 /* =====================
@@ -140,7 +150,7 @@ nav {
    HERO IMAGE
 ===================== */
 .hero-image-wrapper {
-  position: relative; /* needed for absolute children */
+  position: relative;
   max-width: 520px;
   width: 100%;
   margin-top: -70px;
@@ -155,7 +165,8 @@ nav {
   z-index: 4;
 }
 
-.eye-whites, .pupil {
+.eye-whites,
+.pupil {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,60 +176,8 @@ nav {
 }
 
 /* =====================
-   RESPONSIVE
-===================== */
-@media (max-width: 900px) {
-
-  nav {
-    margin: 20px 30px 60px 30px;
-  }
-
-  .container {
-    padding: 20px 30px;
-  }
-
-  .hero {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .hero-text {
-    margin-top: 40px;
-    align-items: center;
-  }
-
-  .name-script {
-    font-size: 68px;
-    margin-left: 0;
-  }
-
-  .name-last {
-    font-size: 54px;
-    margin-top: -18px;
-  }
-
-  .hero-image-wrapper {
-    margin-top: 20px;
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 400px) {
-  .container {
-    padding: 15px 20px;
-  }
-  .name-script {
-    font-size: 56px;
-  }
-  .name-last {
-    font-size: 48px;
-  }
-}
-/* =====================
    WORKS PAGE
 ===================== */
-
 .works-wrapper {
   max-width: 1200px;
   width: 90%;
@@ -228,7 +187,7 @@ nav {
 .works-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px; /* tighter spacing */
+  gap: 20px;
 }
 
 .work-item {
@@ -241,7 +200,7 @@ nav {
 
 .work-item img {
   width: 100%;
-  aspect-ratio: 3 / 4; /* taller rectangles */
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
@@ -251,7 +210,6 @@ nav {
   transform: scale(1.05);
 }
 
-/* Overlay */
 .work-info {
   position: absolute;
   bottom: 0;
@@ -282,15 +240,74 @@ nav {
   opacity: 0.8;
 }
 
-/* Responsive */
+/* =====================
+   RESPONSIVE
+===================== */
 @media (max-width: 900px) {
+  .container {
+    padding: 20px 30px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .name-script {
+    font-size: 68px;
+    margin-left: 0;
+  }
+
+  .name-last {
+    font-size: 54px;
+    margin-top: -18px;
+  }
+
+  .hero-image-wrapper {
+    margin-top: 20px;
+    max-width: 90%;
+  }
+
   .works-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  nav {
+    width: calc(100% - 60px);
   }
 }
 
 @media (max-width: 600px) {
   .works-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nav-right {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 15px 20px;
+  }
+
+  .name-script {
+    font-size: 56px;
+  }
+
+  .name-last {
+    font-size: 48px;
+  }
+
+  .nav-right a,
+  .logo-small a {
+    font-size: 13px;
   }
 }
