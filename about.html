@@ -5,13 +5,11 @@
   <title>Portfolio 2026 - About</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -25,35 +23,6 @@
       margin: 0;
     }
 
-    /* =====================
-       NAVIGATION
-    ===================== */
-    nav {
-      position: relative;
-      z-index: 10; /* ensures nav stays above everything */
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fff; /* solid so it doesn't fade with background */
-      opacity: 1 !important;  /* prevent accidental fade */
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 20px;
-      font-weight: 400;
-    }
-
-    .logo-small a {
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    /* =====================
-       ABOUT WRAPPER
-    ===================== */
     .about-wrapper {
       max-width: 650px;
       width: 90%;
@@ -63,7 +32,7 @@
       flex-direction: column;
       align-items: center;
       gap: 30px;
-      position: relative; /* above canvas */
+      position: relative;
       z-index: 1;
     }
 
@@ -95,27 +64,27 @@
       margin-bottom: 10px;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .about-image {
         width: 95%;
         height: auto;
       }
+
       .about-text {
         font-size: 16px;
       }
+
       .about-text span:first-child {
         font-size: 18px;
       }
     }
 
-    /* Canvas behind everything */
     #cursorCanvas {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 0; /* stays behind nav and content */
+      z-index: 0;
     }
   </style>
 </head>
