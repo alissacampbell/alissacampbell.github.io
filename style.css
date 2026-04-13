@@ -32,16 +32,21 @@ html, body {
    NAVIGATION
 ===================== */
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #bbb;
-  padding-bottom: 14px;
-  margin: 20px auto 60px auto; /* centered like container */
+  margin: 20px auto 60px auto;
   max-width: 1200px;
   width: 90%;
-  font-family: 'Inter', sans-serif;  
-  font-weight: 400;                  
+  padding: 0 0 14px 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
 }
 
 .logo-small a {
