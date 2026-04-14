@@ -316,4 +316,14 @@ nav::after {
   .logo-small a {
     font-size: 13px;
   }
+
+   /* =====================
+   WORKS PAGE TITLE
+===================== */
+.works-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 700;
+}
 }
