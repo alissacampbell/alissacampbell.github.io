@@ -4,15 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio 2026 - Home</title>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Hero fills full viewport, no scroll on home */
     body {
       overflow: hidden;
     }
@@ -27,17 +24,18 @@
       align-items: flex-end;
     }
 
-    /* Text floats vertically centered */
     .hero-text {
       margin-top: 0;
       margin-bottom: 60px;
       align-self: center;
     }
 
-    /* Image anchors to the bottom edge of the screen */
+    /* Pull the image wrapper down so the bottom of the PNG
+       sits exactly at the viewport edge — adjust the px value
+       if you still see a gap or it clips too much */
     .hero-image-wrapper {
       margin-top: 0;
-      margin-bottom: 0;
+      margin-bottom: -40px;
       align-self: flex-end;
       max-width: 480px;
     }
@@ -49,7 +47,24 @@
       line-height: 1;
     }
 
-    /* "campbell" — large, grounded, full weight */
+    /* "Alissa" sits on top, Rock Salt, tilted — reads first */
+    .name-first {
+      display: block;
+      font-family: 'Rock Salt', cursive;
+      font-size: 48px;
+      color: #007BFF;
+      margin-bottom: -18px; /* pulls "campbell" up so they overlap */
+      margin-left: -4px;
+      transform: rotate(-4deg);
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      text-shadow:
+        2px 3px 0px rgba(0, 123, 255, 0.12),
+        -1px -1px 0px rgba(0,0,0,0.04);
+    }
+
+    /* "campbell" sits underneath, grounded */
     .name-last {
       display: block;
       font-family: 'Inter', sans-serif;
@@ -59,25 +74,10 @@
       color: #111;
       line-height: 1;
       margin: 0;
-    }
-
-    /* "Alissa" — Rock Salt, painted over the last name */
-    .name-first {
-      font-family: 'Rock Salt', cursive;
-      font-size: 48px;
-      color: #007BFF;
-      display: inline-block;
       position: relative;
-      margin-top: -14px;   /* overlap down onto "campbell" */
-      margin-left: -4px;   /* nudge left — intentionally off-balance */
-      transform: rotate(-4deg);
-      z-index: 2;
-      text-shadow:
-        2px 3px 0px rgba(0, 123, 255, 0.12),
-        -1px -1px 0px rgba(0,0,0,0.04);
+      z-index: 1;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       body { overflow: auto; }
 
@@ -86,33 +86,27 @@
         padding: 20px 30px;
       }
 
-      .hero {
-        align-items: center;
-      }
-
-      .hero-text {
-        margin-bottom: 0;
-        align-self: auto;
-      }
+      .hero { align-items: center; }
+      .hero-text { margin-bottom: 0; align-self: auto; }
 
       .hero-image-wrapper {
         align-self: auto;
         max-width: 90%;
+        margin-bottom: -20px;
       }
 
       .name-last { font-size: 64px; }
-      .name-first { font-size: 36px; margin-top: -10px; }
+      .name-first { font-size: 36px; margin-bottom: -12px; }
     }
 
     @media (max-width: 400px) {
       .name-last { font-size: 52px; }
-      .name-first { font-size: 28px; }
+      .name-first { font-size: 28px; margin-bottom: -10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -125,14 +119,13 @@
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
     <section class="hero">
 
       <div class="hero-text">
         <div class="name-block">
-          <span class="name-last">campbell</span>
           <span class="name-first">Alissa</span>
+          <span class="name-last">campbell</span>
         </div>
         <div class="subtitle">
           Graphic Designer <br />
