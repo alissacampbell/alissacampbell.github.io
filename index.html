@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio 2026 - Home</title>
-
-  <!-- Google Fonts -->
+  <!-- Google Fonts (fixed URL) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -21,7 +19,7 @@
       <a href="index.html">Portfolio 2026</a>
     </div>
     <div class="nav-right">
-      <a href="index.html">home</a>
+      <a href="index.html" class="active">home</a>
       <a href="works.html">works</a>
       <a href="about.html">about</a>
       <a href="contact.html">contact</a>
@@ -34,15 +32,12 @@
       <div class="hero-text">
         <div class="name-script">Alissa</div>
         <div class="name-last">campbell</div>
-
         <div class="subtitle">
           Graphic Designer <br />
           <span>Painting · Drawing</span>
         </div>
-
         <a href="works.html" class="cta-button">View My Work</a>
       </div>
-
       <div class="hero-image-wrapper">
         <img src="heroimage4.png" alt="Illustration of Alissa Campbell" class="eye-background">
         <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
@@ -55,7 +50,6 @@
   <script>
     const pupil = document.querySelector('.pupil');
     const eyeWhites = document.querySelector('.eye-whites');
-
     document.addEventListener('mousemove', (e) => {
       const rect = eyeWhites.getBoundingClientRect();
       const eyeCenterX = rect.left + rect.width / 2;
@@ -65,7 +59,7 @@
       const maxDist = 8;
       const angle = Math.atan2(dy, dx);
       const distance = Math.min(maxDist, Math.hypot(dx, dy));
-      pupil.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`;
+      pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
     });
   </script>
 
