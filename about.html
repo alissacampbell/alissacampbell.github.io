@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio 2026 - About</title>
   <link rel="stylesheet" href="style.css" />
 
@@ -11,8 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Page-specific styles ONLY (no nav styling here) */
-
     .about-wrapper {
       max-width: 650px;
       width: 90%;
@@ -54,26 +53,6 @@
       margin-bottom: 10px;
     }
 
-    @media (max-width: 600px) {
-      .about-image {
-        width: 95%;
-      }
-
-      .about-text {
-        font-size: 16px;
-      }
-
-      .about-text span:first-child {
-        font-size: 18px;
-      }
-    }
-
-    /* Canvas layering */
-    nav {
-      position: relative;
-      z-index: 10;
-    }
-
     #cursorCanvas {
       position: fixed;
       top: 0;
@@ -81,21 +60,32 @@
       pointer-events: none;
       z-index: 0;
     }
+
+    @media (max-width: 600px) {
+      .about-image {
+        width: 95%;
+      }
+      .about-text {
+        font-size: 16px;
+      }
+      .about-text span:first-child {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV (same as all pages) -->
+  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
     </div>
-
     <div class="nav-right">
       <a href="index.html">home</a>
       <a href="works.html">works</a>
-      <a href="about.html">about</a>
+      <a href="about.html" class="active">about</a>
       <a href="contact.html">contact</a>
     </div>
   </nav>
@@ -106,9 +96,10 @@
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
     <p class="about-text">
-      <span>My earliest memories of making art are on my grandma’s porch, paintbrush in hand, sitting between my mom and grandma.</span>
-      I’ve been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.  
+      <span>My earliest memories of making art are on my grandma's porch, paintbrush in hand, sitting between my mom and grandma.</span>
+      I've been exploring creativity ever since, from messy afternoons with watercolor to digital experiments on my computer.
       Now, as a recent BFA graduate in Graphic Design, I love blending traditional and digital art to create work that feels playful, personal, and full of life.
+      I'm currently seeking remote graphic design opportunities where I can bring both strategic thinking and a handcrafted sensibility to brand and visual work.
     </p>
 
   </div>
