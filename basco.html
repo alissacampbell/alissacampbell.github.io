@@ -39,16 +39,18 @@
     </p>
 
     <!-- DIVIDER -->
-    <style>
+     <style>
       @keyframes stretch {
         0%, 100% { transform: scaleX(1); }
         50% { transform: scaleX(1.08); }
       }
       .basco-hands {
-        width: 100%;
-        max-width: 1300px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
         display: block;
-        margin: 0 auto 30px auto;
+        margin: 0 0 40px 0;
         animation: stretch 3s ease-in-out infinite;
         transform-origin: center;
       }
