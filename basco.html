@@ -39,23 +39,29 @@
     </p>
 
     <!-- DIVIDER -->
-     <style>
+    <style>
       @keyframes stretch {
         0%, 100% { transform: scaleX(1); }
         50% { transform: scaleX(1.08); }
       }
-      .basco-hands {
+      .basco-hands-wrapper {
         width: 100vw;
         position: relative;
         left: 50%;
-        transform: translateX(-50%);
+        margin-left: -50vw;
+        margin-bottom: 40px;
+        overflow: hidden;
+      }
+      .basco-hands {
+        width: 100%;
         display: block;
-        margin: 0 0 40px 0;
         animation: stretch 3s ease-in-out infinite;
         transform-origin: center;
       }
     </style>
-    <img src="bascohands.png" alt="" class="basco-hands">
+    <div class="basco-hands-wrapper">
+      <img src="bascohands.png" alt="" class="basco-hands">
+    </div>
 
     <!-- FULL DIELINE -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
