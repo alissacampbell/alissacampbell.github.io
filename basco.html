@@ -38,12 +38,29 @@
       Basco is a fictional pasta brand built around an illustration-forward identity that feels bold and grown-up without crossing into childish territory. The packaging uses a vibrant amber and cobalt blue palette, a custom logotype with a playful reversed letterform, and a die-cut window that lets the actual fusilli col buco noodles become part of the design. Illustrated hands holding pasta, smiley face characters, and a wavy noodle motif run across the box panels to create a world that rewards a closer look.
     </p>
 
+    <!-- DIVIDER -->
+    <style>
+      @keyframes stretch {
+        0%, 100% { transform: scaleX(1); }
+        50% { transform: scaleX(1.08); }
+      }
+      .basco-hands {
+        width: 100%;
+        max-width: 900px;
+        display: block;
+        margin: 0 auto 40px auto;
+        animation: stretch 3s ease-in-out infinite;
+        transform-origin: center;
+      }
+    </style>
+    <img src="bascohands.png" alt="" class="basco-hands">
+
     <!-- FULL DIELINE -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
       FULL PACKAGE DIELINE
     </p>
     <img src="bascofinal.png" alt="Basco Full Package Dieline"
-         style="width:100%; max-width:700px; display:block; margin:20px auto 40px auto;">
+         style="width:100%; max-width:900px; display:block; margin:20px auto 40px auto;">
   </div>
 </body>
 </html>
