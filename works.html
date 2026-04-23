@@ -8,6 +8,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .works-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .works-filter {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .works-filter button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #777;
+      padding: 0;
+      transition: color 0.2s ease;
+    }
+
+    .works-filter button:hover {
+      color: #000;
+    }
+
+    .works-filter button.active {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .work-item.hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <!-- NAVIGATION -->
@@ -24,7 +62,81 @@
   </nav>
   <div class="works-wrapper">
     <h1 class="works-title">My Work</h1>
+    <div class="works-filter">
+      <button class="active" onclick="filterWorks('all', this)">All</button>
+      <button onclick="filterWorks('packaging', this)">Packaging</button>
+      <button onclick="filterWorks('illustration', this)">Illustration</button>
+      <button onclick="filterWorks('poster', this)">Poster</button>
+      <button onclick="filterWorks('logo', this)">Logo</button>
+    </div>
     <div class="works-grid">
+      <a href="bakken-poster.html" class="work-item" data-category="poster">
+        <img src="BakkenMuseumPoster (2).png" alt="Frankenstein's Laboratory Poster">
+        <div class="work-info">
+          <div class="work-title">Frankenstein's Laboratory</div>
+          <div class="work-category">Graphic Design</div>
+        </div>
+      </a>
+      <a href="not-today.html" class="work-item" data-category="illustration">
+        <img src="NotToday2.png" alt="Not Today Illustration">
+        <div class="work-info">
+          <div class="work-title">Not Today</div>
+          <div class="work-category">Illustration</div>
+        </div>
+      </a>
+      <a href="candesign.html" class="work-item" data-category="packaging">
+        <img src="drinkscofinalmock.png" alt="Can Design Project">
+        <div class="work-info">
+          <div class="work-title">Can Design</div>
+          <div class="work-category">Graphic Design</div>
+        </div>
+      </a>
+      <a href="jestercherries.html" class="work-item" data-category="illustration">
+        <img src="jestercherries.png" alt="Jester Cherries Design">
+        <div class="work-info">
+          <div class="work-title">Jester Cherries</div>
+          <div class="work-category">Illustration</div>
+        </div>
+      </a>
+      <a href="buford-brewery.html" class="work-item" data-category="logo">
+        <img src="bwebsite.png" alt="Buford Brewery Website and Logo Design">
+        <div class="work-info">
+          <div class="work-title">Buford Brewery</div>
+          <div class="work-category">Branding &amp; Web Design</div>
+        </div>
+      </a>
+      <a href="japanese-house.html" class="work-item" data-category="poster">
+        <img src="japanesehouse.png" alt="Japanese House Poster">
+        <div class="work-info">
+          <div class="work-title">Japanese House Poster</div>
+          <div class="work-category">Graphic Design</div>
+        </div>
+      </a>
+      <a href="basco.html" class="work-item" data-category="packaging">
+        <img src="basco.png" alt="Basco Pasta Package Design">
+        <div class="work-info">
+          <div class="work-title">Basco</div>
+          <div class="work-category">Packaging &amp; Illustration</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function filterWorks(category, btn) {
+      document.querySelectorAll('.works-filter button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.work-item').forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
       <a href="bakken-poster.html" class="work-item">
         <img src="BakkenMuseumPoster (2).png" alt="Frankenstein's Laboratory Poster">
         <div class="work-info">
