@@ -2,11 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Island Cove — Restaurant Branding - Portfolio 2026</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .project-header {
+      max-width: 700px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+
+    .project-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+
+    .project-meta {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    .project-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 60px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 700px;
+      display: block;
+      margin: 0 auto 60px auto;
+      border-radius: 4px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    /* Color palette */
+    .palette-section {
+      max-width: 700px;
+      margin: 0 auto 80px auto;
+      padding: 0 20px;
+    }
+
+    .palette-swatches {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .swatch {
+      flex: 1;
+    }
+
+    .swatch-color {
+      height: 80px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      color: #999;
+      font-family: monospace;
+    }
+
+    .divider {
+      max-width: 700px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin: 0 auto 60px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 700px;
+      padding: 0 20px;
+      display: block;
+    }
+
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,21 +118,53 @@
     </div>
     <div class="nav-right">
       <a href="index.html">home</a>
-      <a href="works.html">works</a>
+      <a href="works.html" class="active">works</a>
       <a href="about.html">about</a>
       <a href="contact.html">contact</a>
     </div>
   </nav>
-  <div class="container">
-    <h1>Island Cove — Restaurant Branding</h1>
-    <p style="margin: 20px 0; color: #777;">
-      Logo Design &bull; Branding &bull; 2026
-    </p>
-    <img src="islandcovestandalonelogo.png" alt="Island Cove Restaurant Logo"
-         style="width:100%; max-width:700px; display:block; margin:20px auto 40px auto;">
-    <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
-      A restaurant logo concept built around a fish silhouette with a palm tree cut into the body — a double-read mark that communicates tropical coastal dining without spelling it out. The coral, cream, and warm brown palette keeps the brand feeling relaxed but premium. The organic typeface was chosen to echo the hand-crafted quality of the illustration, and the wordmark was composed to sit within the tail's curve, unifying the mark and type into a single cohesive shape.
+
+  <div class="project-header">
+    <h1>Island Cove</h1>
+    <p class="project-meta">Logo Design &bull; Branding &bull; 2026</p>
+    <p class="project-description">
+      A restaurant logo concept built around a fish silhouette with a palm tree cut into the body — a double-read mark that communicates tropical coastal dining without spelling it out. The coral, cream, and warm brown palette keeps the brand feeling relaxed but premium. The wordmark was composed to sit within the tail's curve, unifying the mark and type into a single cohesive shape.
     </p>
   </div>
+
+  <!-- Standalone logo -->
+  <img src="islandlogofinaldesign.png" alt="Island Cove Logo" class="project-image">
+
+  <hr class="divider">
+
+  <!-- Color palette -->
+  <div class="palette-section">
+    <p class="section-label">Color Palette</p>
+    <div class="palette-swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: #E8614A;"></div>
+        <div class="swatch-name">Coral</div>
+        <div class="swatch-hex">#E8614A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: #F5EFE0;"></div>
+        <div class="swatch-name">Cream</div>
+        <div class="swatch-hex">#F5EFE0</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background-color: #A0733A;"></div>
+        <div class="swatch-name">Warm Brown</div>
+        <div class="swatch-hex">#A0733A</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Mockup -->
+  <img src="islandcovefinal.png" alt="Island Cove Signage Mockup" class="project-image">
+
+  <a href="works.html" class="back-link">← Back to works</a>
+
 </body>
 </html>
