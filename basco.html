@@ -7,6 +7,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes stretch {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(1.08); }
+    }
+    .basco-hands-wrapper {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .basco-hands {
+      width: 100%;
+      display: block;
+      animation: stretch 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+    .back-link {
+      display: block;
+      margin: 40px auto 80px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -25,44 +57,20 @@
     <p style="margin: 20px 0; color: #777;">
       Packaging &amp; Illustration • 2026
     </p>
-
     <!-- PRODUCT MOCKUP -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
       PRODUCT MOCKUP
     </p>
     <img src="Bascomock.png" alt="Basco Pasta Package Mockup"
          style="width:100%; max-width:900px; display:block; margin:20px auto 40px auto;">
-
     <!-- DESCRIPTION -->
     <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
       Basco is a fictional pasta brand built around an illustration-forward identity that feels bold and grown-up without crossing into childish territory. The packaging uses a vibrant amber and cobalt blue palette, a custom logotype with a playful reversed letterform, and a die-cut window that lets the actual fusilli col buco noodles become part of the design. Illustrated hands holding pasta, smiley face characters, and a wavy noodle motif run across the box panels to create a world that rewards a closer look.
     </p>
-
     <!-- DIVIDER -->
-    <style>
-      @keyframes stretch {
-        0%, 100% { transform: scaleX(1); }
-        50% { transform: scaleX(1.08); }
-      }
-      .basco-hands-wrapper {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        margin-left: -50vw;
-        margin-bottom: 40px;
-        overflow: hidden;
-      }
-      .basco-hands {
-        width: 100%;
-        display: block;
-        animation: stretch 3s ease-in-out infinite;
-        transform-origin: center;
-      }
-    </style>
     <div class="basco-hands-wrapper">
       <img src="bascohands.png" alt="" class="basco-hands">
     </div>
-
     <!-- FULL DIELINE -->
     <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
       FULL PACKAGE DIELINE
@@ -72,5 +80,8 @@
     <img src="bascofinal1.png" alt="Basco Full Package Dieline Inverted"
          style="width:100%; max-width:900px; display:block; margin:0 auto 40px auto; transform: rotate(180deg);">
   </div>
+
+  <a href="works.html" class="back-link">← Back to works</a>
+
 </body>
 </html>
