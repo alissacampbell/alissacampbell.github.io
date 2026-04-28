@@ -51,7 +51,6 @@
       margin-bottom: 20px;
     }
 
-    /* Color palette */
     .palette-section {
       max-width: 700px;
       margin: 0 auto 80px auto;
@@ -87,23 +86,43 @@
       font-family: monospace;
     }
 
-    .divider {
+    .process-section {
       max-width: 700px;
       margin: 0 auto 60px auto;
       padding: 0 20px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .process-grid img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .process-grid img.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .divider {
+      max-width: 700px;
+      margin: 0 auto 60px auto;
       border: none;
       border-top: 1px solid #eee;
     }
 
     .back-link {
-      display: inline-block;
-      margin: 0 auto 60px auto;
+      display: block;
+      margin: 0 auto 80px auto;
       font-size: 13px;
       color: #777;
       text-decoration: none;
       max-width: 700px;
       padding: 0 20px;
-      display: block;
     }
 
     .back-link:hover {
@@ -132,7 +151,7 @@
     </p>
   </div>
 
-  <!-- Standalone logo -->
+  <!-- Final logo -->
   <img src="islandlogofinaldesign.png" alt="Island Cove Logo" class="project-image">
 
   <hr class="divider">
@@ -156,6 +175,18 @@
         <div class="swatch-name">Warm Brown</div>
         <div class="swatch-hex">#A0733A</div>
       </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Process -->
+  <div class="process-section">
+    <p class="section-label">Process</p>
+    <div class="process-grid">
+      <img src="Screen_Shot_2023-10-24_at_8_40_05_AM.png" alt="Initial sketches" class="full-width">
+      <img src="Screen_Shot_2023-10-24_at_9_49_08_AM.png" alt="Digital iterations">
+      <img src="Screen_Shot_2023-11-09_at_5_33_11_AM.png" alt="Early color version">
     </div>
   </div>
 
