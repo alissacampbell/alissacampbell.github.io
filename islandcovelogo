@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Island Cove — Restaurant Branding - Portfolio 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">home</a>
+      <a href="works.html">works</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Island Cove — Restaurant Branding</h1>
+    <p style="margin: 20px 0; color: #777;">
+      Logo Design &bull; Branding &bull; 2026
+    </p>
+    <img src="islandcovefinal.png" alt="Island Cove Restaurant Logo"
+         style="width:100%; max-width:700px; display:block; margin:20px auto 40px auto;">
+    <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
+      A restaurant logo concept built around a fish silhouette with a palm tree cut into the body — a double-read mark that communicates tropical coastal dining without spelling it out. The coral, cream, and warm brown palette keeps the brand feeling relaxed but premium. The organic typeface was chosen to echo the hand-crafted quality of the illustration, and the wordmark was composed to sit within the tail's curve, unifying the mark and type into a single cohesive shape.
+    </p>
+  </div>
+</body>
+</html>
