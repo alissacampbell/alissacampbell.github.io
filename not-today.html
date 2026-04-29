@@ -2,11 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Not Today - Portfolio 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Not So Fast - Portfolio 2026</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .project-header {
+      max-width: 700px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+    .project-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+    .project-meta {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    .project-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 60px;
+    }
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 0 auto 60px auto;
+      border-radius: 4px;
+    }
+    .back-link {
+      display: block;
+      margin: 0 auto 80px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,23 +58,24 @@
     </div>
     <div class="nav-right">
       <a href="index.html">home</a>
-      <a href="works.html">works</a>
+      <a href="works.html" class="active">works</a>
       <a href="about.html">about</a>
       <a href="contact.html">contact</a>
     </div>
   </nav>
-  <div class="container">
-    <h1>Not Today</h1>
-    <p style="margin: 20px 0; color: #777;">
-      Illustration • 2026
-    </p>
 
-    <img src="NotToday2.png" alt="Not Today Illustration"
-         style="width:100%; max-width:800px; display:block; margin:20px auto 40px auto;">
-
-    <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
-      A digital illustration exploring defiance and duality. A detached head holds its ground on the floor while stiletto heels loom overhead — the expression unbothered, the mood charged. Kept to a tight magenta and teal palette so the focus stays entirely on silhouette and expression.
+  <div class="project-header">
+    <h1>Not So Fast</h1>
+    <p class="project-meta">Illustration &bull; 2026</p>
+    <p class="project-description">
+      The angle was everything here. You only see the heels and the head on the floor, you never get the full picture, and that's the point. She has so much detail in her face alone that you start filling in the rest yourself. The expression is completely unbothered, which makes the whole situation weirder and more interesting. Something clearly happened before this moment, but we dropped in too late to know what.<br><br>
+      What I kept coming back to was this idea that her head and her body are almost two separate people. The foot stepping on the braid feels less like an accident and more like a power move — like the body is trying to keep the head in line and the head simply refuses. Magenta and teal kept it tight so nothing competes with the story the silhouette is already telling.
     </p>
   </div>
+
+  <img src="NotToday2.png" alt="Not Today Illustration" class="project-image">
+
+  <a href="works.html" class="back-link">← Back to works</a>
+
 </body>
 </html>
