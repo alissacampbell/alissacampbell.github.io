@@ -8,63 +8,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-
   <style>
     body {
       overflow: hidden;
     }
-
     .container {
       padding: 0 80px;
       height: calc(100vh - 100px);
     }
-
     .hero {
       height: 100%;
       align-items: flex-end;
     }
-
     .hero-text {
       margin-top: 0;
       margin-bottom: 60px;
       align-self: center;
     }
-
-    /* Pull the image wrapper down so the bottom of the PNG
-       sits exactly at the viewport edge — adjust the px value
-       if you still see a gap or it clips too much */
     .hero-image-wrapper {
       margin-top: 0;
       margin-bottom: -40px;
       align-self: flex-end;
       max-width: 480px;
     }
-
     /* ─── Name block ─── */
     .name-block {
       position: relative;
       margin-bottom: 24px;
       line-height: 1;
     }
-
-    /* "Alissa" sits on top, Rock Salt, tilted — reads first */
     .name-first {
       display: block;
       font-family: 'Rock Salt', cursive;
       font-size: 70px;
-      color: #007BFF;
-      margin-bottom: -18px; /* pulls "campbell" up so they overlap */
+      color: #333;
+      margin-bottom: -18px;
       margin-left: -4px;
       transform: rotate(-4deg);
       display: inline-block;
       position: relative;
       z-index: 2;
-      text-shadow:
-        2px 3px 0px rgba(0, 123, 255, 0.12),
-        -1px -1px 0px rgba(0,0,0,0.04);
     }
-
-    /* "campbell" sits underneath, grounded */
     .name-last {
       display: block;
       font-family: 'Inter', sans-serif;
@@ -77,28 +61,22 @@
       position: relative;
       z-index: 1;
     }
-
     @media (max-width: 900px) {
       body { overflow: auto; }
-
       .container {
         height: auto;
         padding: 20px 30px;
       }
-
       .hero { align-items: center; }
       .hero-text { margin-bottom: 0; align-self: auto; }
-
       .hero-image-wrapper {
         align-self: auto;
         max-width: 90%;
         margin-bottom: -20px;
       }
-
       .name-last { font-size: 64px; }
       .name-first { font-size: 36px; margin-bottom: -12px; }
     }
-
     @media (max-width: 400px) {
       .name-last { font-size: 52px; }
       .name-first { font-size: 28px; margin-bottom: -10px; }
@@ -106,7 +84,6 @@
   </style>
 </head>
 <body>
-
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -118,10 +95,8 @@
       <a href="contact.html">contact</a>
     </div>
   </nav>
-
   <div class="container">
     <section class="hero">
-
       <div class="hero-text">
         <div class="name-block">
           <span class="name-first">Alissa</span>
@@ -130,18 +105,14 @@
         <div class="subtitle">
           Graphic Designer <br />
         </div>
-        
       </div>
-
       <div class="hero-image-wrapper">
         <img src="heroimage4.png" alt="Illustration of Alissa Campbell" class="eye-background">
         <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
         <img src="eyepupils.png" alt="Pupils" class="pupil">
       </div>
-
     </section>
   </div>
-
   <script>
     const pupil = document.querySelector('.pupil');
     const eyeWhites = document.querySelector('.eye-whites');
@@ -157,6 +128,5 @@
       pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
     });
   </script>
-
 </body>
 </html>
