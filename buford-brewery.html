@@ -4,13 +4,145 @@
   <meta charset="UTF-8" />
   <title>Buford Brewery - Portfolio 2026</title>
   <link rel="stylesheet" href="style.css" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .project-header {
+      max-width: 700px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+
+    .project-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+
+    .project-meta {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+      margin: 0 auto 60px auto;
+      border-radius: 4px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    /* Two column: palette + description */
+    .info-row {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .palette-swatches {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .swatch-color {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      color: #999;
+      font-family: monospace;
+    }
+
+    .project-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      margin: 0;
+    }
+
+    /* Logo + GIF row */
+    .assets-row {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .assets-row img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .asset-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+
+    .back-link {
+      display: block;
+      margin: 0 auto 80px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -23,42 +155,74 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="project-header">
     <h1>Buford Brewery</h1>
-
-    <p style="margin: 20px 0; color: #777;">
-      Branding & Web Design • 2024
-    </p>
-
-    <!-- LOGO ANIMATION -->
-    <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
-      LOGO ANIMATION
-    </p>
-
-    <img src="BufordBrewery.gif" alt="Buford Brewery Logo Animation"
-         style="width:100%; max-width:400px; display:block; margin:20px auto 40px auto;">
-
-    <!-- DESCRIPTION -->
-    <p style="max-width:700px; margin:0 auto 40px auto; text-align:center;">
-      Branding and website design for a brewery, focusing on bold identity and an engaging digital experience.
-    </p>
-
-    <!-- LOGO DESIGN -->
-    <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
-      LOGO DESIGN
-    </p>
-
-    <img src="bufordlogo2.png" alt="Buford Brewery Logo"
-         style="width:100%; max-width:400px; display:block; margin:20px auto 40px auto;">
-
-    <!-- WIREFRAME -->
-    <p style="text-align:center; color:#999; font-size:12px; letter-spacing:1px;">
-      WIREFRAME
-    </p>
-
-    <img src="Fermentfestwebsite.png" alt="Buford Brewery Wireframe"
-         style="width:100%; max-width:900px; display:block; margin:20px auto 40px auto;">
+    <p class="project-meta">Branding &amp; Web Design &bull; 2024</p>
   </div>
+
+  <!-- Full website screenshot -->
+  <img src="bufordbreweryfull.png" alt="Buford Brewery Full Website" class="project-image">
+
+  <hr class="divider">
+
+  <!-- Color palette + description side by side -->
+  <div class="info-row">
+    <div>
+      <p class="section-label">Color Palette</p>
+      <div class="palette-swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background-color: #1BBFCA;"></div>
+          <div>
+            <div class="swatch-name">Teal</div>
+            <div class="swatch-hex">#1BBFCA</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background-color: #A31F2E;"></div>
+          <div>
+            <div class="swatch-name">Crimson</div>
+            <div class="swatch-hex">#A31F2E</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background-color: #D4A847;"></div>
+          <div>
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-hex">#D4A847</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background-color: #FFFFFF; border: 1px solid #eee;"></div>
+          <div>
+            <div class="swatch-name">White</div>
+            <div class="swatch-hex">#FFFFFF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="section-label">About the Project</p>
+      <p class="project-description">
+        Branding and website design for Buford Brewery, built around a bold identity and an engaging digital experience. The identity pairs a strong custom logotype with a vibrant teal, crimson, and gold palette that feels both energetic and grounded. The website was designed to carry that identity across a full conference schedule layout, balancing dense event information with a visual system that keeps the brand feeling alive throughout.
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Logo + GIF side by side -->
+  <div class="assets-row">
+    <div>
+      <p class="asset-label">Logo Design</p>
+      <img src="bufordlogo2.png" alt="Buford Brewery Logo">
+    </div>
+    <div>
+      <p class="asset-label">Logo Animation</p>
+      <img src="BufordBrewery.gif" alt="Buford Brewery Logo Animation">
+    </div>
+  </div>
+
+  <a href="works.html" class="back-link">← Back to works</a>
 
 </body>
 </html>
