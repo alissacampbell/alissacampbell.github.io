@@ -9,46 +9,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
+    html, body {
+      height: 100%;
+      /* Prevent scroll snap flash — background matches page so any overscroll is seamless */
+      background-color: #fff;
       overflow: hidden;
     }
+
     .container {
       padding: 0 80px;
       height: calc(100vh - 100px);
     }
+
     .hero {
       height: 100%;
       align-items: flex-end;
+      /* Pull text and image into a tighter, deliberate relationship */
+      gap: 0;
     }
+
+    /* ─── Text side ─── */
     .hero-text {
       margin-top: 0;
       margin-bottom: 60px;
       align-self: center;
+      /* Shift text rightward so it overlaps the illustration's negative space */
+      position: relative;
+      z-index: 2;
     }
-    .hero-image-wrapper {
-      margin-top: 0;
-      margin-bottom: -40px;
-      align-self: flex-end;
-      max-width: 480px;
-    }
+
     /* ─── Name block ─── */
     .name-block {
       position: relative;
       margin-bottom: 24px;
       line-height: 1;
     }
+
     .name-first {
-      display: block;
+      display: inline-block;
       font-family: 'Rock Salt', cursive;
       font-size: 70px;
       color: #333;
       margin-bottom: -18px;
       margin-left: -4px;
       transform: rotate(-4deg);
-      display: inline-block;
       position: relative;
       z-index: 2;
     }
+
     .name-last {
       display: block;
       font-family: 'Inter', sans-serif;
@@ -61,6 +69,52 @@
       position: relative;
       z-index: 1;
     }
+
+    /* Subtle connecting line from name to illustration */
+    .hero-connector {
+      display: block;
+      width: 2px;
+      height: 40px;
+      background: #ddd;
+      margin: 18px 0 0 6px;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+      letter-spacing: 0.04em;
+      /* Indent to align with the weight of the last name */
+      padding-left: 3px;
+    }
+
+    /* ─── Image side ─── */
+    .hero-image-wrapper {
+      position: relative;
+      margin-top: 0;
+      /* Bleed further below viewport — extra height means the bottom of the
+         illustration extends past the screen, so the overscroll snap reveals
+         more drawing rather than white space */
+      margin-bottom: -120px;
+      align-self: flex-end;
+      max-width: 480px;
+      /* Nudge image left so it breathes into the name's space intentionally */
+      margin-left: -40px;
+    }
+
+    .hero-image-wrapper img {
+      display: block;
+      width: 100%;
+    }
+
+    .eye-whites,
+    .pupil {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
     @media (max-width: 900px) {
       body { overflow: auto; }
       .container {
@@ -73,10 +127,13 @@
         align-self: auto;
         max-width: 90%;
         margin-bottom: -20px;
+        margin-left: 0;
       }
       .name-last { font-size: 64px; }
       .name-first { font-size: 36px; margin-bottom: -12px; }
+      .hero-connector { display: none; }
     }
+
     @media (max-width: 400px) {
       .name-last { font-size: 52px; }
       .name-first { font-size: 28px; margin-bottom: -10px; }
@@ -95,6 +152,7 @@
       <a href="contact.html">contact</a>
     </div>
   </nav>
+
   <div class="container">
     <section class="hero">
       <div class="hero-text">
@@ -102,10 +160,12 @@
           <span class="name-first">Alissa</span>
           <span class="name-last">campbell</span>
         </div>
+        <span class="hero-connector"></span>
         <div class="subtitle">
-          Graphic Designer <br />
+          Graphic Designer &amp; Illustrator
         </div>
       </div>
+
       <div class="hero-image-wrapper">
         <img src="heroimage4.png" alt="Illustration of Alissa Campbell" class="eye-background">
         <img src="eyewhites.png" alt="Eye whites" class="eye-whites">
@@ -113,9 +173,11 @@
       </div>
     </section>
   </div>
+
   <script>
     const pupil = document.querySelector('.pupil');
     const eyeWhites = document.querySelector('.eye-whites');
+
     document.addEventListener('mousemove', (e) => {
       const rect = eyeWhites.getBoundingClientRect();
       const eyeCenterX = rect.left + rect.width / 2;
