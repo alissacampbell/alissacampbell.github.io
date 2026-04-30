@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buford Brewery - Portfolio 2026</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,27 +14,23 @@
       margin: 60px auto 0 auto;
       padding: 0 20px;
     }
-
     .project-header h1 {
       font-size: 32px;
       font-weight: 700;
       margin: 0 0 12px 0;
     }
-
     .project-meta {
       color: #777;
       font-size: 14px;
       margin-bottom: 40px;
     }
-
     .project-image {
       width: 100%;
-      max-width: 900px;
+      max-width: 800px;
       display: block;
       margin: 0 auto 60px auto;
       border-radius: 4px;
     }
-
     .section-label {
       font-size: 11px;
       font-weight: 700;
@@ -42,8 +39,6 @@
       color: #aaa;
       margin-bottom: 20px;
     }
-
-    /* Two column: palette + description */
     .info-row {
       max-width: 900px;
       margin: 0 auto 60px auto;
@@ -53,47 +48,39 @@
       gap: 60px;
       align-items: start;
     }
-
     .palette-swatches {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     .swatch {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-
     .swatch-color {
       width: 48px;
       height: 48px;
       border-radius: 6px;
       flex-shrink: 0;
     }
-
     .swatch-name {
       font-size: 12px;
       font-weight: 600;
       color: #222;
       margin-bottom: 2px;
     }
-
     .swatch-hex {
       font-size: 11px;
       color: #999;
       font-family: monospace;
     }
-
     .project-description {
       font-size: 15px;
       line-height: 1.75;
       color: #333;
       margin: 0;
     }
-
-    /* Logo + GIF row */
     .assets-row {
       max-width: 900px;
       margin: 0 auto 60px auto;
@@ -103,13 +90,11 @@
       gap: 40px;
       align-items: center;
     }
-
     .assets-row img {
       width: 100%;
       display: block;
       border-radius: 4px;
     }
-
     .asset-label {
       font-size: 11px;
       font-weight: 700;
@@ -119,14 +104,12 @@
       margin-bottom: 12px;
       text-align: center;
     }
-
     .divider {
       max-width: 900px;
       margin: 0 auto 60px auto;
       border: none;
       border-top: 1px solid #eee;
     }
-
     .back-link {
       display: block;
       margin: 0 auto 80px auto;
@@ -136,7 +119,6 @@
       max-width: 900px;
       padding: 0 20px;
     }
-
     .back-link:hover {
       color: #000;
     }
@@ -149,7 +131,7 @@
     </div>
     <div class="nav-right">
       <a href="index.html">home</a>
-      <a href="works.html">works</a>
+      <a href="works.html" class="active">works</a>
       <a href="about.html">about</a>
       <a href="contact.html">contact</a>
     </div>
@@ -162,6 +144,9 @@
 
   <!-- Full website screenshot -->
   <img src="bufordbreweeryfinal.png" alt="Buford Brewery Full Website" class="project-image">
+
+  <!-- Laptop mockup -->
+  <img src="bufordbrewmock.png" alt="Buford Brewery Website Laptop Mockup" class="project-image">
 
   <hr class="divider">
 
