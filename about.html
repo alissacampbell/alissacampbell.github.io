@@ -5,52 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio 2026 - About</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-
   <style>
     .about-wrapper {
-      max-width: 650px;
-      width: 90%;
-      margin: 40px auto 60px auto;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
+      max-width: 700px;
+      margin: 60px auto 80px auto;
+      padding: 0 20px;
       position: relative;
       z-index: 1;
     }
 
     .about-image {
-      width: 80%;
-      max-width: 600px;
+      width: 100%;
+      max-width: 700px;
       height: auto;
-      object-fit: cover;
-      border-radius: 8px;
+      border-radius: 4px;
       display: block;
-      margin-bottom: 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      margin-bottom: 50px;
     }
 
     .about-text {
-      font-size: 17px;
-      line-height: 1.7;
-      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
       color: #333;
-      max-width: 700px;
-      text-align: center;
     }
 
-    .about-text span:first-child {
-      display: block;
-      font-size: 19px;
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 10px;
+    .about-text p {
+      margin: 0 0 24px 0;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
     }
 
     #cursorCanvas {
@@ -62,22 +49,12 @@
     }
 
     @media (max-width: 600px) {
-      .about-image {
-        width: 95%;
-      }
-      .about-text {
-        font-size: 16px;
-      }
-      .about-text span:first-child {
-        font-size: 18px;
-      }
+      .about-text { font-size: 14px; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <div class="logo-small">
       <a href="index.html">Portfolio 2026</a>
@@ -90,19 +67,18 @@
     </div>
   </nav>
 
-  <!-- ABOUT CONTENT -->
   <div class="about-wrapper">
 
     <img src="aboutimage.png" alt="Alissa Campbell painting with family" class="about-image">
 
-    <p class="about-text">
-      <span>My grandma's porch is where it started.</span>
-      Watercolors, my mom on one side, my grandma on the other. These days it's more Illustrator than watercolor but the approach hasn't changed much. I'm a BFA grad in Graphic Design who loves work that feels handmade even when it isn't. Currently looking for remote creative opportunities.
-    </p>
+    <div class="about-text">
+      <p>It started on my grandma's porch. Sitting between her and my mom, paintbrush in hand, that's where I first fell in love with making things. I was young, but I never let it go.</p>
+      <p>I went on to earn a BFA in Graphic Design, but what's always driven me is the belief that the best work feels human. I gravitate toward handmade, expressive art that goes beyond the brief and the kind that actually moves people. That's the standard I hold myself to.</p>
+      <p>I'm a multidisciplinary creative open to all kinds of work, branding, illustration, packaging, web, you name it. If it's creative, I'm interested.</p>
+    </div>
 
   </div>
 
-  <!-- CANVAS -->
   <canvas id="cursorCanvas"></canvas>
 
   <script>
