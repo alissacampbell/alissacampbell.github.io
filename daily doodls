@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Doodles - Portfolio 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .project-header {
+      max-width: 700px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+    .project-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+    .project-meta {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    .project-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 60px;
+    }
+    .doodles-grid {
+      max-width: 900px;
+      margin: 0 auto 80px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .doodles-grid img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+    .back-link {
+      display: block;
+      margin: 0 auto 80px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">home</a>
+      <a href="works.html" class="active">works</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+
+  <div class="project-header">
+    <h1>Daily Doodles</h1>
+    <p class="project-meta">Illustration &bull; Just for Fun</p>
+    <p class="project-description">
+      Every day for a set number of days I challenged myself to do one quick illustration and drop it into a real photo. No rules, just whatever felt fun that day. It was a way to stay creative, keep drawing consistently, and find a new way to bring illustration into everyday life.
+    </p>
+  </div>
+
+  <div class="doodles-grid">
+    <img src="skatergirldoodle-80.jpg" alt="Figure skater illustration">
+    <img src="babyplaydoodle-80.jpg" alt="Baby on campus illustration">
+    <img src="bluegirldoodle-80.jpg" alt="Blue girl on wall illustration">
+    <img src="purpleguydoodle-80.jpg" alt="Purple guy holding tree illustration">
+    <img src="lakemonsterdoodle-80.jpg" alt="Lake monster illustration">
+    <img src="pillowprincess-80.jpg" alt="Pillow princess illustration">
+    <img src="greenhairdoodle-80.jpg" alt="Green hair creature illustration">
+    <img src="chickenholedoodle-80.jpg" alt="Chicken peephole illustration">
+    <img src="pumpkingirlsdoodle-80.jpg" alt="Girls in pumpkin illustration">
+    <img src="madbunnydoodle-80.jpg" alt="Mad bunny illustration">
+  </div>
+
+  <a href="works.html" class="back-link">← Back to works</a>
+</body>
+</html>
