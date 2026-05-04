@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Oranges - Portfolio 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    .project-header {
+      max-width: 700px;
+      margin: 60px auto 0 auto;
+      padding: 0 20px;
+    }
+    .project-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+    .project-meta {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    .project-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #333;
+      margin-bottom: 60px;
+    }
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 0 auto 60px auto;
+      border-radius: 4px;
+    }
+    .back-link {
+      display: block;
+      margin: 0 auto 80px auto;
+      font-size: 13px;
+      color: #777;
+      text-decoration: none;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+    .back-link:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo-small">
+      <a href="index.html">Portfolio 2026</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">home</a>
+      <a href="works.html" class="active">works</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </div>
+  </nav>
+  <div class="project-header">
+    <h1>Blood Oranges</h1>
+    <p class="project-meta">Painting &bull; 2024</p>
+    <p class="project-description">
+      My friend made me a birthday cake decorated with candied blood oranges. I thought it was so beautiful and thoughtful that I wanted to capture it forever.
+    </p>
+  </div>
+  <img src="blood-oranges.jpg" alt="Blood Oranges Oil Painting" class="project-image">
+  <a href="works.html" class="back-link">← Back to works</a>
+</body>
+</html>
